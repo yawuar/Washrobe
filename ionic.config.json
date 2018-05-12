@@ -1,0 +1,8 @@
+{
+  "name": "washrobe",
+  "app_id": "af66d2cf",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
