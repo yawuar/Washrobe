@@ -1,8 +1,14 @@
 page-intro {
     .intro-logo {
-        svg {
-            width: 175px;
-            height: 90px;
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 0;
+
+            font-family: 'Gotham Rounded';
+            font-weight: bold;
+            font-size: 36px;
+            color: $dark;
+            letter-spacing: 0;
         }
     }
 }

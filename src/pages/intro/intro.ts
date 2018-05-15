@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
+
 /**
  * Generated class for the IntroPage page.
  *
@@ -19,7 +21,14 @@ export class IntroPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IntroPage');
+    this.loadPageAfterXSeconds();
+  }
+
+  loadPageAfterXSeconds() {
+    var seconds = 3000;
+    setTimeout(() => {
+      this.navCtrl.push(LoginPage);
+    }, seconds);
   }
 
 }
