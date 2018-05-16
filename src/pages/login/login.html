@@ -26,18 +26,48 @@
     <div class="main">
       <form [formGroup]="user" (ngSubmit)="login()">
         <ion-item no-padding>
-          <ion-label>EMAIL</ion-label>
-          <ion-input type="text" [(ngModel)]="user.email" formControlName="email"></ion-input>
+          <ion-label stacked>EMAIL</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email" formControlName="email" placeholder="example@example.be"></ion-input>
         </ion-item>
         <ion-item no-padding>
-          <ion-label>PASSWORD</ion-label>
-          <ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
+          <ion-label stacked>PASSWORD</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" formControlName="password" placeholder="xxxxxxxxxxx"></ion-input>
         </ion-item>
-        <button ion-button type="submit" block>LOGIN</button>
+        <div class="button">
+            <button ion-button type="submit" block>
+                LOGIN
+            </button>
+            <span class="gradient"></span>
+        </div>
       </form>
+      <div class="create_btn">
+          <a href="">CREATE ACCOUNT</a>
+      </div>
     </div>
     <div class="footer">
-
+      <div class="or">
+        <div class="lines">
+          <div class="small"></div>
+          <div class="point"></div>
+          <div class="big"></div>
+        </div>
+        <p>OR</p>
+        <div class="lines">
+            <div class="big"></div>
+            <div class="point"></div>
+            <div class="small"></div>
+        </div>
+      </div>
+      <div class="social">
+        <div class="facebook">
+          <div class="gradient"></div>
+          <span>Facebook</span>
+        </div>
+        <div class="google">
+          <div class="no-gradient"></div>
+          <span>Google</span>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

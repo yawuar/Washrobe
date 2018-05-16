@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { HomePage } from '../home/home';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -19,9 +22,9 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class LoginPage {
 
   private user : FormGroup;
-  private url: 'http://52.14.23.226/api';
+  // private url : '52.14.23.226/api';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private http: HTTP) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private http: HTTP, private keyboard: Keyboard, private platform: Platform) {
     this.user = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -30,14 +33,27 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    this.keyboard.disableScroll(true);
+  }
+
+  ionViewDidEnter() {
+    this.platform.ready().then(() => {
+      this.keyboard.disableScroll(true);
+    });
   }
 
   login() {
-    this.http.post(this.url + '/login', this.user.value, {headers: { 'Content-Type': 'application/json' }})
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    this.http.post('http://ec2-52-14-23-226.us-east-2.compute.amazonaws.com/api/login', this.user.value, { headers: headers })
       .then(data => {
-        console.log(data.data);
-      }).catch(error => {
-        console.log(error.status);
+        this.navCtrl.push(HomePage, {
+          data: data.data
+        });
+      })
+      .catch(error => {
+        alert(JSON.stringify(error));
       });
   }
 
