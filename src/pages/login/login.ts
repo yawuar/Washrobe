@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-import { HTTP } from '@ionic-native/http';
 import { Keyboard } from '@ionic-native/keyboard';
 
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
 
 
@@ -24,7 +25,7 @@ export class LoginPage {
   private user : FormGroup;
   // private url : '52.14.23.226/api';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private http: HTTP, private keyboard: Keyboard, private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private keyboard: Keyboard, private platform: Platform, private authServiceProvider: AuthServiceProvider) {
     this.user = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -43,17 +44,9 @@ export class LoginPage {
   }
 
   login() {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    this.http.post('http://ec2-52-14-23-226.us-east-2.compute.amazonaws.com/api/login', this.user.value, { headers: headers })
-      .then(data => {
-        this.navCtrl.push(HomePage, {
-          data: data.data
-        });
-      })
-      .catch(error => {
-        alert(JSON.stringify(error));
+    this.authServiceProvider.login(this.user.value, 'login')
+      .then(result => {
+          this.navCtrl.push(HomePage, { data: result['success']['token'] });
       });
   }
 

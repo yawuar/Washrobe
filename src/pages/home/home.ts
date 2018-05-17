@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { HTTP } from '@ionic-native/http';
 
-import { RequestOptions, Headers } from '@angular/http';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @Component({
   selector: 'page-home',
@@ -12,28 +11,32 @@ export class HomePage {
 
   public token;
   
-  constructor(public navCtrl: NavController, private navParams: NavParams, private http: HTTP) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private authServiceProvider:AuthServiceProvider) {
   
     this.getUserInformation(this.navParams.get('data'));
+    this.getWardrobeByGender(localStorage.getItem('currentUser'));
   }
 
-  getUserInformation(data) {
-    let token = JSON.parse(data).success.token;
-
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Bearer ' + token);
-
-    let options = new RequestOptions({ headers: headers, withCredentials: true });
-
-    this.http.setDataSerializer('json');
-    this.http.get('http://ec2-52-14-23-226.us-east-2.compute.amazonaws.com/api/user', {}, options)
-    .then(data => {
-      alert(JSON.stringify(data));
-    })
-    .catch(err => {
-      alert(err);
+  getUserInformation(token) {
+    this.authServiceProvider.getUserInformation(token, 'user')
+    .then(result => {
+      let items = result.success;
+      items.token = token;
+      localStorage.setItem('currentUser', JSON.stringify(items));
     });
   }
+
+  getWardrobeByGender(user) {
+
+    if(user) {
+      let gender = JSON.parse(user).gender;
+      let token = JSON.parse(user).token;
+      this.authServiceProvider.getUserInformation(token, 'wardrobe', gender)
+        .then(result => {
+          console.log(result);
+        }
+      );
+    }
+  }
 }
+

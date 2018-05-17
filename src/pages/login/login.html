@@ -27,11 +27,11 @@
       <form [formGroup]="user" (ngSubmit)="login()">
         <ion-item no-padding>
           <ion-label stacked>EMAIL</ion-label>
-          <ion-input type="email" [(ngModel)]="user.email" formControlName="email" placeholder="example@example.be"></ion-input>
+          <ion-input type="email" [(ngModel)]="user.email" formControlName="email" placeholder="example@example.be" value="yawuarsernadelgado@gmail.com"></ion-input>
         </ion-item>
         <ion-item no-padding>
           <ion-label stacked>PASSWORD</ion-label>
-          <ion-input type="password" [(ngModel)]="user.password" formControlName="password" placeholder="xxxxxxxxxxx"></ion-input>
+          <ion-input type="password" [(ngModel)]="user.password" formControlName="password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
         </ion-item>
         <div class="button">
             <button ion-button type="submit" block>

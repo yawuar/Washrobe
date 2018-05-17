@@ -5,12 +5,14 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { HTTP } from '@ionic-native/http';
+import { HTTP } from '@ionic-native/http'; 
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { LoginPage } from '../pages/login/login';
       scrollAssist: false,
       autoFocusAssist: false
     }),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +41,8 @@ import { LoginPage } from '../pages/login/login';
     SplashScreen,
     Keyboard,
     HTTP,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthServiceProvider,
   ]
 })
 export class AppModule {}
