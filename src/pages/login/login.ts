@@ -6,6 +6,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
+import { RegistrationPage } from '../registration/registration';
 
 
 /**
@@ -48,6 +49,10 @@ export class LoginPage {
       .then(result => {
           this.navCtrl.push(HomePage, { data: result['success']['token'] });
       });
+  }
+
+  showRegistration() {
+    this.navCtrl.push(RegistrationPage);
   }
 
 }

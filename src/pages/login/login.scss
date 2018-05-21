@@ -4,6 +4,12 @@ page-login {
         ion-navbar {
             border-bottom: 0;
     
+            ion-title {
+                &.title {
+                    padding: 16px !important;
+                }
+            }
+
             .login-logo {    
                 h1 {
                     font-family: 'Gotham Rounded';

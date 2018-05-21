@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WardrobeServiceProvider } from '../../providers/wardrobe-service/wardrobe-service';
+
+import { CustomHeaderComponent } from '../../components/custom-header/custom-header';
+
+import { ItemPage } from '../item/item'; 
 
 @Component({
   selector: 'page-home',
@@ -10,8 +15,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 export class HomePage {
 
   public token;
+  public categories: any = [];
   
-  constructor(public navCtrl: NavController, private navParams: NavParams, private authServiceProvider:AuthServiceProvider) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private authServiceProvider:AuthServiceProvider, private wardrobeServiceProvider:WardrobeServiceProvider) {
   
     this.getUserInformation(this.navParams.get('data'));
     this.getWardrobeByGender(localStorage.getItem('currentUser'));
@@ -20,23 +26,26 @@ export class HomePage {
   getUserInformation(token) {
     this.authServiceProvider.getUserInformation(token, 'user')
     .then(result => {
-      let items = result.success;
+      let items = result['success'];
       items.token = token;
+      this.token = token;
       localStorage.setItem('currentUser', JSON.stringify(items));
     });
   }
 
   getWardrobeByGender(user) {
-
     if(user) {
       let gender = JSON.parse(user).gender;
       let token = JSON.parse(user).token;
-      this.authServiceProvider.getUserInformation(token, 'wardrobe', gender)
-        .then(result => {
-          console.log(result);
-        }
-      );
+      this.wardrobeServiceProvider.getWardrobe(token, 'wardrobe', gender)
+      .then(result => {
+        this.categories = result['data'];
+      });
     }
+  }
+
+  showCategory(id) {
+    this.navCtrl.push(ItemPage, { data: id });
   }
 }
 

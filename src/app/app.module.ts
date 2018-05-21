@@ -11,15 +11,24 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
+import { ItemPage } from '../pages/item/item';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { HttpClientModule } from '@angular/common/http';
+
+import { CustomHeaderComponent } from '../components/custom-header/custom-header';
+import { WardrobeServiceProvider } from '../providers/wardrobe-service/wardrobe-service';
+import { RegistrationPage } from '../pages/registration/registration';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     IntroPage,
-    LoginPage
+    LoginPage,
+    ItemPage,
+    CustomHeaderComponent,
+    RegistrationPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,9 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp,
     HomePage,
     IntroPage,
-    LoginPage
+    LoginPage,
+    ItemPage,
+    RegistrationPage
   ],
   providers: [
     StatusBar,
@@ -43,6 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
+    WardrobeServiceProvider,
   ]
 })
 export class AppModule {}

@@ -3,12 +3,6 @@ import { Injectable } from '@angular/core';
 
 let url = 'http://ec2-52-14-23-226.us-east-2.compute.amazonaws.com/api/';
 
-/*
-  Generated class for the AuthServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class AuthServiceProvider {
 
@@ -33,7 +27,26 @@ export class AuthServiceProvider {
     });
   }
 
-  getUserInformation(token, type, gender) {
+  register(data, type) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+
+      this.http.post(url + type, JSON.stringify(data), {headers: headers}).subscribe(
+        res => {
+          console.log(JSON.stringify(res));
+          resolve(res);
+        },
+        (err) => {
+          console.log(JSON.stringify(err));
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getUserInformation(token, type) {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders({
         'Authorization': 'Bearer ' + token,
@@ -41,7 +54,7 @@ export class AuthServiceProvider {
         'Accept': 'application/json'
       });
 
-      this.http.post(url + type, { gender: gender }, {headers: headers}).subscribe(
+      this.http.post(url + type, {}, {headers: headers}).subscribe(
         res => {
           resolve(res);
         },
@@ -51,5 +64,4 @@ export class AuthServiceProvider {
       )
     });
   }
-
 }

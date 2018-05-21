@@ -1,0 +1,23 @@
+custom-header {
+    ion-navbar {
+
+        .bar-button-default {
+            color: $dark;
+        }
+
+        ion-title {
+            .toolbar-title {
+                color: $dark;
+
+                h1 {
+                    margin: 0;
+
+                    font-family: 'Gotham Rounded';
+                    font-weight: bold;
+                    font-size: 14px;
+                    letter-spacing: 0;
+                }
+            }
+        }
+    }
+}
