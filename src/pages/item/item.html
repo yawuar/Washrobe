@@ -16,29 +16,32 @@
 <ion-content padding>
 
   <div class="container">
-    <div *ngFor="let category of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showDetail(category)">
-      <div *ngIf="selectedItem === category" class="selected">
-        <div class="content">
-          <div class="header">
-            <h2>{{ category.name }}</h2>
-            <span>merk: {{ category.brand }}</span>
-          </div>
-          <div class="main"></div>
-          <div class="footer">
-            <div class="calendar">
-              <img src="icon" alt="calendar">
+    <div *ngIf="items?.length > 0" class="grid">
+      <div *ngFor="let category of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showDetail(category)">
+        <div *ngIf="selectedItem === category" class="selected">
+          <div class="content">
+            <div class="header">
+              <h2>{{ category.name }}</h2>
+              <span>merk: {{ category.brand }}</span>
             </div>
-            <div class="laundry">
-              <img src="icon" alt="laundry">
-            </div>
-            <div class="delete">
-              <img src="icon" alt="delete">
+            <div class="main"></div>
+            <div class="footer">
+              <div class="calendar">
+                <img src="icon" alt="calendar">
+              </div>
+              <div class="laundry">
+                <img src="icon" alt="laundry">
+              </div>
+              <div class="delete" (click)="delete(category.id)">
+                <img src="icon" alt="delete">
+              </div>
             </div>
           </div>
         </div>
+        <img src="{{ category.image }}" alt="{{ category.name }}" />
       </div>
-      <img src="{{ category.image }}" alt="{{ category.name }}" />
     </div>
+    <div (click)="scan()">Add Item</div>
   </div>
 
 </ion-content>

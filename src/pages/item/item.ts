@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { WardrobeServiceProvider } from '../../providers/wardrobe-service/wardrobe-service';
+import { ScanPage } from '../scan/scan';
 
 @IonicPage()
 @Component({
@@ -32,8 +33,18 @@ export class ItemPage {
 
   showDetail(item) {
     this.selectedItem = item;
-    // this.showInformation = 'overlay';
-    console.log(this.selectedItem);
+  }
+
+  delete(id) {
+    this.wardrobeServiceProvider.deleteItemInWardrobe(id, this.token, 'wardrobe')
+    .then(result => {
+      let index = this.items.indexOf(this.selectedItem);
+      this.items.splice(index, 1);
+    });
+  }
+
+  scan() {
+    this.navCtrl.push(ScanPage);
   }
 
 }

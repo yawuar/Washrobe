@@ -24,7 +24,6 @@ import { RegistrationPage } from '../registration/registration';
 export class LoginPage {
 
   private user : FormGroup;
-  // private url : '52.14.23.226/api';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private keyboard: Keyboard, private platform: Platform, private authServiceProvider: AuthServiceProvider) {
     this.user = this.formBuilder.group({
@@ -34,7 +33,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
     this.keyboard.disableScroll(true);
   }
 

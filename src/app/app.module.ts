@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomHeaderComponent } from '../components/custom-header/custom-header';
 import { WardrobeServiceProvider } from '../providers/wardrobe-service/wardrobe-service';
 import { RegistrationPage } from '../pages/registration/registration';
+import { ScanPage } from '../pages/scan/scan';
+import { NFC, Ndef } from '@ionic-native/nfc';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { RegistrationPage } from '../pages/registration/registration';
     LoginPage,
     ItemPage,
     CustomHeaderComponent,
-    RegistrationPage
+    RegistrationPage,
+    ScanPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { RegistrationPage } from '../pages/registration/registration';
     IntroPage,
     LoginPage,
     ItemPage,
-    RegistrationPage
+    RegistrationPage,
+    ScanPage
   ],
   providers: [
     StatusBar,
@@ -55,6 +59,8 @@ import { RegistrationPage } from '../pages/registration/registration';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     WardrobeServiceProvider,
+    NFC,
+    Ndef
   ]
 })
 export class AppModule {}

@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
-import { unescapeIdentifier } from '@angular/compiler';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -43,10 +42,10 @@ export class RegistrationPage {
     }
 
     console.log(this.registration.value);
-    // this.authServiceProvider.register(this.registration.value, 'register')
-    // .then(result => {
-    //   this.navCtrl.push(HomePage, { data: result['success']['token'] });
-    // });
+    this.authServiceProvider.register(this.registration.value, 'register')
+    .then(result => {
+      this.navCtrl.push(HomePage, { data: result['success']['token'] });
+    });
   }
 
   test(event) {

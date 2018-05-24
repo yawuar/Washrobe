@@ -13,7 +13,10 @@ export class AuthServiceProvider {
   login(data, type) {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
       });
 
       this.http.post(url + type, JSON.stringify(data), {headers: headers}).subscribe(
@@ -21,6 +24,7 @@ export class AuthServiceProvider {
           resolve(res);
         },
         (err) => {
+          alert(JSON.stringify(err));
           reject(err);
         }
       );
@@ -39,7 +43,6 @@ export class AuthServiceProvider {
           resolve(res);
         },
         (err) => {
-          console.log(JSON.stringify(err));
           reject(err);
         }
       );

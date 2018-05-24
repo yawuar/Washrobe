@@ -15,7 +15,9 @@ export class WardrobeServiceProvider {
       let headers = new HttpHeaders({
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
       });
 
       this.http.post(url + type, { 'gender': gender }, {headers: headers}).subscribe(
@@ -38,6 +40,25 @@ export class WardrobeServiceProvider {
       });
 
       this.http.post(url + type + '/' + id, {}, {headers: headers}).subscribe(
+        res => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      )
+    });
+  }
+
+  deleteItemInWardrobe(id, token, type) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      });
+
+      this.http.delete(url + type + '/' + id, {headers: headers}).subscribe(
         res => {
           resolve(res);
         },
