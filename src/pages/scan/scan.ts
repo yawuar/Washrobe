@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { NFC, Ndef } from '@ionic-native/nfc';
 
+import { ItemServiceProvider } from '../../providers/item-service/item-service';
+import { ItemPage } from '../item/item';
+
 /**
  * Generated class for the ScanPage page.
  *
@@ -18,10 +21,13 @@ import { NFC, Ndef } from '@ionic-native/nfc';
 export class ScanPage {
 
   public error: string = '';
+  public token;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private nfc: NFC, private ndef: Ndef) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private nfc: NFC, private ndef: Ndef, private itemServiceProvider: ItemServiceProvider) {
+    this.token = JSON.parse(localStorage.getItem('currentUser'))['token'];
+
     this.nfc.addNdefListener(() => {
-      // console.log('successfully attached ndef listener');
+      this.error = 'available';
     }, (err) => {
       this.error = 'unavailable';
     }).subscribe((event) => {
@@ -29,20 +35,18 @@ export class ScanPage {
         let payload = event.tag.ndefMessage[0].payload;
         let content = this.nfc.bytesToString(payload).substring(3);
         if(content) {
-          alert(content);
+          this.itemServiceProvider.addItemToUser(this.token, 'item', content)
+            .then(result => {
+              this.navCtrl.push(ItemPage);
+            });
         } else {
-          alert('NFC not detected');
+          this.error = 'unavailable';
         }
       }
     });
   }
 
-  test() {
-    
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ScanPage');
   }
   
 

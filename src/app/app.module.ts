@@ -20,6 +20,9 @@ import { WardrobeServiceProvider } from '../providers/wardrobe-service/wardrobe-
 import { RegistrationPage } from '../pages/registration/registration';
 import { ScanPage } from '../pages/scan/scan';
 import { NFC, Ndef } from '@ionic-native/nfc';
+import { ItemServiceProvider } from '../providers/item-service/item-service';
+import { LaundryPage } from '../pages/laundry/laundry';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { NFC, Ndef } from '@ionic-native/nfc';
     ItemPage,
     CustomHeaderComponent,
     RegistrationPage,
-    ScanPage
+    ScanPage,
+    LaundryPage,
+    CalendarPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,9 @@ import { NFC, Ndef } from '@ionic-native/nfc';
     LoginPage,
     ItemPage,
     RegistrationPage,
-    ScanPage
+    ScanPage,
+    LaundryPage,
+    CalendarPage
   ],
   providers: [
     StatusBar,
@@ -60,7 +67,8 @@ import { NFC, Ndef } from '@ionic-native/nfc';
     AuthServiceProvider,
     WardrobeServiceProvider,
     NFC,
-    Ndef
+    Ndef,
+    ItemServiceProvider
   ]
 })
 export class AppModule {}

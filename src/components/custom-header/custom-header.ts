@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
+import { LaundryPage } from '../../pages/laundry/laundry';
 
 /**
  * Generated class for the CustomHeaderComponent component.
@@ -12,11 +15,15 @@ import { Component } from '@angular/core';
 })
 
 export class CustomHeaderComponent {
-  text: string;
+  constructor(public navCtrl: NavController,) {
+  }
 
-  constructor() {
-    console.log('Hello CustomHeaderComponent Component');
-    this.text = 'Hello World';
+  openLaundry() {
+    this.navCtrl.setRoot(LaundryPage);
+  }
+
+  openHomePage() {
+    this.navCtrl.setRoot(HomePage, { data: JSON.parse(localStorage.getItem('currentUser'))['token'] });
   }
 
 }

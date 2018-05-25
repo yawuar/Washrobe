@@ -45,12 +45,12 @@ export class LoginPage {
   login() {
     this.authServiceProvider.login(this.user.value, 'login')
       .then(result => {
-          this.navCtrl.push(HomePage, { data: result['success']['token'] });
+          this.navCtrl.setRoot(HomePage, { data: result['success']['token'] });
       });
   }
 
   showRegistration() {
-    this.navCtrl.push(RegistrationPage);
+    this.navCtrl.setRoot(RegistrationPage);
   }
 
 }

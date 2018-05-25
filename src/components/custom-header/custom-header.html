@@ -1,19 +1,22 @@
-<ion-navbar>
+<ion-navbar hideBackButton>
     
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
+    <button ion-button menuToggle class="hamburger" primary>
+      <img src="assets/imgs/hamburger.svg" width="20" alt="logo">
     </button>
 
     <ion-title padding text-center>
-      <div class="login-logo">
-       <img src="assets/imgs/wardrobe.svg" width="25" alt="logo">
+      <div class="login-logo" (click)="openHomePage()">
+        <img src="assets/imgs/wardrobe.svg" width="25" alt="logo">
         <h1>Wardrobe</h1>
       </div>
     </ion-title>
 
+    <!-- <button menuToggle class="laundry" end>
+      <img src="assets/imgs/laundry.svg" width="30" alt="logo">
+    </button> -->
     <ion-buttons end>
-        <button ion-button icon-only>
-          <ion-icon name="options"></ion-icon>
+        <button ion-button icon-only (click)="openLaundry()" class="laundry">
+            <img src="assets/imgs/laundry.svg" width="30" alt="logo">
         </button>
       </ion-buttons>
 

@@ -84,3 +84,64 @@
 
     border: 2px solid $dark;
 }
+
+.menu-inner {
+    width: 100%;
+}
+ion-menu {
+    .close-menu {
+        position: absolute;
+        z-index: 9;
+        background: transparent;
+        margin: 25px 0 0 15px;
+        padding: 10px;
+    }
+
+    .scroll-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ion-list {
+            margin: 0 !important;
+            width: 100%;
+            .menu-item {
+                text-align: center;
+                padding: 0;
+
+                &:nth-child(1), &:nth-child(2) {
+                    margin-bottom: 50px;
+                }
+        
+                .item-inner {
+                    border: 0 !important;
+                    padding: 0;
+
+                    ion-label {
+                        margin: 0;
+                        .content {
+                            img {
+    
+                            }
+    
+                            span {
+                                display: block;
+                                font-family: 'Gotham Rounded';
+                                font-weight: bold;
+                                font-size: 24px;
+                                color: $dark;
+    
+                                margin-top: 5px;
+                            }
+    
+                            &.active {
+                                span {
+                                    color: $active; 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

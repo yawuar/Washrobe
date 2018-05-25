@@ -1,1 +1,20 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+
+  <button menuClose class="close-menu">
+    <img src="assets/imgs/cross.svg" alt="cross" width="20">
+  </button>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item  *ngFor="let p of pages" (click)="openPage(p)" class="menu-item">
+        <div class="content" [class.active]="checkActive(p)">
+            <img src="{{ checkActive(p) ? p.image : p.image + 'NG' }}.svg" alt="{{ p.title }}" width="{{ p.width }}">
+            <span>{{ p.title }}</span>
+        </div>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+  
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

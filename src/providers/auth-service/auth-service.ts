@@ -7,7 +7,6 @@ let url = 'http://ec2-52-14-23-226.us-east-2.compute.amazonaws.com/api/';
 export class AuthServiceProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello AuthServiceProvider Provider');
   }
 
   login(data, type) {

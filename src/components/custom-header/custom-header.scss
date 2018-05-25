@@ -20,4 +20,17 @@ custom-header {
             }
         }
     }
+
+    .hamburger, .laundry{
+        display: inline-block !important;
+        background: transparent;
+    }
+
+    .hamburger {
+        padding-left: 21px;
+    }
+
+    .laundry {
+        padding-right: 21px !important;
+    }
 }

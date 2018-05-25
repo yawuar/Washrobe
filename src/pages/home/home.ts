@@ -4,8 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WardrobeServiceProvider } from '../../providers/wardrobe-service/wardrobe-service';
 
-import { CustomHeaderComponent } from '../../components/custom-header/custom-header';
-
 import { ItemPage } from '../item/item'; 
 
 @Component({
@@ -16,6 +14,7 @@ export class HomePage {
 
   public token;
   public categories: any = [];
+  public amountOfTimes: any = [];
   
   constructor(public navCtrl: NavController, private navParams: NavParams, private authServiceProvider:AuthServiceProvider, private wardrobeServiceProvider:WardrobeServiceProvider) {
   
