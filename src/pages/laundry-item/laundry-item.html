@@ -12,8 +12,30 @@
   </div>
   <div class="container">
     <div *ngIf="items?.length > 0" class="grid">
-      <div *ngFor="let item of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)">
+      <div *ngFor="let item of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showDetail(category)">
+
         <div class="no-gradient"></div>
+        <div *ngIf="isOpen" class="selected gradient">
+          <div class="close">
+            <img-loader src="../../assets/imgs/cross.svg"></img-loader>
+          </div>
+          <div class="content">
+            <div class="header">
+              <h2>{{ item.name }}</h2>
+              <span>merk:
+                <span class="bold">{{ item.brand }}</span>
+              </span>
+            </div>
+            <div class="main"></div>
+            <div class="footer">
+              <ul>
+                <li (click)="delete(item)">
+                  <img src="../../assets/imgs/trashbagNG.svg" width="15" alt="Trashbag">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <img-loader src="{{ item.image }}" class="item-images" spinner="true"></img-loader>
       </div>
     </div>

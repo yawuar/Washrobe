@@ -39,6 +39,7 @@ export class ItemPage {
   ionViewDidLoad() {}
 
   getItem(id, token) {
+    console.log(id);
     this.wardrobeServiceProvider
       .getWardrobeById(id, token, "wardrobe")
       .then(result => {
@@ -77,6 +78,7 @@ export class ItemPage {
 
   action(event, category) {
     let alt = event.target.alt;
+
     switch (alt) {
       case "calendar":
         break;

@@ -17,16 +17,18 @@ import { WashingPage } from "../washing/washing";
 })
 export class LaundryItemPage {
   public items: any = [];
+  public token;
+  public isOpen: boolean = false;
+
+  public selectedItem: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private laundryServiceProvider: LaundryServiceProvider
   ) {
-    this.getLaundryItems(
-      this.navParams.get("data"),
-      JSON.parse(localStorage.getItem("currentUser"))["token"]
-    );
+    this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
+    this.getLaundryItems(this.navParams.get("data"), this.token);
   }
 
   ionViewDidLoad() {}
@@ -39,7 +41,22 @@ export class LaundryItemPage {
       });
   }
 
+  showDetail() {
+    this.isOpen = !this.isOpen;
+  }
+
   goToOverview() {
     this.navCtrl.setRoot(WashingPage);
+  }
+
+  delete(data) {
+    console.log(data.pivot.id);
+    this.laundryServiceProvider
+      .deleteLaundryById(data.pivot.id, this.token, "laundry")
+      .then(result => {
+        console.log(result);
+        let index = this.items.indexOf(this.selectedItem);
+        this.items.splice(index, 1);
+      });
   }
 }

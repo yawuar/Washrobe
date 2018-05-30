@@ -65,4 +65,23 @@ export class LaundryServiceProvider {
       );
     });
   }
+
+  deleteLaundryById(id, token, type) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      });
+
+      this.http.delete(url + type + "/" + id, { headers: headers }).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
 }
