@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-import { Keyboard } from '@ionic-native/keyboard';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
+import { Keyboard } from "@ionic-native/keyboard";
 
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { HomePage } from '../home/home';
-import { RegistrationPage } from '../registration/registration';
-
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { HomePage } from "../home/home";
+import { RegistrationPage } from "../registration/registration";
 
 /**
  * Generated class for the LoginPage page.
@@ -18,18 +17,28 @@ import { RegistrationPage } from '../registration/registration';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: "page-login",
+  templateUrl: "login.html"
 })
 export class LoginPage {
+  private user: FormGroup;
 
-  private user : FormGroup;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private keyboard: Keyboard, private platform: Platform, private authServiceProvider: AuthServiceProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private keyboard: Keyboard,
+    private platform: Platform,
+    private authServiceProvider: AuthServiceProvider
+  ) {
     this.user = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ["", Validators.required],
+      password: ["", Validators.required]
     });
+    let user = localStorage.getItem("currentUser");
+    if (user) {
+      this.navCtrl.setRoot(HomePage, { data: user["token"] });
+    }
   }
 
   ionViewDidLoad() {
@@ -43,14 +52,12 @@ export class LoginPage {
   }
 
   login() {
-    this.authServiceProvider.login(this.user.value, 'login')
-      .then(result => {
-          this.navCtrl.setRoot(HomePage, { data: result['success']['token'] });
-      });
+    this.authServiceProvider.login(this.user.value, "login").then(result => {
+      this.navCtrl.setRoot(HomePage, { data: result["success"]["token"] });
+    });
   }
 
   showRegistration() {
     this.navCtrl.setRoot(RegistrationPage);
   }
-
 }

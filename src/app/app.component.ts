@@ -7,6 +7,7 @@ import { IntroPage } from '../pages/intro/intro';
 import { HomePage } from '../pages/home/home';
 import { LaundryPage } from '../pages/laundry/laundry';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -47,6 +48,14 @@ export class MyApp {
 
   checkActive(page) {
     return page === this.activePage;
+  }
+
+  logout() {
+    let user = localStorage.getItem('currentUser');
+    if(user) {
+      localStorage.removeItem('currentUser');
+      this.nav.setRoot(LoginPage);
+    }
   }
 }
 

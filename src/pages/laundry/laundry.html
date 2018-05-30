@@ -1,8 +1,15 @@
 <ion-header no-border>
-  <custom-header></custom-header>
+  <custom-header [icon]="1"></custom-header>
 </ion-header>
 
-
 <ion-content padding>
-
+  <div class="container">
+    <div *ngFor="let category of categories; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showCategory(i + 1);">
+      <div class="gradient"></div>
+      <div class="inner">
+        <span>{{ category.amount }} x</span>
+        <p>{{ category.name }}</p>
+      </div>
+    </div>
+  </div>
 </ion-content>

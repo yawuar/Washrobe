@@ -1,25 +1,41 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the LaundryPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
+import { LaundryItemPage } from "../laundry-item/laundry-item";
 
 @IonicPage()
 @Component({
-  selector: 'page-laundry',
-  templateUrl: 'laundry.html',
+  selector: "page-laundry",
+  templateUrl: "laundry.html"
 })
 export class LaundryPage {
+  public categories: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private laundryServiceProvider: LaundryServiceProvider
+  ) {
+    this.getWardrobeByGender(localStorage.getItem("currentUser"));
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LaundryPage');
+  ionViewDidLoad() {}
+
+  getWardrobeByGender(user) {
+    if (user) {
+      let gender = JSON.parse(user).gender;
+      let token = JSON.parse(user).token;
+      this.laundryServiceProvider
+        .getLaundry(token, "laundry", gender)
+        .then(result => {
+          this.categories = result["data"];
+        });
+    }
   }
 
+  showCategory(id) {
+    this.navCtrl.setRoot(LaundryItemPage, {
+      data: id
+    });
+  }
 }

@@ -7,11 +7,11 @@ page-home {
         .container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(auto-fill, 150px 75px 150px);
-            // grid-auto-rows: minmax(200px, auto);
-            grid-gap: 10px;
+            grid-template-rows: repeat(auto-fill, 150px 75px 150px 75px 150px 150px);
+            grid-gap: 20px 20px;
             .item {
                 border: 4px solid $dark;
+                border-radius: 4px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -63,9 +63,9 @@ page-home {
                 //     grid-row: 2/4;
                 // }
 
-                // &.item-5, &.item-6 {
-                //     grid-row: 4/6;
-                // }
+                &.item-5 , &.item-6 {
+                    grid-row: 4/6;
+                }
 
                 // &.item-7 {
                 //     grid-row: 6;

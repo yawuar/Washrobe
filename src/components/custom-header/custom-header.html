@@ -1,23 +1,20 @@
 <ion-navbar hideBackButton>
-    
-    <button ion-button menuToggle class="hamburger" primary>
-      <img src="assets/imgs/hamburger.svg" width="20" alt="logo">
+
+  <button ion-button menuToggle class="hamburger" primary>
+    <img src="assets/imgs/hamburger.svg" width="20" alt="logo">
+  </button>
+
+  <ion-title padding text-center>
+    <div class="login-logo image-{{ icon }}" (click)="openHomePage(icon)">
+      <img src="{{ headImage }}" width="25" alt="logo">
+      <h1>Wardrobe</h1>
+    </div>
+  </ion-title>
+
+  <ion-buttons end>
+    <button ion-button icon-only (click)="openLaundry(icon)" class="laundry image-{{ icon }}">
+      <img src="{{ subImage }}" width="30" alt="logo">
     </button>
-
-    <ion-title padding text-center>
-      <div class="login-logo" (click)="openHomePage()">
-        <img src="assets/imgs/wardrobe.svg" width="25" alt="logo">
-        <h1>Wardrobe</h1>
-      </div>
-    </ion-title>
-
-    <!-- <button menuToggle class="laundry" end>
-      <img src="assets/imgs/laundry.svg" width="30" alt="logo">
-    </button> -->
-    <ion-buttons end>
-        <button ion-button icon-only (click)="openLaundry()" class="laundry">
-            <img src="assets/imgs/laundry.svg" width="30" alt="logo">
-        </button>
-      </ion-buttons>
+  </ion-buttons>
 
 </ion-navbar>

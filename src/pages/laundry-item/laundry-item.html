@@ -1,0 +1,15 @@
+<ion-header no-border>
+  <custom-header [icon]="1"></custom-header>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="container">
+    <div *ngIf="items?.length > 0" class="grid">
+      <div *ngFor="let item of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)">
+        <div class="no-gradient"></div>
+        <img-loader src="{{ item.image }}" class="item-images" spinner="true"></img-loader>
+      </div>
+    </div>
+  </div>
+</ion-content>
