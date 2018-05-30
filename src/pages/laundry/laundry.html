@@ -3,6 +3,12 @@
 </ion-header>
 
 <ion-content padding>
+  <div (click)="goToOverview()" class="insert wash">
+    <div class="inner">
+      <p>Washing Time</p>
+      <span></span>
+    </div>
+  </div>
   <div class="container">
     <div *ngFor="let category of categories; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showCategory(i + 1);">
       <div class="gradient"></div>

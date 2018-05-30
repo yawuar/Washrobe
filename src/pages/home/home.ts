@@ -27,12 +27,10 @@ export class HomePage {
   }
 
   getUserInformation(token) {
-    console.log(token);
     this.authServiceProvider.getUserInformation(token, "user").then(result => {
       let items = result["success"];
       items.token = token;
       items.loggedIn = true;
-
       localStorage.setItem("currentUser", JSON.stringify(items));
     });
   }
