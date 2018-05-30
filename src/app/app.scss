@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,136 +12,152 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 @font-face {
-    font-family: 'Gotham Rounded';
-    src: url('../assets/font/GothamRounded-Medium.eot');
-    src: url('../assets/font/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../assets/font/GothamRounded-Medium.woff2') format('woff2'),
-        url('../assets/font/GothamRounded-Medium.woff') format('woff'),
-        url('../assets/font/GothamRounded-Medium.ttf') format('truetype'),
-        url('../assets/font/GothamRounded-Medium.svg#GothamRounded-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
+  font-family: 'Gotham Rounded';
+  src: url('../assets/font/GothamRounded-Medium.eot');
+  src: url('../assets/font/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'), url('../assets/font/GothamRounded-Medium.woff2') format('woff2'), url('../assets/font/GothamRounded-Medium.woff') format('woff'), url('../assets/font/GothamRounded-Medium.ttf') format('truetype'), url('../assets/font/GothamRounded-Medium.svg#GothamRounded-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Gotham Rounded';
-    src: url('../assets/font/GothamRounded-Light.eot');
-    src: url('../assets/font/GothamRounded-Light.eot?#iefix') format('embedded-opentype'),
-        url('../assets/font/GothamRounded-Light.woff2') format('woff2'),
-        url('../assets/font/GothamRounded-Light.woff') format('woff'),
-        url('../assets/font/GothamRounded-Light.ttf') format('truetype'),
-        url('../assets/font/GothamRounded-Light.svg#GothamRounded-Light') format('svg');
-    font-weight: 300;
-    font-style: normal;
+  font-family: 'Gotham Rounded';
+  src: url('../assets/font/GothamRounded-Light.eot');
+  src: url('../assets/font/GothamRounded-Light.eot?#iefix') format('embedded-opentype'), url('../assets/font/GothamRounded-Light.woff2') format('woff2'), url('../assets/font/GothamRounded-Light.woff') format('woff'), url('../assets/font/GothamRounded-Light.ttf') format('truetype'), url('../assets/font/GothamRounded-Light.svg#GothamRounded-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Gotham Rounded Book';
-    src: url('../assets/font/GothamRounded-Book.eot');
-    src: url('../assets/font/GothamRounded-Book.eot?#iefix') format('embedded-opentype'),
-        url('../assets/font/GothamRounded-Book.woff2') format('woff2'),
-        url('../assets/font/GothamRounded-Book.woff') format('woff'),
-        url('../assets/font/GothamRounded-Book.ttf') format('truetype'),
-        url('../assets/font/GothamRounded-Book.svg#GothamRounded-Book') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Gotham Rounded Book';
+  src: url('../assets/font/GothamRounded-Book.eot');
+  src: url('../assets/font/GothamRounded-Book.eot?#iefix') format('embedded-opentype'), url('../assets/font/GothamRounded-Book.woff2') format('woff2'), url('../assets/font/GothamRounded-Book.woff') format('woff'), url('../assets/font/GothamRounded-Book.ttf') format('truetype'), url('../assets/font/GothamRounded-Book.svg#GothamRounded-Book') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Gotham Rounded';
-    src: url('../assets/font/GothamRounded-Bold.eot');
-    src: url('../assets/font/GothamRounded-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../assets/font/GothamRounded-Bold.woff2') format('woff2'),
-        url('../assets/font/GothamRounded-Bold.woff') format('woff'),
-        url('../assets/font/GothamRounded-Bold.ttf') format('truetype'),
-        url('../assets/font/GothamRounded-Bold.svg#GothamRounded-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
+  font-family: 'Gotham Rounded';
+  src: url('../assets/font/GothamRounded-Bold.eot');
+  src: url('../assets/font/GothamRounded-Bold.eot?#iefix') format('embedded-opentype'), url('../assets/font/GothamRounded-Bold.woff2') format('woff2'), url('../assets/font/GothamRounded-Bold.woff') format('woff'), url('../assets/font/GothamRounded-Bold.ttf') format('truetype'), url('../assets/font/GothamRounded-Bold.svg#GothamRounded-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
 }
 
 .gradient {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    right: 5px;
-    top: 5px;
-    z-index: -1;
-
-    border-radius: 4px;
-
-    background: linear-gradient(to right, #7ADCA0, #4FC1E9);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 5px;
+  top: 5px;
+  z-index: -1;
+  border-radius: 4px;
+  background: linear-gradient(to right, #7ADCA0, #4FC1E9);
 }
 
 .no-gradient {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    right: 5px;
-    top: 5px;
-    z-index: -1;
-
-    border: 2px solid $dark;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 5px;
+  top: 5px;
+  z-index: -1;
+  border: 2px solid $dark;
 }
 
 .menu-inner {
-    width: 100%;
+  width: 100%;
 }
+
+ion-app {
+  font-family: 'Gotham Rounded', Arial, Helvetica, sans-serif !important;
+}
+
+.insert {
+  width: 100%;
+  height: 65px;
+  background-color: $insert_color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.wash {
+    background-color: $red;
+    .inner {
+      span {
+        background-image: url('../assets/imgs/washingmachine.svg');
+      }
+    }
+  }
+  .inner {
+    display: inline-block;
+    height: 15px;
+    p,
+    span {
+      float: left;
+    }
+    p {
+      font-weight: bold;
+      font-size: 15px;
+      color: white;
+      margin: 0;
+      text-align: center;
+      margin-right: 10px;
+    }
+    span {
+      display: inline-block;
+      background-image: url('../assets/imgs/plus.svg');
+      background-repeat: no-repeat;
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
 ion-menu {
-    .close-menu {
-        position: absolute;
-        z-index: 9;
-        background: transparent;
-        margin: 25px 0 0 15px;
-        padding: 10px;
-    }
-
-    .scroll-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        ion-list {
-            margin: 0 !important;
-            width: 100%;
-            .menu-item {
-                text-align: center;
-                padding: 0;
-
-                &:nth-child(1), &:nth-child(2) {
-                    margin-bottom: 50px;
-                }
-        
-                .item-inner {
-                    border: 0 !important;
-                    padding: 0;
-
-                    ion-label {
-                        margin: 0;
-                        .content {
-                            img {
-    
-                            }
-    
-                            span {
-                                display: block;
-                                font-family: 'Gotham Rounded';
-                                font-weight: bold;
-                                font-size: 24px;
-                                color: $dark;
-    
-                                margin-top: 5px;
-                            }
-    
-                            &.active {
-                                span {
-                                    color: $active; 
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+  .close-menu {
+    position: absolute;
+    z-index: 9;
+    background: transparent;
+    margin: 25px 0 0 15px;
+    padding: 10px;
+  }
+  .scroll-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-list {
+      margin: 0 !important;
+      width: 100%;
+      .menu-item {
+        text-align: center;
+        padding: 0;
+        &:nth-child(1),
+        &:nth-child(2) {
+          margin-bottom: 50px;
         }
+        .item-inner {
+          border: 0 !important;
+          padding: 0;
+          ion-label {
+            margin: 0;
+            .content {
+              img {}
+              span {
+                display: block;
+                font-weight: bold;
+                font-size: 24px;
+                color: $dark;
+                margin-top: 5px;
+              }
+              &.active {
+                span {
+                  color: $active;
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }

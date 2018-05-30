@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
+import { WashingPage } from "../washing/washing";
 
 /**
  * Generated class for the LaundryItemPage page.
@@ -36,5 +37,9 @@ export class LaundryItemPage {
       .then(result => {
         this.items = result["data"];
       });
+  }
+
+  goToOverview() {
+    this.navCtrl.setRoot(WashingPage);
   }
 }

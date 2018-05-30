@@ -4,6 +4,12 @@
 
 
 <ion-content padding>
+  <div (click)="goToOverview()" class="insert wash">
+    <div class="inner">
+      <p>Washing Time</p>
+      <span></span>
+    </div>
+  </div>
   <div class="container">
     <div *ngIf="items?.length > 0" class="grid">
       <div *ngFor="let item of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)">

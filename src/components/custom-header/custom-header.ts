@@ -18,6 +18,8 @@ export class CustomHeaderComponent {
   private headImage: string = "assets/imgs/wardrobe.svg";
   private subImage: string = "assets/imgs/laundry.svg";
 
+  public title: string = "Wardrobe";
+
   private token;
 
   constructor(public navCtrl: NavController) {
@@ -45,16 +47,19 @@ export class CustomHeaderComponent {
   ngOnChanges() {
     switch (this.icon) {
       case 1:
+        this.title = "Laundry";
         this.headImage = "assets/imgs/laundry.svg";
         this.subImage = "assets/imgs/wardrobe.svg";
         break;
 
       case 2:
+        this.title = "Calendar";
         this.headImage = "assets/imgs/calendar.svg";
         this.subImage = "assets/imgs/wardrobe.svg";
         break;
 
       default:
+        this.title = "Wardrobe";
         this.headImage = "assets/imgs/wardrobe.svg";
         break;
     }

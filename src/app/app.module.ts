@@ -27,6 +27,7 @@ import { LaundryServiceProvider } from "../providers/laundry-service/laundry-ser
 
 import { IonicImageLoader } from "ionic-image-loader";
 import { LaundryItemPage } from "../pages/laundry-item/laundry-item";
+import { WashingPage } from "../pages/washing/washing";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LaundryItemPage } from "../pages/laundry-item/laundry-item";
     ScanPage,
     LaundryPage,
     CalendarPage,
-    LaundryItemPage
+    LaundryItemPage,
+    WashingPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { LaundryItemPage } from "../pages/laundry-item/laundry-item";
     ScanPage,
     LaundryPage,
     CalendarPage,
-    LaundryItemPage
+    LaundryItemPage,
+    WashingPage
   ],
   providers: [
     StatusBar,

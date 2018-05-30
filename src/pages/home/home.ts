@@ -22,8 +22,6 @@ export class HomePage {
   ) {
     if (!localStorage.getItem("currentUser")) {
       this.getUserInformation(this.navParams.get("data"));
-    } else {
-      console.log("hallo");
     }
     this.getWardrobeByGender(localStorage.getItem("currentUser"));
   }

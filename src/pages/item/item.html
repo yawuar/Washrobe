@@ -4,7 +4,12 @@
 
 
 <ion-content padding>
-
+  <div (click)="scan()" class="insert">
+    <div class="inner">
+      <p>Add new Item</p>
+      <span></span>
+    </div>
+  </div>
   <div class="container">
     <div *ngIf="items?.length > 0" class="grid">
       <div *ngFor="let category of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showDetail(category)">
@@ -33,7 +38,6 @@
         <img-loader src="{{ category.image }}" (load)="onImageLoad($event)" class="item-images" spinner="true"></img-loader>
       </div>
     </div>
-    <div (click)="scan()">Add Item</div>
   </div>
 
 </ion-content>
