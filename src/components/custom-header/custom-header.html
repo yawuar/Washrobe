@@ -6,7 +6,12 @@
 
   <ion-title padding text-center>
     <div class="login-logo image-{{ icon }}" (click)="openHomePage(icon)">
-      <img src="{{ headImage }}" width="25" alt="logo">
+      <div>
+        <div *ngIf="amountLaundry > 0" class="amount">
+          <span>{{ amountLaundry }}</span>
+        </div>
+        <img src="{{ headImage }}" width="25" alt="logo">
+      </div>
       <h1>{{ title }}</h1>
     </div>
   </ion-title>

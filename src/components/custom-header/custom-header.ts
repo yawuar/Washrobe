@@ -2,6 +2,7 @@ import { Component, Input, OnChanges } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { HomePage } from "../../pages/home/home";
 import { LaundryPage } from "../../pages/laundry/laundry";
+import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 
 /**
  * Generated class for the CustomHeaderComponent component.
@@ -22,10 +23,21 @@ export class CustomHeaderComponent {
 
   private token;
 
-  constructor(public navCtrl: NavController) {
+  public amountLaundry: number = 0;
+
+  constructor(
+    public navCtrl: NavController,
+    private laundryServiceProvider: LaundryServiceProvider
+  ) {
     if (localStorage.getItem("currentUser")) {
       this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     }
+
+    this.laundryServiceProvider
+      .getAllLaundryByUser(this.token, "laundry/get")
+      .then(result => {
+        this.amountLaundry = result["data"];
+      });
   }
 
   openLaundry(id) {
