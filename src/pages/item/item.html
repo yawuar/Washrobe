@@ -25,7 +25,13 @@
                 <span class="bold">{{ category.brand }}</span>
               </span>
             </div>
-            <div class="main"></div>
+            <div class="main">
+              <ul class="symbol">
+                <li *ngFor="let symbol of category.symbols">
+                  <span [innerHTML]="symbol.icon"></span>
+                </li>
+              </ul>
+            </div>
             <div class="footer">
               <ul>
                 <li (click)="action($event, category)" *ngFor="let icon of icons" data-id="{{ category.id }}">

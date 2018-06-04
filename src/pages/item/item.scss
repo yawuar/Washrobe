@@ -67,6 +67,19 @@ page-item {
                     }
                   }
                 }
+                .main {
+                  .symbol {
+                    font-family: "Wash Care Symbols M54";
+                    font-size: 18px;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                      list-style: none;
+                      display: inline-block;
+                      margin: 0 2.5px;
+                    }
+                  }
+                }
                 .footer {
                   ul {
                     margin: 0;

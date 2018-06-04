@@ -26,7 +26,13 @@
                 <span class="bold">{{ item.brand }}</span>
               </span>
             </div>
-            <div class="main"></div>
+            <div class="main">
+              <ul class="symbol">
+                <li *ngFor="let symbol of item.symbols">
+                  <span [innerHTML]="symbol.icon"></span>
+                </li>
+              </ul>
+            </div>
             <div class="footer">
               <ul>
                 <li (click)="delete(item)">

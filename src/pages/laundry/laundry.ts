@@ -45,7 +45,6 @@ export class LaundryPage {
     this.laundryServiceProvider
       .getAllLaundryByUser(this.token, "laundry/get")
       .then(result => {
-        console.log(result);
         if (result["data"] > 0) {
           this.navCtrl.push(WashingPage);
         } else {
