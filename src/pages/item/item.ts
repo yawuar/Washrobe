@@ -39,7 +39,6 @@ export class ItemPage {
   ionViewDidLoad() {}
 
   getItem(id, token) {
-    console.log(id);
     this.wardrobeServiceProvider
       .getWardrobeById(id, token, "wardrobe")
       .then(result => {
@@ -73,7 +72,7 @@ export class ItemPage {
   }
 
   onImageLoad(imgLoader: ImgLoader) {
-    console.log(imgLoader);
+    // console.log(imgLoader);
   }
 
   action(event, category) {

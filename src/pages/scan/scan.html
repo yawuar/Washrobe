@@ -4,17 +4,34 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>scan</ion-title>
-  </ion-navbar>
-
+<ion-header no-border>
+  <ion-navbar></ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <div *ngIf="error == 'unavailable'">
-    <h1>No NFC</h1>
+  <div *ngIf="error == 'unavailable'" class="code-fill">
+    <div class="header">
+      <h1>
+        <span>No NFC detected.</span>
+        <span>No problem!</span>
+        <span>Just fill in the code</span>
+      </h1>
+    </div>
+    <div class="footer">
+      <form [formGroup]="code" (ngSubmit)="addHashCode()">
+        <ion-item no-padding>
+          <ion-label stacked>CODE</ion-label>
+          <ion-input type="text" maxlength="10" [(ngModel)]="code.code" formControlName="code" placeholder="1hyrWVndh1" value="4XbeQOd8AJ"></ion-input>
+        </ion-item>
+        <div class="button">
+          <button ion-button type="submit" block>
+            LOGIN
+          </button>
+          <span class="gradient"></span>
+        </div>
+      </form>
+
+    </div>
   </div>
 </ion-content>

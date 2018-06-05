@@ -29,6 +29,9 @@ import { IonicImageLoader } from "ionic-image-loader";
 import { LaundryItemPage } from "../pages/laundry-item/laundry-item";
 import { WashingPage } from "../pages/washing/washing";
 
+import { KeysPipe } from "../pipes/keys/keys";
+import { GetItemPipe } from "../pipes/get-item/get-item";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -42,7 +45,9 @@ import { WashingPage } from "../pages/washing/washing";
     LaundryPage,
     CalendarPage,
     LaundryItemPage,
-    WashingPage
+    WashingPage,
+    KeysPipe,
+    GetItemPipe
   ],
   imports: [
     BrowserModule,

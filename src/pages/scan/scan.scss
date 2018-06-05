@@ -1,3 +1,70 @@
 page-scan {
-
+  ion-header {}
+  ion-content {
+    background-color: $dark !important;
+    .scroll-content {
+      margin-top: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .code-fill {
+        .header {
+          margin-bottom: 25px;
+          h1 {
+            text-align: center;
+            color: white;
+            margin: 0;
+            span {
+              display: block;
+            }
+          }
+        }
+        .footer {
+          form {
+            ion-item {
+              background-color: transparent;
+              .item-inner {
+                border-bottom: 2px solid white !important;
+                box-shadow: none !important;
+                ion-label {
+                  margin: 0;
+                  font-size: 10px;
+                  font-weight: bold;
+                  color: white;
+                }
+                ion-input {
+                  font-family: 'Gotham Rounded Book';
+                  color: $active;
+                  .text-input {
+                    margin-bottom: 5px;
+                    margin-top: 5px;
+                  }
+                }
+              }
+            }
+            .button {
+              width: 100%;
+              contain: layout;
+              margin-top: 25px;
+              button {
+                background-color: transparent;
+                height: 50px;
+                box-shadow: none;
+                border: 2px solid white;
+                border-radius: 1px;
+                margin: 0;
+                span {
+                  color: white;
+                  font-family: 'Gotham Rounded';
+                  font-weight: bold;
+                  font-size: 18px;
+                  letter-spacing: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

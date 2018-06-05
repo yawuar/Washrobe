@@ -4,5 +4,19 @@
 
 
 <ion-content padding>
-
+  <div *ngFor="let key of keys" class="color">
+    <h1>{{ key }}</h1>
+    <div *ngFor="let type of items[0][key] | keys" class="type">
+      <h2>{{ type }}</h2>
+      <div *ngFor="let degree of items[0][key][type] | keys" class="degree">
+        <h3>{{ degree }}°C</h3>
+        <div *ngFor="let material of items[0][key][type][degree] | keys" class="material">
+          <h4>{{ material }}</h4>
+          <div *ngFor="let item of items[0][key][type][degree][material]" class="item">
+            <img-loader src="{{ item['image'] }}"></img-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

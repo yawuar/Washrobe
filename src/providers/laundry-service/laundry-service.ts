@@ -103,4 +103,23 @@ export class LaundryServiceProvider {
       );
     });
   }
+
+  getLaundrySorted(token, type) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      });
+
+      this.http.post(url + type, {}, { headers: headers }).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
 }
