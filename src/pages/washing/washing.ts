@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 import { WashingTypePage } from "../washing-type/washing-type";
+import { MapsPage } from "../maps/maps";
 
 @IonicPage()
 @Component({
@@ -34,7 +35,8 @@ export class WashingPage {
   }
 
   chooseLocation() {
-    console.log("choose location");
+    this.navCtrl.push(MapsPage);
+
   }
 
   ionViewDidLoad() {

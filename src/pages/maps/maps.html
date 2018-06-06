@@ -1,0 +1,10 @@
+<ion-header no-border>
+  <custom-header [icon]="1"></custom-header>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="error">
+    <h1>Your location is not enabled.</h1>
+  </div>
+  <div *ngIf="!error" id="map_canvas"></div>
+</ion-content>

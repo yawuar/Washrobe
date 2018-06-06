@@ -34,6 +34,11 @@ import { GetItemPipe } from "../pipes/get-item/get-item";
 import { WashingTypePage } from "../pages/washing-type/washing-type";
 import { WashingDegreePage } from "../pages/washing-degree/washing-degree";
 import { WashingMaterialPage } from "../pages/washing-material/washing-material";
+import { MapsPage } from "../pages/maps/maps";
+
+import { GoogleMaps } from "@ionic-native/google-maps";
+import { Geolocation } from "@ionic-native/geolocation";
+import { Diagnostic } from "@ionic-native/diagnostic";
 
 @NgModule({
   declarations: [
@@ -53,7 +58,8 @@ import { WashingMaterialPage } from "../pages/washing-material/washing-material"
     GetItemPipe,
     WashingTypePage,
     WashingDegreePage,
-    WashingMaterialPage
+    WashingMaterialPage,
+    MapsPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,8 @@ import { WashingMaterialPage } from "../pages/washing-material/washing-material"
     WashingPage,
     WashingTypePage,
     WashingDegreePage,
-    WashingMaterialPage
+    WashingMaterialPage,
+    MapsPage
   ],
   providers: [
     StatusBar,
@@ -92,7 +99,10 @@ import { WashingMaterialPage } from "../pages/washing-material/washing-material"
     NFC,
     Ndef,
     ItemServiceProvider,
-    LaundryServiceProvider
+    LaundryServiceProvider,
+    GoogleMaps,
+    Geolocation,
+    Diagnostic
   ]
 })
 export class AppModule {}

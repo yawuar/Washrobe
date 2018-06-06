@@ -85,16 +85,14 @@
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="phonegap-nfc" spec="^0.7.3" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-facebook4" spec="^2.1.0">
-        <variable name="APP_ID" value="594972287537179" />
-        <variable name="APP_NAME" value="washrobe" />
-        <variable name="ANDROID_SDK_VERSION" value="4.+" />
-    </plugin>
-    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.3.6">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAl2ByxbuKbr6CSvFIyN8EVjYXhPSrGf-U" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyAl2ByxbuKbr6CSvFIyN8EVjYXhPSrGf-U" />
         <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="26.1.0" />
     </plugin>
+    <allow-navigation href="http://192.168.85.45:8100" />
+    <allow-navigation href="http://192.168.0.118:8100" />
+    <engine name="android" spec="7.0.0" />
+    <plugin name="cordova.plugins.diagnostic" spec="^4.0.8" />
 </widget>
