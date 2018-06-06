@@ -1,0 +1,12 @@
+<ion-header no-border>
+  <custom-header [icon]="1"></custom-header>
+</ion-header>
+
+<ion-content padding>
+  <div *ngFor="let material of materials | keys" class="material">
+    <h4>{{ material }}</h4>
+    <div *ngFor="let item of materials[material]" class="item">
+      <img-loader src="{{ item['image'] }}"></img-loader>
+    </div>
+  </div>
+</ion-content>

@@ -1,11 +1,11 @@
-page-washing {
+page-washing-degree {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: minmax(150px, max-content) repeat(auto-fill, 150px) 20%;
     grid-gap: 20px 20px;
     padding: 16px;
-    .color {
+    .degree {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -13,30 +13,15 @@ page-washing {
       border-radius: 4px;
       position: relative;
       contain: unset;
-      .overlay,
-      .gradient,
       .no-gradient {
         width: calc(100% + 8px);
         height: calc(100% + 8px);
-      }
-      .overlay {
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        z-index: -1;
-        border-radius: 4px;
-        background: $dark;
-      }
-      .no-gradient {
         border: 4px solid $dark;
         border-radius: 4px;
       }
       h1 {
         font-size: 24px;
-        margin: 0;
-        &.white {
-          color: white;
-        }
+        color: $dark;
       }
     }
   }

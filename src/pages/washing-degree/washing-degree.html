@@ -1,0 +1,13 @@
+<ion-header no-border>
+  <custom-header [icon]="1"></custom-header>
+</ion-header>
+
+<ion-content padding>
+  <!-- TODO: design layout  -->
+  <div class="container">
+    <div *ngFor="let degree of degrees | keys" class="degree" (click)="getMaterial(degree)">
+      <div class="no-gradient"></div>
+      <h1>{{ degree }}°C</h1>
+    </div>
+  </div>
+</ion-content>

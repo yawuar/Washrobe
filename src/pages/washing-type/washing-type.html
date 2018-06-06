@@ -1,0 +1,13 @@
+<ion-header no-border>
+  <custom-header [icon]="1"></custom-header>
+</ion-header>
+
+<ion-content padding>
+  <!-- TODO: Design layout and disbale types that are not present => grey -->
+  <div class="container">
+    <div *ngFor="let type of types | keys" class="type" (click)="getDegree(type)">
+      <div class="no-gradient"></div>
+      <h1>{{ type }}</h1>
+    </div>
+  </div>
+</ion-content>

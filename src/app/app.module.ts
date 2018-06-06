@@ -31,6 +31,9 @@ import { WashingPage } from "../pages/washing/washing";
 
 import { KeysPipe } from "../pipes/keys/keys";
 import { GetItemPipe } from "../pipes/get-item/get-item";
+import { WashingTypePage } from "../pages/washing-type/washing-type";
+import { WashingDegreePage } from "../pages/washing-degree/washing-degree";
+import { WashingMaterialPage } from "../pages/washing-material/washing-material";
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { GetItemPipe } from "../pipes/get-item/get-item";
     LaundryItemPage,
     WashingPage,
     KeysPipe,
-    GetItemPipe
+    GetItemPipe,
+    WashingTypePage,
+    WashingDegreePage,
+    WashingMaterialPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,10 @@ import { GetItemPipe } from "../pipes/get-item/get-item";
     LaundryPage,
     CalendarPage,
     LaundryItemPage,
-    WashingPage
+    WashingPage,
+    WashingTypePage,
+    WashingDegreePage,
+    WashingMaterialPage
   ],
   providers: [
     StatusBar,
