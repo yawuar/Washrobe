@@ -22,7 +22,8 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 })
 export class MapsPage {
   map: GoogleMap;
-  public error: boolean = false;
+  public errors: any = [];
+  public keys: any = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -69,17 +70,22 @@ export class MapsPage {
                 alert("clicked");
               });
             } else {
-              // This is no cordova
-              console.log("shit");
+              let error = { cordova: "no cordova available" };
+              this.errors.push(error);
+              this.keys = Object.keys(error);
             }
           },
           err => {
-            alert("shit");
+            let error = { "no-data": "Cannot find geolocation" };
+            this.errors.push(error);
+            this.keys = Object.keys(error);
           }
         );
       })
       .catch(err => {
-        this.error = true;
+        let error = { disabled: "Your location is disabled" };
+        this.errors.push(error);
+        this.keys = Object.keys(error);
       });
   }
 }

@@ -3,8 +3,8 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="error">
-    <h1>Your location is not enabled.</h1>
+  <div *ngFor="let key of keys;">
+    {{ errors[0][key] }}
   </div>
-  <div *ngIf="!error" id="map_canvas"></div>
+  <div *ngIf="errors.length <= 0" id="map_canvas"></div>
 </ion-content>

@@ -36,7 +36,6 @@ export class WashingPage {
 
   chooseLocation() {
     this.navCtrl.push(MapsPage);
-
   }
 
   ionViewDidLoad() {
