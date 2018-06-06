@@ -5,6 +5,7 @@
 
 <ion-content padding>
   <!-- Design the layout and information -->
+  <div (click)="chooseLocation()">Choose location</div>
   <div class="container">
     <div *ngFor="let key of keys;" class="color {{ key }}" (click)="getColor(key)">
       <div *ngIf="key == 'coloured'" class="gradient"></div>

@@ -33,6 +33,10 @@ export class WashingPage {
     this.navCtrl.push(WashingTypePage, { data: this.items[0][color] });
   }
 
+  chooseLocation() {
+    console.log("choose location");
+  }
+
   ionViewDidLoad() {
     console.log("ionViewDidLoad WashingPage");
   }
