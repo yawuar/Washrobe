@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
 
 import { Geolocation } from "@ionic-native/geolocation";
 import { Diagnostic } from "@ionic-native/diagnostic";
+import { CoinwashServiceProvider } from "../../providers/coinwash-service/coinwash-service";
 
 @IonicPage()
 @Component({
@@ -24,13 +25,24 @@ export class MapsPage {
   map: GoogleMap;
   public errors: any = [];
   public keys: any = [];
+  public coinwashrooms: any = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private platform: Platform,
     private geolocation: Geolocation,
-    private diagnostic: Diagnostic
+    private diagnostic: Diagnostic,
+    private coinwashServiceProvider: CoinwashServiceProvider
   ) {
+    this.coinwashServiceProvider
+      .getCoinWashrooms(
+        JSON.parse(localStorage.getItem("currentUser")["token"]),
+        "coinwash"
+      )
+      .then(result => {
+        alert(result);
+        this.coinwashrooms = result["data"];
+      });
     this.platform.ready().then(() => {
       this.loadMap();
     });
@@ -56,6 +68,8 @@ export class MapsPage {
               };
 
               this.map = GoogleMaps.create("map_canvas", mapOptions);
+
+              alert(this.coinwashrooms);
 
               let marker: Marker = this.map.addMarkerSync({
                 title: "Ionic",

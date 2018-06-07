@@ -39,6 +39,7 @@ import { MapsPage } from "../pages/maps/maps";
 import { GoogleMaps } from "@ionic-native/google-maps";
 import { Geolocation } from "@ionic-native/geolocation";
 import { Diagnostic } from "@ionic-native/diagnostic";
+import { CoinwashServiceProvider } from "../providers/coinwash-service/coinwash-service";
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { Diagnostic } from "@ionic-native/diagnostic";
     LaundryServiceProvider,
     GoogleMaps,
     Geolocation,
-    Diagnostic
+    Diagnostic,
+    CoinwashServiceProvider
   ]
 })
 export class AppModule {}
