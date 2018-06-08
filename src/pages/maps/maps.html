@@ -5,9 +5,9 @@
 <ion-content padding>
 
   <div *ngIf="errors.length > 0">
-    <div *ngFor="let key of keys;">
-      {{ errors[0][key] }}
+    <div *ngFor="let error of errors;">
+      {{ error }}
     </div>
   </div>
-  <div *ngIf="errors.length <= 0" id="map_canvas"></div>
+  <div id="map_canvas"></div>
 </ion-content>

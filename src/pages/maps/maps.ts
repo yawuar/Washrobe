@@ -3,11 +3,7 @@ import {
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker,
-  LocationService,
-  MyLocation
+  Marker
 } from "@ionic-native/google-maps";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
@@ -15,6 +11,8 @@ import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
 import { Diagnostic } from "@ionic-native/diagnostic";
 import { CoinwashServiceProvider } from "../../providers/coinwash-service/coinwash-service";
+import { WashingPage } from "../washing/washing";
+import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 
 @IonicPage()
 @Component({
@@ -25,6 +23,7 @@ export class MapsPage {
   map: GoogleMap;
   public errors: any = [];
   public keys: any = [];
+  public token: string;
   public coinwashrooms: any = [];
   constructor(
     public navCtrl: NavController,
@@ -32,17 +31,10 @@ export class MapsPage {
     private platform: Platform,
     private geolocation: Geolocation,
     private diagnostic: Diagnostic,
-    private coinwashServiceProvider: CoinwashServiceProvider
+    private coinwashServiceProvider: CoinwashServiceProvider,
+    private laundryServiceProvider: LaundryServiceProvider
   ) {
-    this.coinwashServiceProvider
-      .getCoinWashrooms(
-        JSON.parse(localStorage.getItem("currentUser")["token"]),
-        "coinwash"
-      )
-      .then(result => {
-        alert(result);
-        this.coinwashrooms = result["data"];
-      });
+    this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     this.platform.ready().then(() => {
       this.loadMap();
     });
@@ -53,53 +45,80 @@ export class MapsPage {
     this.diagnostic
       .isLocationEnabled()
       .then(result => {
-        this.geolocation.watchPosition().subscribe(
-          position => {
+        this.geolocation
+          .getCurrentPosition()
+          .then(position => {
+            alert(position);
             if (position.coords != undefined) {
               let mapOptions: GoogleMapOptions = {
                 camera: {
-                  target: {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                  },
-                  zoom: 18,
+                  target: { lat: "51.2160089", lng: "4.4066663" },
+                  zoom: 16,
                   tilt: 30
                 }
               };
 
               this.map = GoogleMaps.create("map_canvas", mapOptions);
 
-              alert(this.coinwashrooms);
+              this.coinwashServiceProvider
+                .getCoinWashrooms(this.token, "coinwash")
+                .then(result => {
+                  // Add the markers
+                  this.coinwashrooms = result["data"];
 
-              let marker: Marker = this.map.addMarkerSync({
-                title: "Ionic",
-                icon: "blue",
-                animation: "DROP",
-                position: {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-                }
-              });
-              marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-                alert("clicked");
-              });
+                  for (let i = 0; i < this.coinwashrooms.length; i++) {
+                    let marker: Marker = this.map.addMarkerSync({
+                      title: this.coinwashrooms[i]["name"],
+                      icon: "red",
+                      animation: "BOUNCE",
+                      snippet:
+                        this.coinwashrooms[i]["street"] +
+                        " " +
+                        this.coinwashrooms[i]["number"] +
+                        "\n" +
+                        this.coinwashrooms[i]["zipcode"] +
+                        " " +
+                        this.coinwashrooms[i]["city"] +
+                        "\n\n" +
+                        "Choose this Washroom",
+                      position: {
+                        lat: this.coinwashrooms[i]["latitude"],
+                        lng: this.coinwashrooms[i]["longitude"]
+                      }
+                    });
+
+                    marker.on(GoogleMapsEvent.INFO_CLICK).subscribe(() => {
+                      // add washcoin to db
+                      this.laundryServiceProvider
+                        .updateCoinWashId(
+                          this.token,
+                          "laundry/",
+                          this.coinwashrooms[i]["id"]
+                        )
+                        .then(result => {
+                          this.navCtrl.push(WashingPage);
+                        });
+                    });
+                  }
+                })
+                .catch(err => {
+                  alert("No data washrooms");
+                });
             } else {
-              let error = { cordova: "no cordova available" };
-              this.errors.push(error);
-              this.keys = Object.keys(error);
+              this.errors.push("no coodinates");
             }
-          },
-          err => {
-            let error = { "no-data": "Cannot find geolocation" };
-            this.errors.push(error);
-            this.keys = Object.keys(error);
-          }
-        );
+          })
+          .catch(err => {
+            alert(JSON.stringify(err));
+            this.errors.push("Cannot find geolocation");
+          });
       })
       .catch(err => {
-        let error = { disabled: "Your location is disabled" };
-        this.errors.push(error);
-        this.keys = Object.keys(error);
+        this.errors.push("Your location is disabled");
       });
+  }
+
+  selectedMarker() {
+    console.log("clicked");
   }
 }

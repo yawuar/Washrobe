@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { HomePage } from "../../pages/home/home";
 import { LaundryPage } from "../../pages/laundry/laundry";
@@ -21,7 +21,7 @@ export class CustomHeaderComponent {
 
   public title: string = "Wardrobe";
 
-  private token;
+  private token: string;
 
   public amountLaundry: number = 0;
 

@@ -6,7 +6,7 @@
 
   <ion-title padding text-center>
     <div class="login-logo image-{{ icon }}" (click)="openHomePage(icon)">
-      <div>
+      <div class="ico">
         <div *ngIf="amountLaundry > 0" class="amount">
           <span>{{ amountLaundry }}</span>
         </div>
@@ -18,6 +18,9 @@
 
   <ion-buttons end>
     <button ion-button icon-only (click)="openLaundry(icon)" class="laundry image-{{ icon }}">
+      <div *ngIf="icon == 0 && amountLaundry > 0" class="amount">
+        <span>{{ amountLaundry }}</span>
+      </div>
       <img src="{{ subImage }}" width="30" alt="logo">
     </button>
   </ion-buttons>

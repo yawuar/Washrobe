@@ -1,12 +1,21 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
-import { Keyboard } from "@ionic-native/keyboard";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  LoadingController,
+  ToastController
+} from "ionic-angular";
 
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { HomePage } from "../home/home";
 import { RegistrationPage } from "../registration/registration";
+
+import { GooglePlus } from "@ionic-native/google-plus";
+import { AngularFireModule } from "angularfire2";
+import Firebase from "firebase";
 
 /**
  * Generated class for the LoginPage page.
@@ -22,42 +31,93 @@ import { RegistrationPage } from "../registration/registration";
 })
 export class LoginPage {
   private user: FormGroup;
+  private loading: any;
+  private data: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
-    private keyboard: Keyboard,
-    private platform: Platform,
-    private authServiceProvider: AuthServiceProvider
+    private authServiceProvider: AuthServiceProvider,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
+    public googlePlus: GooglePlus
   ) {
     this.user = this.formBuilder.group({
       email: ["", Validators.required],
       password: ["", Validators.required]
     });
-    let user = localStorage.getItem("currentUser");
-    if (user) {
-      this.navCtrl.setRoot(HomePage, { data: user["token"] });
-    }
-  }
-
-  ionViewDidLoad() {
-    this.keyboard.disableScroll(true);
-  }
-
-  ionViewDidEnter() {
-    this.platform.ready().then(() => {
-      this.keyboard.disableScroll(true);
-    });
   }
 
   login() {
-    this.authServiceProvider.login(this.user.value, "login").then(result => {
-      this.navCtrl.setRoot(HomePage, { data: result["success"]["token"] });
+    this.showLoader();
+    this.authServiceProvider
+      .login(this.user.value, "login")
+      .then(result => {
+        this.loading.dismiss();
+        this.data = result["success"];
+        this.authServiceProvider
+          .getUserInformation(this.data["token"], "user")
+          .then(res => {
+            let items = res["success"];
+            items.token = this.data["token"];
+            localStorage.setItem("currentUser", JSON.stringify(items));
+          })
+          .catch(err => {
+            alert(JSON.stringify(err));
+          });
+        this.navCtrl.setRoot(HomePage);
+      })
+      .catch(err => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
+  }
+
+  showLoader() {
+    this.loading = this.loadingController.create({
+      content: "Authenticating..."
     });
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastController.create({
+      message: msg,
+      duration: 3000,
+      position: "bottom",
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log("Dismissed toast");
+    });
+
+    toast.present();
   }
 
   showRegistration() {
     this.navCtrl.setRoot(RegistrationPage);
+  }
+  // AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU
+  // BldW5dFw-W2XoyHQtU9AkFJO
+  loginWithGoogle() {
+    this.googlePlus
+      .login({ webClientId: "BldW5dFw-W2XoyHQtU9AkFJO", offline: true })
+      .then(res => {
+        Firebase.auth()
+          .signInWithCredential(
+            Firebase.auth.GoogleAuthProvider.credential(res.idToken)
+          )
+          .then(success => {
+            alert("Login Success");
+          })
+          .catch(ns => {
+            alert("No success");
+          });
+      })
+      .catch(err => {
+        alert(err);
+      });
   }
 }

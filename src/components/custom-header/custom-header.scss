@@ -1,4 +1,25 @@
 custom-header {
+  .amount {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: $red;
+    border-radius: 25px;
+    span {
+      display: block;
+      color: white;
+      font-size: 8px;
+      line-height: 17.5px;
+      text-align: center;
+    }
+  }
+  .button-inner,
+  .ico {
+    position: relative;
+    display: inline-block;
+  }
   ion-navbar {
     .bar-button-default {
       color: $dark;
@@ -17,26 +38,6 @@ custom-header {
       }
     }
     .login-logo {
-      div {
-        position: relative;
-        display: inline-block;
-        .amount {
-          position: absolute;
-          right: -5px;
-          top: -5px;
-          width: 15px;
-          height: 15px;
-          background-color: $red;
-          border-radius: 25px;
-          span {
-            display: block;
-            color: white;
-            font-size: 8px;
-            line-height: 17.5px;
-            text-align: center;
-          }
-        }
-      }
       &.image-0 {
         img {
           width: 25px;

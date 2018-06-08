@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title text-center padding>
       <div class="login-logo">
-       <img src="assets/imgs/logo.svg" width="50" alt="logo">
+        <img src="assets/imgs/logo.svg" width="50" alt="logo">
         <h1 text-center>Washrobe</h1>
       </div>
     </ion-title>
@@ -34,14 +34,14 @@
           <ion-input type="password" [(ngModel)]="user.password" formControlName="password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
         </ion-item>
         <div class="button">
-            <button ion-button type="submit" block>
-                LOGIN
-            </button>
-            <span class="gradient"></span>
+          <button ion-button type="submit" block>
+            LOGIN
+          </button>
+          <span class="gradient"></span>
         </div>
       </form>
       <div class="create_btn">
-          <a (click)="showRegistration()">CREATE ACCOUNT</a>
+        <a (click)="showRegistration()">CREATE ACCOUNT</a>
       </div>
     </div>
     <div class="footer">
@@ -53,9 +53,9 @@
         </div>
         <p>OR</p>
         <div class="lines">
-            <div class="big"></div>
-            <div class="point"></div>
-            <div class="small"></div>
+          <div class="big"></div>
+          <div class="point"></div>
+          <div class="small"></div>
         </div>
       </div>
       <div class="social">
@@ -63,7 +63,7 @@
           <div class="gradient"></div>
           <span>Facebook</span>
         </div>
-        <div class="google">
+        <div class="google" (click)='loginWithGoogle()'>
           <div class="no-gradient"></div>
           <span>Google</span>
         </div>

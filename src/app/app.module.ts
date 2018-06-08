@@ -41,6 +41,20 @@ import { Geolocation } from "@ionic-native/geolocation";
 import { Diagnostic } from "@ionic-native/diagnostic";
 import { CoinwashServiceProvider } from "../providers/coinwash-service/coinwash-service";
 
+import { GooglePlus } from "@ionic-native/google-plus";
+import { AngularFireModule } from "angularfire2";
+import Firebase from "firebase";
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU",
+  authDomain: "washrobe-206413.firebaseapp.com",
+  databaseURL: "https://washrobe-206413.firebaseio.com",
+  projectId: "washrobe-206413",
+  storageBucket: "washrobe-206413.appspot.com",
+  messagingSenderId: "842173039607"
+};
+Firebase.initializeApp(firebaseConfig);
+
 @NgModule({
   declarations: [
     MyApp,
@@ -69,7 +83,8 @@ import { CoinwashServiceProvider } from "../providers/coinwash-service/coinwash-
       autoFocusAssist: false
     }),
     IonicImageLoader.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -104,7 +119,8 @@ import { CoinwashServiceProvider } from "../providers/coinwash-service/coinwash-
     GoogleMaps,
     Geolocation,
     Diagnostic,
-    CoinwashServiceProvider
+    CoinwashServiceProvider,
+    GooglePlus
   ]
 })
 export class AppModule {}

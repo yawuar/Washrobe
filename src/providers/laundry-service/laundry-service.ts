@@ -122,4 +122,23 @@ export class LaundryServiceProvider {
       );
     });
   }
+
+  updateCoinWashId(token, type, id) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      });
+
+      this.http.put(url + type + id, {}, { headers: headers }).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
 }

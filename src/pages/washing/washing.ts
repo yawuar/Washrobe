@@ -10,8 +10,8 @@ import { MapsPage } from "../maps/maps";
   templateUrl: "washing.html"
 })
 export class WashingPage {
-  private token: string = "";
   public items: any = [];
+  private token: string;
   public keys;
 
   public hasGradient: boolean = false;
@@ -27,6 +27,9 @@ export class WashingPage {
       .then(result => {
         this.keys = Object.keys(result["data"]["laundry"]);
         this.items = Array.of(result["data"]["laundry"]);
+      })
+      .catch(err => {
+        alert(JSON.stringify(err));
       });
   }
 

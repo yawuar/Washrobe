@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, Platform } from "ionic-angular";
 
-import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
 
 import { ItemPage } from "../item/item";
@@ -13,37 +12,35 @@ import { ItemPage } from "../item/item";
 export class HomePage {
   public categories: any = [];
   public amountOfTimes: any = [];
+  public isLoggedIn: boolean = false;
+  private user: any;
 
   constructor(
     public navCtrl: NavController,
-    private navParams: NavParams,
-    private authServiceProvider: AuthServiceProvider,
-    private wardrobeServiceProvider: WardrobeServiceProvider
+    private wardrobeServiceProvider: WardrobeServiceProvider,
+    private platform: Platform
   ) {
-    if (!localStorage.getItem("currentUser")) {
-      this.getUserInformation(this.navParams.get("data"));
-    }
-    this.getWardrobeByGender(localStorage.getItem("currentUser"));
-  }
+    if (localStorage.getItem("currentUser")) {
+      this.isLoggedIn = true;
+      this.user = JSON.parse(localStorage.getItem("currentUser"));
 
-  getUserInformation(token) {
-    this.authServiceProvider.getUserInformation(token, "user").then(result => {
-      let items = result["success"];
-      items.token = token;
-      items.loggedIn = true;
-      localStorage.setItem("currentUser", JSON.stringify(items));
-    });
+      this.getWardrobeByGender(this.user);
+    }
   }
 
   getWardrobeByGender(user) {
-    if (user) {
-      let gender = JSON.parse(user).gender;
-      let token = JSON.parse(user).token;
+    // alert(localStorage.getItem("currentUser"));
+    if (user != null) {
       this.wardrobeServiceProvider
-        .getWardrobe(token, "wardrobe", gender)
+        .getWardrobe(user["token"], "wardrobe", user["gender"])
         .then(result => {
           this.categories = result["data"];
+        })
+        .catch(err => {
+          alert(JSON.stringify(err));
         });
+    } else {
+      alert("user is NULL");
     }
   }
 
