@@ -33,6 +33,7 @@ export class LoginPage {
   private user: FormGroup;
   private loading: any;
   private data: any;
+  public error: any = [];
 
   constructor(
     public navCtrl: NavController,
@@ -62,15 +63,16 @@ export class LoginPage {
             let items = res["success"];
             items.token = this.data["token"];
             localStorage.setItem("currentUser", JSON.stringify(items));
+            this.navCtrl.setRoot(HomePage);
           })
           .catch(err => {
-            alert(JSON.stringify(err));
+            this.error = err['error'];
+            this.loading.dismiss();
           });
-        this.navCtrl.setRoot(HomePage);
       })
       .catch(err => {
+        this.error = err['error'];
         this.loading.dismiss();
-        this.presentToast(err);
       });
   }
 
@@ -110,14 +112,13 @@ export class LoginPage {
             Firebase.auth.GoogleAuthProvider.credential(res.idToken)
           )
           .then(success => {
-            alert("Login Success");
+            // alert("Login Success");
           })
           .catch(ns => {
-            alert("No success");
+            //alert("No success");
           });
       })
       .catch(err => {
-        alert(err);
       });
   }
 }

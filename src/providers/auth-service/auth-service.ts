@@ -23,7 +23,6 @@ export class AuthServiceProvider {
             resolve(res);
           },
           err => {
-            alert(JSON.stringify(err));
             reject(err);
           }
         );

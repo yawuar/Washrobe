@@ -54,6 +54,13 @@ page-login {
             font-size: 10px;
             color: $dark;
             margin: 0;
+
+            &.error {
+              span {
+                font-family: 'Gotham Rounded Book';
+                color: $red;
+              }
+            }
           }
           ion-input {
             input {
