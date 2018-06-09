@@ -3,7 +3,7 @@
     <name>washrobe</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.25.104:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -94,14 +94,11 @@
     <allow-navigation href="http://192.168.85.45:8100" />
     <allow-navigation href="http://192.168.0.118:8100" />
     <allow-navigation href="http://192.168.85.148:8100" />
+    <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://192.168.85.148:8101" />
     <allow-navigation href="http://192.168.25.104:8100" />
     <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.842173039607-nvspfjuhnnquosij268kbfqaj47kaeqj" />
     </plugin>
-    <allow-navigation href="http://192.168.25.104:8101" />
-    <plugin name="cordova-android-play-services-gradle-release" spec="^1.4.2">
-        <variable name="PLAY_SERVICES_VERSION" value="15.+" />
-    </plugin>
-    <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.4.167:8100" />
 </widget>

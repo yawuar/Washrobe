@@ -44,8 +44,9 @@ page-login {
         ion-item {
           margin-bottom: 50px;
           .item-inner {
-            border-bottom: 2px solid $dark;
-            border-radius: 1px;
+            border-bottom: 2px solid $dark !important;
+            border-radius: 1px !important;
+            box-shadow: none !important;
           }
           ion-label {
             font-family: 'Gotham Rounded';
@@ -56,11 +57,11 @@ page-login {
           }
           ion-input {
             input {
+              font-family: 'Gotham Rounded Book';
               font-size: 18px;
               margin-top: 0 !important;
               color: #4FC1E9;
               &::placeholder {
-                font-family: 'Gotham Rounded Book';
                 color: #4FC1E9;
               }
               border: none;
@@ -176,6 +177,36 @@ page-login {
         }
         .facebook {
           margin-right: 5%;
+
+          span {
+            display: flex;
+            align-items: center;
+            &::before {
+              background-image: url('../../assets/icon/facebook.svg');
+              background-size: contain;
+              width: 15px;
+              height: 15px;
+              display: inline-block;
+              content: '';
+              margin-right: 10px;
+            }
+          }
+        }
+
+        .google {
+          span {
+            display: flex;
+            align-items: center;
+            &::before {
+              background-image: url('../../assets/icon/google.svg');
+              background-size: contain;
+              width: 15px;
+              height: 15px;
+              display: inline-block;
+              content: '';
+              margin-right: 10px;
+            }
+          }
         }
       }
     }

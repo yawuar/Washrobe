@@ -25,7 +25,7 @@ export class IntroPage {
   }
 
   loadPageAfterXSeconds() {
-    var seconds = 0;
+    var seconds = 2000;
     setTimeout(() => {
       this.navCtrl.setRoot(LoginPage);
     }, seconds);

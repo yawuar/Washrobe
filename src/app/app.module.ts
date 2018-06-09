@@ -44,6 +44,7 @@ import { CoinwashServiceProvider } from "../providers/coinwash-service/coinwash-
 import { GooglePlus } from "@ionic-native/google-plus";
 import { AngularFireModule } from "angularfire2";
 import Firebase from "firebase";
+import { CalendarServiceProvider } from "../providers/calendar-service/calendar-service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU",
@@ -120,7 +121,8 @@ Firebase.initializeApp(firebaseConfig);
     Geolocation,
     Diagnostic,
     CoinwashServiceProvider,
-    GooglePlus
+    GooglePlus,
+    CalendarServiceProvider
   ]
 })
 export class AppModule {}
