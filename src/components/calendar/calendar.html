@@ -1,9 +1,6 @@
-<ion-header no-border>
-  <custom-header [icon]="2"></custom-header>
-</ion-header>
-
-
-<ion-content padding>
+<!-- Generated template for the CalendarComponent component -->
+<div class="container">
+  <div class="no-gradient"></div>
   <ion-grid>
     <ion-row>
       <ion-col class="week">
@@ -13,19 +10,22 @@
         </div>
       </ion-col>
       <ion-col class="items" col-10>
-        <div *ngFor="let type of typeOfClothes" class="item {{ type.class }}" [class.empty]="type.data.length == 0">
-          
+        <!-- <div *ngFor="let type of typeOfClothes" class="item {{ type.class }}" [class.empty]="type.data.length == 0">
+
           <img-loader *ngIf="type.data.length > 0" src="{{ type.data[0]['image'] }}"></img-loader>
 
           <div *ngIf="type.data.length == 0" (click)="addItemToCalendar(type.id)" class="no-item">
             <div class="icon">
-                <img width="15" src="assets/imgs/plusBl.svg" alt="plus">
-                <p>Add <span>{{ type.class }}</span></p>
+              <img width="15" src="assets/imgs/plusBl.svg" alt="plus">
+              <p>Add
+                <span>{{ type.class }}</span>
+              </p>
             </div>
           </div>
 
-        </div>
+        </div> -->
       </ion-col>
+
     </ion-row>
   </ion-grid>
-</ion-content>
+</div>

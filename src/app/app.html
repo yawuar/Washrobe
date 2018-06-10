@@ -1,11 +1,15 @@
 <ion-menu [content]="content">
 
   <button menuClose class="close-menu">
-    <img src="assets/imgs/cross.svg" alt="cross" width="20">
+    <img src="assets/imgs/cross.svg" alt="cross" width="15">
   </button>
 
   <ion-content>
     <ion-list>
+      <ion-item>
+          <p>Hello {{ name }}</p>
+          <a href="" (click)="logout()">logout</a>
+      </ion-item>
       <button menuClose ion-item  *ngFor="let p of pages" (click)="openPage(p)" class="menu-item">
         <div class="content" [class.active]="checkActive(p)">
             <img src="{{ checkActive(p) ? p.image : p.image + 'NG' }}.svg" alt="{{ p.title }}" width="{{ p.width }}">
@@ -13,7 +17,6 @@
         </div>
       </button>
     </ion-list>
-    <a href="" (click)="logout()">logout</a>
   </ion-content>
 </ion-menu>
   

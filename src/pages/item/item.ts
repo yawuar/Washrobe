@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ModalController } from "ionic-angular";
 
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 import { ScanPage } from "../scan/scan";
 
 import { ImgLoader } from "ionic-image-loader";
+import { CalendarComponent } from "../../components/calendar/calendar";
 
 @IonicPage()
 @Component({
@@ -16,8 +17,7 @@ export class ItemPage {
   private token;
   public items: any = [];
   public selectedItem: any;
-
-  public isOpen: boolean = false;
+  public current: Number = 0;
 
   icons: Array<{ image: string; width: Number; alt: string }>;
 
@@ -25,7 +25,8 @@ export class ItemPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private wardrobeServiceProvider: WardrobeServiceProvider,
-    private laundryServiceProvider: LaundryServiceProvider
+    private laundryServiceProvider: LaundryServiceProvider,
+    private modalController: ModalController
   ) {
     this.icons = [
       { image: "calendarNG", width: 10, alt: "calendar" },
@@ -46,8 +47,16 @@ export class ItemPage {
       });
   }
 
-  showDetail() {
-    this.isOpen = !this.isOpen;
+  showDetail(category) {
+    this.current = category.id;
+  }
+
+  close(event) {
+    // TODO: close show element
+
+    // // event.target.parentNode.parentNode.classList.remove('show');
+    // event.target.parentNode.parentNode.classList.add('hide');
+    // // this.current = 0;
   }
 
   delete(id) {
@@ -64,6 +73,8 @@ export class ItemPage {
       .addItemInLaundry(id, this.token, "laundry")
       .then(result => {
         console.log(result);
+      }).catch(err => {
+        alert(JSON.stringify(err));
       });
   }
 
@@ -75,11 +86,18 @@ export class ItemPage {
     // console.log(imgLoader);
   }
 
+  addToCalendar(user_itemID) {
+    console.log(user_itemID);
+    let modal = this.modalController.create(CalendarComponent,{showBackdrop:true, enableBackdropDismiss:true});
+    modal.present();
+  }
+
   action(event, category) {
     let alt = event.target.alt;
 
     switch (alt) {
       case "calendar":
+      this.addToCalendar(category.pivot.id);
         break;
 
       case "laundry":

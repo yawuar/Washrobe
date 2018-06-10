@@ -27,8 +27,7 @@
       <form [formGroup]="user" (ngSubmit)="login()">
         <ion-item no-padding>
           <ion-label [class.error]="error['error']  && error['error']['email']" stacked>EMAIL<span *ngIf="error['error'] && error['error']['email']"><br>{{ error['error']['email'] }}</span></ion-label>
-          <ion-input type="email" [(ngModel)]="user.email" formControlName="email" placeholder="example@example.be" value="yawuarsernadelgado@gmail.com"></ion-input>
-          <!-- <p></p> -->
+          <ion-input type="email" [(ngModel)]="user.email" formControlName="email" placeholder="example@example.be" value="yawuarsernadelgado@hotmail.be"></ion-input>
         </ion-item>
         <ion-item no-padding>
           <ion-label [class.error]="error['error']  && error['error']['password']" stacked>PASSWORD<span *ngIf="error['error'] && error['error']['password']"><br>{{ error['error']['password'] }}</span></ion-label>

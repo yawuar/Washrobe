@@ -1,100 +1,133 @@
 page-item {
   ion-content {
     .scroll-content {
-      padding: 0px !important;
+      padding: 0 !important;
       .container {
-        padding: 16px;
-        .grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 1fr;
-          grid-gap: 30px 20px;
-          .item {
-            position: relative;
-            contain: unset;
+        padding: 0 16px;
+      }
+      .no-item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      
+        p {
+          margin: 0;
+          color: $dark;
+          font-size: 24px;
+        }
+      }
+
+      ngx-masonry {
+        margin-top: 25px;
+        .masonry-item {
+          position: relative;
+          contain: unset;
+          border-radius: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 200px;
+          
+          width: calc(50% - 25px); 
+          margin:0 12.5px 25px 12.5px;
+  
+          &:nth-child(2) {
+            margin-top: 50px;
+          }
+  
+  
+          .no-gradient {
             border: 4px solid $dark;
             border-radius: 4px;
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);
+          }
+
+          .amount {
+            position: absolute;
+
+            top: 20px;
+            right: 20px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            color: $dark;
+          }
+
+          .item-images {
+            background-position: center !important;
+            background-size: cover !important;
+
+            z-index: -2;
+          }
+          .detail {
+            display: none;
+          }
+          .show {
+            position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px;
-            .no-gradient {
-              border: 4px solid $dark;
-              border-radius: 4px;
-              width: calc(100% + 8px);
-              height: calc(100% + 8px);
-            }
-            .item-images {
-              width: 80% !important;
-              background-position: center center;
-            }
-            .detail {
-              display: none;
-            }
-            .selected {
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);
+            z-index: 9;
+            background-color: white;
+            text-align: center;
+            .close {
               position: absolute;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: calc(100% + 8px);
-              height: calc(100% + 8px);
-              z-index: 9;
-              background-color: white;
-              text-align: center;
-              .close {
-                position: absolute;
-                left: 10px;
-                top: 15px;
-                width: 25px;
-                height: 25px;
-                padding: 5px;
-              }
-              .content {
-                font-family: 'Gotham Rounded';
-                .header {
-                  h2 {
-                    font-size: 14px;
-                    color: $dark;
+              left: 10px;
+              top: 15px;
+              width: 25px;
+              height: 25px;
+              padding: 5px;
+            }
+            .content {
+              font-family: 'Gotham Rounded';
+              .header {
+                h2 {
+                  font-size: 14px;
+                  color: $dark;
+                  font-weight: bold;
+                  text-transform: capitalize;
+                  margin: 0;
+                }
+                span {
+                  color: white;
+                  .bold {
                     font-weight: bold;
                     text-transform: capitalize;
-                    margin: 0;
-                  }
-                  span {
-                    color: white;
-                    .bold {
-                      font-weight: bold;
-                      text-transform: capitalize;
-                    }
                   }
                 }
-                .main {
-                  .symbol {
-                    font-family: "Wash Care Symbols M54";
-                    font-size: 18px;
-                    margin: 0;
-                    padding: 0;
-                    li {
-                      list-style: none;
-                      display: inline-block;
-                      margin: 0 2.5px;
-                    }
+              }
+              .main {
+                .symbol {
+                  font-family: "Wash Care Symbols M54";
+                  font-size: 18px;
+                  margin: 0;
+                  padding: 0;
+                  li {
+                    list-style: none;
+                    display: inline-block;
+                    margin: 0 2.5px;
                   }
                 }
-                .footer {
-                  ul {
-                    margin: 0;
-                    padding: 0;
-                    li {
-                      width: 30px;
-                      height: 30px;
-                      float: left;
-                      border: 2px solid $dark;
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      padding: 5px;
-                      margin: 0 7.5px;
-                    }
+              }
+              .footer {
+                ul {
+                  margin: 0;
+                  padding: 0;
+                  li {
+                    width: 30px;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid $dark;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 5px;
+                    margin: 0 7.5px;
                   }
                 }
               }

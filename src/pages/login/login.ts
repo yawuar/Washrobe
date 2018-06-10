@@ -7,7 +7,7 @@ import {
   ToastController
 } from "ionic-angular";
 
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { Validators, FormBuilder, FormGroup, AbstractControl } from "@angular/forms";
 
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { HomePage } from "../home/home";
@@ -31,6 +31,9 @@ import Firebase from "firebase";
 })
 export class LoginPage {
   private user: FormGroup;
+  email: AbstractControl;
+  password: AbstractControl;
+
   private loading: any;
   private data: any;
   public error: any = [];
@@ -48,6 +51,9 @@ export class LoginPage {
       email: ["", Validators.required],
       password: ["", Validators.required]
     });
+
+    this.email = this.user.controls['email'];
+    this.password = this.user.controls['password'];
   }
 
   login() {

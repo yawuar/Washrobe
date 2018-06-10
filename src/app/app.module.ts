@@ -46,6 +46,9 @@ import { AngularFireModule } from "angularfire2";
 import Firebase from "firebase";
 import { CalendarServiceProvider } from "../providers/calendar-service/calendar-service";
 
+import { NgxMasonryModule } from 'ngx-masonry';
+import { CalendarComponent } from "../components/calendar/calendar";
+
 export const firebaseConfig = {
   apiKey: "AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU",
   authDomain: "washrobe-206413.firebaseapp.com",
@@ -75,7 +78,8 @@ Firebase.initializeApp(firebaseConfig);
     WashingTypePage,
     WashingDegreePage,
     WashingMaterialPage,
-    MapsPage
+    MapsPage,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,8 @@ Firebase.initializeApp(firebaseConfig);
     }),
     IonicImageLoader.forRoot(),
     HttpClientModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    NgxMasonryModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -103,7 +108,8 @@ Firebase.initializeApp(firebaseConfig);
     WashingTypePage,
     WashingDegreePage,
     WashingMaterialPage,
-    MapsPage
+    MapsPage,
+    CalendarComponent
   ],
   providers: [
     StatusBar,

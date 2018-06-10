@@ -4,14 +4,14 @@
 
 <ion-content padding>
 
-  <div class="container">
-    <div *ngFor="let category of categories; let i = index" [attr.data-index]="(i + 1)" [ngClass]="'item item-' + (i + 1)" (click)="showCategory(category.id);">
-      <div class="gradient"></div>
-      <div class="inner">
-        <span>{{ category.amount }} x</span>
-        <p>{{ category.name }}</p>
-      </div>
-    </div>
-  </div>
+  <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
+      <ngxMasonryItem class="masonry-item" *ngFor="let category of categories; let i = index" [attr.data-index]="(i + 1)" [ngClass]="'item item-' + (i + 1)" (click)="showCategory(category.id);">
+        <div class="gradient"></div>
+          <div class="inner">
+            <span>{{ category.amount }} x</span>
+            <p>{{ category.name }}</p>
+          </div>
+     </ngxMasonryItem>
+  </ngx-masonry>
 
 </ion-content>

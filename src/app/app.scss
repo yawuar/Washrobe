@@ -135,12 +135,39 @@ ion-menu {
     ion-list {
       margin: 0 !important;
       width: 100%;
+      text-align: center;
+      ion-item {
+        text-align: center;
+        padding: 0;
+        margin-bottom: 50px;
+        .item-inner {
+          border-bottom: 0 !important;
+          padding: 0 !important;
+          ion-label {
+            margin: 0;
+            p {
+              font-size: 14px;
+              font-weight: bold;
+              margin: 0;
+            }
+    
+            a {
+              color: $active;
+              font-size: 10px;
+              font-weight: bold;
+              display: block;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
       .menu-item {
         text-align: center;
         padding: 0;
-        &:nth-child(1),
-        &:nth-child(2) {
-          margin-bottom: 50px;
+        margin-bottom: 50px;
+
+        &:last-child {
+          margin: 0;
         }
         .item-inner {
           border: 0 !important;

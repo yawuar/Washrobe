@@ -44,11 +44,11 @@ export class ScanPage {
         .addNdefListener(
           () => {
             this.error = "available";
-            console.log("available");
+            alert("available");
           },
           err => {
             this.error = "unavailable";
-            console.log("unavailables");
+            alert("unavailables");
           }
         )
         .subscribe(event => {
@@ -57,8 +57,9 @@ export class ScanPage {
             let content = this.nfc.bytesToString(payload).substring(3);
             if (content) {
               this.itemServiceProvider
-                .addItemToUser(this.token, "item", content)
+                .addItemToUser(this.token, "item/", content)
                 .then(result => {
+                  alert(result['data']);
                   this.navCtrl.push(ItemPage);
                 });
             } else {
@@ -69,6 +70,7 @@ export class ScanPage {
     }
 
     if (!this.platform.is("cordova")) {
+      alert('error');
       this.error = "unavailable";
     }
   }

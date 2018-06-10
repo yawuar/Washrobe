@@ -25,6 +25,7 @@ export class MyApp {
   activePage: any;
 
   public loading: any;
+  public name: string = '';
 
   pages: Array<{ title: string; component: any; image: string; width: Number }>;
 
@@ -71,6 +72,8 @@ export class MyApp {
       this.statusBar.overlaysWebView(false);
 
       this.splashScreen.hide();
+
+      this.name = JSON.parse(localStorage.getItem("currentUser"))['firstname'];
     });
   }
 
