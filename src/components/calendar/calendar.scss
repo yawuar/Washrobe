@@ -31,13 +31,23 @@ calendar {
             display: inline-block;
             .item {
               height: 50%;
-              width: 50%;
+              width: 45%;
               float: left;
               display: flex;
               justify-content: center;
               align-items: center;
-              padding: 30px 5px;
+              padding: 40px 5px 40px 5px;
               border-radius: 4px;
+
+              .wrapper {
+                height: 100%;
+                width: 100%;
+
+                &.disabled {
+                  opacity: 0.25;
+                }
+              }
+
               &.empty {
                 .no-item {
                   height: 100%;

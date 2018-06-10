@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, ModalController } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController
+} from "ionic-angular";
 
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
@@ -53,7 +58,6 @@ export class ItemPage {
 
   close(event) {
     // TODO: close show element
-
     // // event.target.parentNode.parentNode.classList.remove('show');
     // event.target.parentNode.parentNode.classList.add('hide');
     // // this.current = 0;
@@ -73,7 +77,8 @@ export class ItemPage {
       .addItemInLaundry(id, this.token, "laundry")
       .then(result => {
         console.log(result);
-      }).catch(err => {
+      })
+      .catch(err => {
         alert(JSON.stringify(err));
       });
   }
@@ -86,9 +91,14 @@ export class ItemPage {
     // console.log(imgLoader);
   }
 
-  addToCalendar(user_itemID) {
-    console.log(user_itemID);
-    let modal = this.modalController.create(CalendarComponent,{showBackdrop:true, enableBackdropDismiss:true});
+  addToCalendar(user_itemID, categoryID) {
+    let modal = this.modalController.create(
+      CalendarComponent, { uiID: user_itemID, cID: categoryID},
+      {
+        showBackdrop: true,
+        enableBackdropDismiss: true
+      }
+    );
     modal.present();
   }
 
@@ -97,7 +107,7 @@ export class ItemPage {
 
     switch (alt) {
       case "calendar":
-      this.addToCalendar(category.pivot.id);
+        this.addToCalendar(category.pivot.id, category.categoryID);
         break;
 
       case "laundry":
