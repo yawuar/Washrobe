@@ -18,7 +18,7 @@
               <div class="no-gradient"></div>
               <div *ngIf="current > 0" class="gradient" [ngClass]="{'show': (current == category.id), 'hide':(current != category.id)}">
                 <div class="close" (click)="close($event)">
-                  <img-loader src="../../assets/imgs/cross.svg"></img-loader>
+                  <img-loader src="assets/imgs/cross.svg"></img-loader>
                 </div>
                 <div class="content">
                   <div class="header">
@@ -26,6 +26,7 @@
                     <span>merk:
                       <span class="bold">{{ category.brand }}</span>
                     </span>
+                    <p>{{ category.info }}</p>
                   </div>
                   <div class="main">
                     <ul class="symbol">
@@ -37,7 +38,7 @@
                   <div class="footer">
                     <ul>
                       <li (click)="action($event, category)" *ngFor="let icon of icons" data-id="{{ category.id }}">
-                        <img src="../../assets/imgs/{{ icon.image }}.svg" width="{{ icon.width }}" alt="{{ icon.alt }}">
+                        <img src="assets/imgs/{{ icon.image }}.svg" width="{{ icon.width }}" alt="{{ icon.alt }}">
                       </li>
                     </ul>
                   </div>

@@ -9,7 +9,7 @@ page-calendar {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            &.week {
+            &.week, &.items {
               height: 95%;
             }
 

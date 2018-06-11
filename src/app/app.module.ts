@@ -48,6 +48,8 @@ import { CalendarServiceProvider } from "../providers/calendar-service/calendar-
 
 import { NgxMasonryModule } from 'ngx-masonry';
 import { CalendarComponent } from "../components/calendar/calendar";
+import { NetworkServiceProvider } from '../providers/network-service/network-service';
+import { Network } from "@ionic-native/network";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU",
@@ -128,7 +130,9 @@ Firebase.initializeApp(firebaseConfig);
     Diagnostic,
     CoinwashServiceProvider,
     GooglePlus,
-    CalendarServiceProvider
+    CalendarServiceProvider,
+    NetworkServiceProvider,
+    Network
   ]
 })
 export class AppModule {}

@@ -52,6 +52,7 @@ export class CalendarPage {
       this.currentDay = new Date(this.navParams.get("data"));
     }
     this.getCurrentWeek();
+    this.getClothesByCurrentDay();
   }
 
   getCurrentWeek() {
@@ -60,12 +61,16 @@ export class CalendarPage {
     let index = current.getDate() - current.getDay();
 
     for (let i = 0; i < amountDays; i++) {
-      if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
-        this.currentSelected = i;
-      }
       this.days.push(new Date(current.setDate(index)));
+      if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
+            this.currentSelected = i;
+          }
       index += 1;
     }
+  }
+
+  getClothesByCurrentDay() {
+    this.showClothesByDay(this.currentSelected, this.currentDay);
   }
 
   showClothesByDay(id, day) {

@@ -3,7 +3,8 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ModalController
+  ModalController,
+  ToastController
 } from "ionic-angular";
 
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
@@ -31,7 +32,8 @@ export class ItemPage {
     public navParams: NavParams,
     private wardrobeServiceProvider: WardrobeServiceProvider,
     private laundryServiceProvider: LaundryServiceProvider,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastController: ToastController
   ) {
     this.icons = [
       { image: "calendarNG", width: 10, alt: "calendar" },
@@ -76,10 +78,14 @@ export class ItemPage {
     this.laundryServiceProvider
       .addItemInLaundry(id, this.token, "laundry")
       .then(result => {
-        console.log(result);
+        this.toastController.create({
+          message: result['data'][0]['message'],
+          duration: 3000,
+          dismissOnPageChange: true
+        }).present();
       })
       .catch(err => {
-        alert(JSON.stringify(err));
+        console.log(err);
       });
   }
 

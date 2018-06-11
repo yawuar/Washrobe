@@ -1,13 +1,9 @@
 import { Component, ViewChild } from "@angular/core";
-import {
-  Platform,
-  Nav,
-  ToastController,
-  LoadingController
-} from "ionic-angular";
+import { Platform, Nav, ToastController, LoadingController, Events } from "ionic-angular";
 import { Keyboard } from "@ionic-native/keyboard";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
+import { Network } from '@ionic-native/network';
 
 import { IntroPage } from "../pages/intro/intro";
 import { HomePage } from "../pages/home/home";
@@ -15,6 +11,7 @@ import { LaundryPage } from "../pages/laundry/laundry";
 import { CalendarPage } from "../pages/calendar/calendar";
 import { LoginPage } from "../pages/login/login";
 import { AuthServiceProvider } from "../providers/auth-service/auth-service";
+import { NetworkServiceProvider } from "../providers/network-service/network-service";
 
 @Component({
   templateUrl: "app.html"
@@ -29,15 +26,7 @@ export class MyApp {
 
   pages: Array<{ title: string; component: any; image: string; width: Number }>;
 
-  constructor(
-    private platform: Platform,
-    private statusBar: StatusBar,
-    private splashScreen: SplashScreen,
-    private keyboard: Keyboard,
-    private authServiceProvider: AuthServiceProvider,
-    private loadingController: LoadingController,
-    private toastController: ToastController
-  ) {
+  constructor(private platform: Platform,private statusBar: StatusBar,private splashScreen: SplashScreen,private keyboard: Keyboard,private authServiceProvider: AuthServiceProvider,private loadingController: LoadingController,private toastController: ToastController, private events: Events, private network: Network, private networkServiceProvider: NetworkServiceProvider) {
     this.initializeApp();
     this.pages = [
       {
@@ -65,6 +54,19 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      this.networkServiceProvider.initializeNetworkEvents();
+
+	       		// Offline event
+			    this.events.subscribe('network:offline', () => { 
+              this.displayNetworkUpdate('offline');
+			    });
+
+			    // Online event
+			    this.events.subscribe('network:online', () => {
+              this.displayNetworkUpdate('online');      
+			    });
+
       this.statusBar.styleDefault();
       if (this.platform.is("ios")) {
         this.keyboard.disableScroll(true);
@@ -75,6 +77,15 @@ export class MyApp {
 
       this.name = JSON.parse(localStorage.getItem("currentUser"))['firstname'];
     });
+  }
+
+  displayNetworkUpdate(state: string) {
+    let type = this.network.type;
+
+    this.toastController.create({
+      message: 'You are now ' + state + ' via ' + type,
+      duration: 3000
+    }).present();
   }
 
   openPage(page) {

@@ -51,6 +51,7 @@ export class CalendarComponent {
     );
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     this.getCurrentWeek();
+    this.getClothesByCurrentDay();
     this.data = {
       user_itemID: this.viewCtrl.data['uiID'],
       categoryID: this.viewCtrl.data['cID']
@@ -65,7 +66,6 @@ export class CalendarComponent {
     for (let i = 0; i < amountDays; i++) {
       if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
         this.currentSelected = i;
-        console.log(this.currentSelected);
       }
       this.days.push(new Date(current.setDate(index)));
       index += 1;
@@ -78,6 +78,7 @@ export class CalendarComponent {
     this.calendarServiceProvider
       .getItemsByDay(this.token, "calendar/", this.formatDay(day))
       .then(result => {
+        console.log(result);
         // if(result["data"].length > 0) {
           for(let type of this.typeOfClothes) {
             type.data = [];
@@ -90,8 +91,16 @@ export class CalendarComponent {
         // }
       })
       .catch(err => {
-        alert(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       });
+  }
+
+  remove(data) {
+    console.log(data);
+  }
+
+  getClothesByCurrentDay() {
+    this.showClothesByDay(this.currentSelected, this.currentDay);
   }
 
   formatDay(day) {
