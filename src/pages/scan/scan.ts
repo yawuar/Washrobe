@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform, ModalController, ToastController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Platform, ModalController, ToastController, Events } from "ionic-angular";
 
 import { NFC, Ndef } from "@ionic-native/nfc";
 
@@ -7,6 +7,8 @@ import { ItemServiceProvider } from "../../providers/item-service/item-service";
 import { ItemPage } from "../item/item";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ScanComponent } from "../../components/scan/scan";
+import { NetworkServiceProvider } from "../../providers/network-service/network-service";
+import { Diagnostic } from "@ionic-native/diagnostic";
 
 /**
  * Generated class for the ScanPage page.
@@ -34,17 +36,72 @@ export class ScanPage {
     private platform: Platform,
     private formBuilder: FormBuilder,
     private modalController: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private networkServiceProvider: NetworkServiceProvider,
+    private events: Events,
+    private diagnostic: Diagnostic
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
 
     this.code = this.formBuilder.group({
       code: ["", Validators.required]
     });
+  }
 
-    if (this.platform.is("cordova")) {
-      this.nfc
-        .addNdefListener(
+  ionViewDidLoad() {
+    this.platform.ready().then(() => {
+      if (this.platform.is("cordova")) {
+        if(this.diagnostic.NFCState.POWERED_ON) {
+          this.error = 'available';
+          this.nfc.addNdefListener(() => { this.error = "available"; },
+            err => { this.error = "unavailable"; })
+                .subscribe(event => {
+                  if (event && event.tag && event.tag.id) {
+                    let payload = event.tag.ndefMessage[0].payload;
+                    let content = this.nfc.bytesToString(payload).substring(3);
+                    // if (content) {
+                    //   this.addHashCode(content);
+                    // } else {
+                    //   this.error = "unavailable";
+                    // }
+                  }
+                });
+        }
+
+        if(this.diagnostic.NFCState.POWERED_OFF) {
+          this.error = 'unavailable'; 
+        }
+
+        // When state changes refresh page
+
+        this.diagnostic.registerNFCStateChangeHandler(() => {
+          this.nfc.enabled().then(res => {
+            if(res == 'NFC_OK') {
+              this.error = 'available';
+            }
+          }).catch(err => {
+            alert(err);
+            if(err == 'NFC_DISABLED') {
+              this.error = 'unavailable';
+
+            }
+          });
+          // if(this.diagnostic.NFCState.POWERED_ON) {
+          //   this.error = 'available';
+          // }
+
+          // if(this.diagnostic.NFCState.POWERED_OFF) {
+          //   this.error = 'unavailable'; 
+          // }
+      });
+      } else {
+        this.error = 'unavailable';
+      }
+    });
+  }
+
+  nfcHandler() {
+    this.nfc.addNdefListener(
           () => {
             this.error = "available";
           },
@@ -57,27 +114,26 @@ export class ScanPage {
             let payload = event.tag.ndefMessage[0].payload;
             let content = this.nfc.bytesToString(payload).substring(3);
             if (content) {
-              this.itemServiceProvider
-                .addItemToUser(this.token, "item/", content)
-                .then(result => {
-                  this.navCtrl.push(ItemPage);
-                });
+              this.addHashCode(content);
             } else {
               this.error = "unavailable";
             }
           }
         });
-    }
-
-    if (!this.platform.is("cordova")) {
-      this.error = "unavailable";
-    }
   }
 
-  ionViewDidLoad() {}
+  displayNetworkUpdate(state: string) {
+    this.toastController.create({
+      message: 'You are now ' + state,
+      duration: 3000
+    }).present();
+  }
 
-  addHashCode() {
-    this.itemServiceProvider.getItemByHash(this.token, 'item/getHash/', this.code['code'])
+  addHashCode(code) {
+    if(!code) {
+      code = this.code['code']; 
+    }
+    this.itemServiceProvider.getItemByHash(this.token, 'item/getHash/', code)
       .then(res => {
         let modal = this.modalController.create(
           ScanComponent, { data: res },

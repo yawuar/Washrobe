@@ -20,7 +20,7 @@
   <div class="container">
     <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
       <ngxMasonryItem class="masonry-item" *ngFor="let category of categories; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)"
-        (click)="showCategory(i + 1);">
+        (click)="showCategory(category.id);">
         <div class="gradient"></div>
         <div class="inner">
           <span>{{ category.amount }} x</span>

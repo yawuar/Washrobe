@@ -3,13 +3,18 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="error == 'unavailable'" class="code-fill">
+  <div class="code-fill">
     <div class="header">
-      <h1>
+      <h1 *ngIf="error == 'unavailable'">
         <span>No NFC detected.</span>
         <span>No problem!</span>
         <span>Just fill in the code</span>
       </h1>
+      <h1 *ngIf="error == 'available'">
+          <span>NFC detected.</span>
+          <span>Scan your item or</span>
+          <span>fill in the code</span>
+        </h1>
     </div>
     <div class="footer">
       <form [formGroup]="code" (ngSubmit)="addHashCode()">
@@ -25,5 +30,13 @@
         </div>
       </form>
     </div>
+  </div>
+  <div class="bg"></div>
+
+  <div class="warning">
+    <div [ngClass]="{'disabled': (error == 'unavailable'), 'enabled':(error == 'available')}">
+      <span>!</span>
+    </div>
+    <p>NFC IS <span *ngIf="error == 'unavailable'">DISABLED</span><span *ngIf="error == 'available'">ENABLED</span></p>
   </div>
 </ion-content>

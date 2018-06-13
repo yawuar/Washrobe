@@ -1,5 +1,4 @@
 page-scan {
-  ion-header {}
   ion-content {
     background-color: $dark !important;
     .scroll-content {
@@ -8,6 +7,7 @@ page-scan {
       justify-content: center;
       align-items: center;
       .code-fill {
+        z-index: 99;
         .header {
           margin-bottom: 25px;
           h1 {
@@ -64,6 +64,42 @@ page-scan {
             }
           }
         }
+      }
+    }
+
+    .bg {
+      position: absolute;
+      width: 75%;
+      height: 75%;
+      background-image: url('../assets/imgs/bgDark.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .warning {
+      position: absolute;
+      text-align: center;
+      bottom: 50px;
+
+      .disabled, .enabled {
+        font-size: 36px;
+        font-family: 'Gotham Rounded';
+        font-weight: bold;
+        line-height: 36px;
+      }
+
+      .disabled {
+        color: $red;
+      }
+
+      .enabled {
+        color: $insert_color;
+      }
+
+      p {
+        color: white;
+        margin: 0;
       }
     }
   }

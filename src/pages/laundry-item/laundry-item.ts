@@ -37,6 +37,7 @@ export class LaundryItemPage {
     this.laundryServiceProvider
       .getLaundryById(id, token, "laundry/item")
       .then(result => {
+        console.log(id);
         this.items = result["data"];
       });
   }
