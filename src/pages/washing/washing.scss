@@ -1,18 +1,27 @@
 page-washing {
   .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(150px, max-content) repeat(auto-fill, 150px) 20%;
-    grid-gap: 20px 20px;
-    padding: 16px;
     .color {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 4px solid $dark;
-      border-radius: 4px;
-      position: relative;
-      contain: unset;
+        width: calc(50% - 25px); 
+
+        height: 150px;
+        border: 4px solid $dark;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin:0 12.5px 25px 12.5px;
+    
+        position: relative;
+        contain: unset;
+
+        &:nth-child(2) {
+          margin-top: 75px;
+        }
+
+        &:nth-child(2), &:nth-child(3) {
+          height: 225px;
+        }
+
       .overlay,
       .gradient,
       .no-gradient {

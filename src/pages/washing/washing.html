@@ -7,12 +7,13 @@
   <!-- Design the layout and information -->
   <div (click)="chooseLocation()">Choose location</div>
   <div class="container">
-    <div *ngFor="let key of keys;" class="color {{ key }}" (click)="getColor(key)">
-      <div *ngIf="key == 'coloured'" class="gradient"></div>
-      <div *ngIf="key == 'black'" class="overlay"></div>
-      <div *ngIf="key == 'white'" class="no-gradient"></div>
-
-      <h1 [class.white]="key == 'coloured' || key == 'black'">{{ key }}</h1>
-    </div>
+    <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
+        <ngxMasonryItem class="masonry-item" *ngFor="let key of keys;" class="color {{ key }}" (click)="getColor(key)">
+            <div *ngIf="key == 'coloured'" class="gradient"></div>
+            <div *ngIf="key == 'black'" class="overlay"></div>
+            <div *ngIf="key == 'white'" class="no-gradient"></div>
+            <h1 [class.white]="key == 'coloured' || key == 'black'">{{ key }}</h1>
+       </ngxMasonryItem>
+    </ngx-masonry>
   </div>
 </ion-content>

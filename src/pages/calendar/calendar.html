@@ -16,7 +16,6 @@
         <div *ngFor="let type of typeOfClothes" class="item {{ type.class }}" [class.empty]="type.data.length == 0">
           
           <img-loader *ngIf="type.data.length > 0" src="{{ type.data[0]['image'] }}"></img-loader>
-
           <div *ngIf="type.data.length == 0" (click)="addItemToCalendar(type.id)" class="no-item">
             <div class="icon">
                 <img width="15" src="assets/imgs/plusBl.svg" alt="plus">

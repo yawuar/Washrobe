@@ -22,10 +22,10 @@ export class CalendarComponent {
   public currentSelected: Number = 0;
   public data: any;
   public typeOfClothes: any = [
+    { id: 8, class: 'jacket', data: [] },
     { id: 1, class: 'tshirt', data: [] },
     { id: 6, class: 'sweater', data: [] },
-    { id: 2, class: 'pants', data: [] },
-    { id: 9, class: 'tshirt', data: [] }
+    { id: 2, class: 'pants', data: [] }
   ];
 
   public months: any = [
@@ -78,7 +78,6 @@ export class CalendarComponent {
     this.calendarServiceProvider
       .getItemsByDay(this.token, "calendar/", this.formatDay(day))
       .then(result => {
-        console.log(result);
         // if(result["data"].length > 0) {
           for(let type of this.typeOfClothes) {
             type.data = [];
@@ -96,7 +95,16 @@ export class CalendarComponent {
   }
 
   remove(data) {
-    console.log(data);
+    let body = {
+      user_itemID: data[0].pivot.id,
+      date: this.formatDay(this.currentDay)
+    };
+    console.log(body);
+    this.calendarServiceProvider.removeItemOfCalendar(this.token, 'calendar/item/remove', body).then(res => {
+      console.log(JSON.stringify(res));
+    }).catch(err => {
+      console.log(JSON.stringify(err));
+    });
   }
 
   getClothesByCurrentDay() {
@@ -117,7 +125,6 @@ export class CalendarComponent {
   }
 
   addItemToCalendar(id) {
-    //console.log(this.currentSelected);
     let n = this.currentSelected;
     let date = this.formatDay(this.days[n.toFixed()]);
     this.calendarServiceProvider.addItemInCalendar(this.token, 'calendar', {
@@ -128,5 +135,9 @@ export class CalendarComponent {
     }).catch(err => {
       console.log(JSON.stringify(err));
     });
+  }
+
+  close() {
+    console.log('boem');
   }
 }

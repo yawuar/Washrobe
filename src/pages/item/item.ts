@@ -59,6 +59,13 @@ export class ItemPage {
   }
 
   close(event) {
+    this.current = 0;
+    console.log('kak');
+    // event.target.parentNode.parentNode.classList.toggle('hide');
+    // event.target.parentNode.parentNode.classList.remove('show');
+    // event.target.parentNode.parentNode.classList.add('hide');
+    // this.current = 0;
+
     // TODO: close show element
     // // event.target.parentNode.parentNode.classList.remove('show');
     // event.target.parentNode.parentNode.classList.add('hide');
@@ -97,17 +104,6 @@ export class ItemPage {
     // console.log(imgLoader);
   }
 
-  addToCalendar(user_itemID, categoryID) {
-    let modal = this.modalController.create(
-      CalendarComponent, { uiID: user_itemID, cID: categoryID},
-      {
-        showBackdrop: true,
-        enableBackdropDismiss: true
-      }
-    );
-    modal.present();
-  }
-
   action(event, category) {
     let alt = event.target.alt;
 
@@ -124,5 +120,16 @@ export class ItemPage {
         this.delete(category.pivot.id);
         break;
     }
+  }
+
+  addToCalendar(user_itemID, categoryID) {
+    let modal = this.modalController.create(
+      CalendarComponent, { uiID: user_itemID, cID: categoryID},
+      {
+        showBackdrop: true,
+        enableBackdropDismiss: true
+      }
+    );
+    modal.present();
   }
 }

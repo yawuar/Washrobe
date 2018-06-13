@@ -42,8 +42,7 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 import { CoinwashServiceProvider } from "../providers/coinwash-service/coinwash-service";
 
 import { GooglePlus } from "@ionic-native/google-plus";
-import { AngularFireModule } from "angularfire2";
-import Firebase from "firebase";
+
 import { CalendarServiceProvider } from "../providers/calendar-service/calendar-service";
 
 import { NgxMasonryModule } from 'ngx-masonry';
@@ -51,15 +50,11 @@ import { CalendarComponent } from "../components/calendar/calendar";
 import { NetworkServiceProvider } from '../providers/network-service/network-service';
 import { Network } from "@ionic-native/network";
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU",
-  authDomain: "washrobe-206413.firebaseapp.com",
-  databaseURL: "https://washrobe-206413.firebaseio.com",
-  projectId: "washrobe-206413",
-  storageBucket: "washrobe-206413.appspot.com",
-  messagingSenderId: "842173039607"
-};
-Firebase.initializeApp(firebaseConfig);
+import { firebaseConfig } from '../config';
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireModule } from "angularfire2";
+
+AngularFireModule.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -89,9 +84,9 @@ Firebase.initializeApp(firebaseConfig);
       scrollAssist: false,
       autoFocusAssist: false
     }),
+    AngularFireModule.initializeApp(firebaseConfig),
     IonicImageLoader.forRoot(),
     HttpClientModule,
-    AngularFireModule.initializeApp(firebaseConfig),
     NgxMasonryModule
   ],
   bootstrap: [IonicApp],
@@ -132,7 +127,8 @@ Firebase.initializeApp(firebaseConfig);
     GooglePlus,
     CalendarServiceProvider,
     NetworkServiceProvider,
-    Network
+    Network,
+    AngularFireAuth
   ]
 })
 export class AppModule {}

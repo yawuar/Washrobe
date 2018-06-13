@@ -14,7 +14,6 @@ export class ItemServiceProvider {
         "Content-Type": "application/json",
         Accept: "application/json"
       });
-      alert(url + type + hash);
       this.http.post(url + type + hash, {}, { headers: headers }).subscribe(
         res => {
           resolve(res);

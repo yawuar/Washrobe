@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { CalendarServiceProvider } from "../../providers/calendar-service/calendar-service";
+import { ItemPage } from "../item/item";
 
 /**
  * Generated class for the CalendarPage page.
@@ -21,10 +22,10 @@ export class CalendarPage {
   public itemByDay: any = [];
   public currentSelected: Number = 0;
   public typeOfClothes: any = [
+    { id: 8, class: 'jacket', data: [] },
     { id: 1, class: 'tshirt', data: [] },
     { id: 6, class: 'sweater', data: [] },
-    { id: 2, class: 'pants', data: [] },
-    { id: 9, class: 'tshirt', data: [] }
+    { id: 2, class: 'pants', data: [] }
   ];
 
   public months: any = [
@@ -109,7 +110,7 @@ export class CalendarPage {
   }
 
   addItemToCalendar(id) {
-    console.log(id);
+    this.navCtrl.setRoot(ItemPage, { data: id });
   }
   
 }

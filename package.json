@@ -89,11 +89,11 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "I need your location"
       },
       "cordova.plugins.diagnostic": {},
-      "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.842173039607-nvspfjuhnnquosij268kbfqaj47kaeqj"
-      },
       "cordova-android-play-services-gradle-release": {
         "PLAY_SERVICES_VERSION": "15.+"
+      },
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.648851499943-99dpulge6hcgjjq7mhcjud77ho28ma6f"
       }
     },
     "platforms": [

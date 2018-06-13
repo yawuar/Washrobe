@@ -84,6 +84,13 @@ page-laundry-item {
                     text-transform: capitalize;
                   }
                 }
+
+                p {
+                  font-family: 'Gotham Rounded Book';
+                  font-size: 10px;
+                  color: $dark;
+                  margin: 10px 0;
+                }
               }
               .main {
                 .symbol {

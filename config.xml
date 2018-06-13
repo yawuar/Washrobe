@@ -96,13 +96,14 @@
     <allow-navigation href="http://192.168.85.148:8100" />
     <allow-navigation href="http://192.168.85.148:8101" />
     <allow-navigation href="http://192.168.25.104:8100" />
-    <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.842173039607-nvspfjuhnnquosij268kbfqaj47kaeqj" />
-    </plugin>
     <allow-navigation href="http://192.168.4.167:8100" />
-    <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://172.18.61.8:8100" />
     <allow-navigation href="http://192.168.0.118:8101" />
     <allow-navigation href="http://192.168.6.145:8100" />
     <allow-navigation href="http://192.168.84.209:8100" />
+    <allow-navigation href="http://10.68.240.184:8100" />
+    <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.648851499943-99dpulge6hcgjjq7mhcjud77ho28ma6f" />
+    </plugin>
 </widget>

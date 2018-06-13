@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "842173039607",
+    "firebase_url": "https://washrobe-206413.firebaseio.com",
+    "project_id": "washrobe-206413",
+    "storage_bucket": "washrobe-206413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842173039607:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842173039607-sismnls2pmt1uau7nob5jgmmuk3v789p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "ecf823b02a0d790b2b196d3fdc45a9dfbaabaf12"
+          }
+        },
+        {
+          "client_id": "842173039607-nvspfjuhnnquosij268kbfqaj47kaeqj.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "842173039607-nvspfjuhnnquosij268kbfqaj47kaeqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYY3K5jKl-_xjL96ruloa8B0WNz2xI3IQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842173039607-nvspfjuhnnquosij268kbfqaj47kaeqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

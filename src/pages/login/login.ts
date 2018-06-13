@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, Platform } from "ionic-angular";
 
 import { Validators, FormBuilder, FormGroup, AbstractControl } from "@angular/forms";
 
@@ -8,8 +8,6 @@ import { HomePage } from "../home/home";
 import { RegistrationPage } from "../registration/registration";
 
 import { GooglePlus } from "@ionic-native/google-plus";
-import { AngularFireModule } from "angularfire2";
-import Firebase from "firebase";
 
 /**
  * Generated class for the LoginPage page.
@@ -39,7 +37,8 @@ export class LoginPage {
     private authServiceProvider: AuthServiceProvider,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    public googlePlus: GooglePlus
+    public googlePlus: GooglePlus,
+    private platform: Platform
   ) {
     this.user = this.formBuilder.group({
       email: ["", Validators.required],
@@ -101,24 +100,39 @@ export class LoginPage {
   showRegistration() {
     this.navCtrl.setRoot(RegistrationPage);
   }
-  // AIzaSyBAG-Ddq3A0d4e275HeYMnrMFm5oouFHrU
-  // BldW5dFw-W2XoyHQtU9AkFJO
+
   loginWithGoogle() {
-    this.googlePlus
-      .login({ webClientId: "BldW5dFw-W2XoyHQtU9AkFJO", offline: true })
-      .then(res => {
-        Firebase.auth()
-          .signInWithCredential(
-            Firebase.auth.GoogleAuthProvider.credential(res.idToken)
-          )
-          .then(success => {
-            // alert("Login Success");
-          })
-          .catch(ns => {
-            //alert("No success");
-          });
-      })
-      .catch(err => {
+    if(this.platform.is('cordova')) {
+      this.authServiceProvider.nativeGoogleLogin().then(res => {
+        alert(JSON.stringify(res));
+      }).catch(err => {
+
       });
+    } else {
+      this.authServiceProvider.webGoogleLogin().then(res => {
+        // this.getUserCheckIfIsInDb(res['additionalUserInfo']['profile']);
+        // alert();
+        console.log(res);
+      }).catch(err => {
+
+      });
+    }
+  }
+
+  getUserCheckIfIsInDb(data) {
+    console.log(data);
+    // let email = data['email'];
+    // let firstname = data['given_name'];
+    // let lastname = data['family_name'];
+
+    // this.authServiceProvider.getUserByEmail('getUser', {email: email}).then(res => {
+    //   if(res['isValidUser']) {
+    //     this.authServiceProvider
+    //   } else {
+
+    //   }
+    // }).catch(err => {
+    //   console.log(JSON.stringify(err));
+    // });
   }
 }

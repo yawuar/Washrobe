@@ -44,11 +44,9 @@ export class ScanPage {
         .addNdefListener(
           () => {
             this.error = "available";
-            alert("available");
           },
           err => {
             this.error = "unavailable";
-            alert("unavailables");
           }
         )
         .subscribe(event => {
@@ -59,7 +57,6 @@ export class ScanPage {
               this.itemServiceProvider
                 .addItemToUser(this.token, "item/", content)
                 .then(result => {
-                  alert(result['data']);
                   this.navCtrl.push(ItemPage);
                 });
             } else {
@@ -70,7 +67,6 @@ export class ScanPage {
     }
 
     if (!this.platform.is("cordova")) {
-      alert('error');
       this.error = "unavailable";
     }
   }
