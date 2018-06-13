@@ -13,11 +13,11 @@
     <div *ngIf="items?.length > 0">
       <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
         <ngxMasonryItem class="masonry-item" *ngFor="let item of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)"
-          (click)="showDetail(category)">
+          (click)="showDetail($event, item)">
           <div class="no-gradient"></div>
-          <div *ngIf="isOpen" class="selected gradient">
-            <div class="close">
-              <img-loader src="../../assets/imgs/cross.svg"></img-loader>
+          <div class="gradient" [ngClass]="{'show': (current == item.id), 'hide':(current != item.id)}">
+            <div class="close" (click)="close($event)">
+              <img-loader src="assets/imgs/cross.svg"></img-loader>
             </div>
             <div class="content">
               <div class="header">

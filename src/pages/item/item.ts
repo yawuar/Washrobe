@@ -44,18 +44,21 @@ export class ItemPage {
     this.getItem(this.navParams.get("data"), this.token);
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    // this.getItem(this.navParams.get("data"), this.token);
+  }
 
   getItem(id, token) {
     this.wardrobeServiceProvider
       .getWardrobeById(id, token, "wardrobe")
       .then(result => {
         this.items = result["data"];
+        this.ionViewDidLoad();
       });
   }
 
   showDetail(event, category) {
-      this.current = category.id;
+    this.current = category.id;
     if(event.target.children[1] != undefined) {
       event.target.children[1].classList.remove('hide');
       event.target.children[1].classList.add('show');
@@ -75,11 +78,12 @@ export class ItemPage {
   }
 
   delete(id) {
+    console.log(id);
     this.wardrobeServiceProvider
       .deleteItemInWardrobe(id, this.token, "wardrobe")
       .then(result => {
-        let index = this.items.indexOf(this.selectedItem);
-        this.items.splice(index, 1);
+        // let index = this.items.indexOf(this.selectedItem);
+        //this.items.splice(index, 1);
       });
   }
 
@@ -96,6 +100,8 @@ export class ItemPage {
       .catch(err => {
         console.log(err);
       });
+
+      this.ionViewDidLoad();
   }
 
   scan() {

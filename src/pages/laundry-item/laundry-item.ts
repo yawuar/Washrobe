@@ -18,7 +18,7 @@ import { WashingPage } from "../washing/washing";
 export class LaundryItemPage {
   public items: any = [];
   public token;
-  public isOpen: boolean = false;
+  public current: Number = 0;
 
   public selectedItem: any;
 
@@ -41,8 +41,24 @@ export class LaundryItemPage {
       });
   }
 
-  showDetail() {
-    this.isOpen = !this.isOpen;
+  showDetail(event, item) {
+    this.current = item.id;
+    if(event.target.children[1] != undefined) {
+      event.target.children[1].classList.remove('hide');
+      event.target.children[1].classList.add('show');
+    }
+  }
+
+  close(event) {
+    // TODO: close show element
+    let target = event.currentTarget.parentNode;
+    if (target.classList.contains('show')) {
+      target.classList.remove('show');
+      target.classList.add('hide');
+    } else {
+      target.classList.add('show');
+      target.classList.remove('hide');
+    }
   }
 
   goToOverview() {
