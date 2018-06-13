@@ -54,22 +54,24 @@ export class ItemPage {
       });
   }
 
-  showDetail(category) {
-    this.current = category.id;
+  showDetail(event, category) {
+      this.current = category.id;
+    if(event.target.children[1] != undefined) {
+      event.target.children[1].classList.remove('hide');
+      event.target.children[1].classList.add('show');
+    }
   }
 
   close(event) {
-    this.current = 0;
-    console.log('kak');
-    // event.target.parentNode.parentNode.classList.toggle('hide');
-    // event.target.parentNode.parentNode.classList.remove('show');
-    // event.target.parentNode.parentNode.classList.add('hide');
-    // this.current = 0;
-
     // TODO: close show element
-    // // event.target.parentNode.parentNode.classList.remove('show');
-    // event.target.parentNode.parentNode.classList.add('hide');
-    // // this.current = 0;
+    let target = event.currentTarget.parentNode;
+    if (target.classList.contains('show')) {
+      target.classList.remove('show');
+      target.classList.add('hide');
+    } else {
+      target.classList.add('show');
+      target.classList.remove('hide');
+    }
   }
 
   delete(id) {
