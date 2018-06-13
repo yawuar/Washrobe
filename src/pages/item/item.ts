@@ -100,8 +100,6 @@ export class ItemPage {
       .catch(err => {
         console.log(err);
       });
-
-      this.ionViewDidLoad();
   }
 
   scan() {

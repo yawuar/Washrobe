@@ -6,6 +6,14 @@ page-laundry {
         padding: 0 16px;
       }
 
+      .insert {
+        background-color: #6ED5B5 !important;
+
+        &.disabled {
+          background-color: $grey !important;
+        }
+      }
+
       ngx-masonry {
         margin-top: 25px;
       }

@@ -3,12 +3,20 @@
 </ion-header>
 
 <ion-content padding>
-  <div (click)="goToOverview()" class="insert wash">
+  <div *ngIf="hasLaundry" (click)="goToOverview()" class="insert wash">
     <div class="inner">
       <p>Washing Time</p>
       <span></span>
     </div>
   </div>
+
+  <div *ngIf="!hasLaundry" class="insert wash disabled">
+      <div class="inner">
+        <p>No laundry</p>
+        <span></span>
+      </div>
+    </div>
+
   <div class="container">
     <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
       <ngxMasonryItem class="masonry-item" *ngFor="let category of categories; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)"

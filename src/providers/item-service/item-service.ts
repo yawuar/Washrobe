@@ -43,4 +43,23 @@ export class ItemServiceProvider {
       );
     });
   }
+
+  getItemByHash(token, type, hash) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      });
+
+      this.http.post(url + type + hash, {}, { headers: headers }).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
 }

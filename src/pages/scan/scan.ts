@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Platform, ModalController, ToastController } from "ionic-angular";
 
 import { NFC, Ndef } from "@ionic-native/nfc";
 
 import { ItemServiceProvider } from "../../providers/item-service/item-service";
 import { ItemPage } from "../item/item";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ScanComponent } from "../../components/scan/scan";
 
 /**
  * Generated class for the ScanPage page.
@@ -31,7 +32,9 @@ export class ScanPage {
     private ndef: Ndef,
     private itemServiceProvider: ItemServiceProvider,
     private platform: Platform,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalController: ModalController,
+    private toastController: ToastController
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
 
@@ -74,10 +77,22 @@ export class ScanPage {
   ionViewDidLoad() {}
 
   addHashCode() {
-    this.itemServiceProvider
-      .addItemToUser(this.token, "item/", this.code["code"])
-      .then(result => {
-        console.log(result["data"]);
+    this.itemServiceProvider.getItemByHash(this.token, 'item/getHash/', this.code['code'])
+      .then(res => {
+        let modal = this.modalController.create(
+          ScanComponent, { data: res },
+          {
+            showBackdrop: true,
+            enableBackdropDismiss: true
+          }
+        );
+        modal.present();
+      }).catch(err => {
+        this.toastController.create({
+          message: 'We could not get the data',
+          duration: 3000,
+          dismissOnPageChange: true
+        }).present();
       });
   }
 }

@@ -53,6 +53,7 @@ import { Network } from "@ionic-native/network";
 import { firebaseConfig } from '../config';
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireModule } from "angularfire2";
+import { ScanComponent } from "../components/scan/scan";
 
 AngularFireModule.initializeApp(firebaseConfig);
 
@@ -76,7 +77,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     WashingDegreePage,
     WashingMaterialPage,
     MapsPage,
-    CalendarComponent
+    CalendarComponent,
+    ScanComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     WashingDegreePage,
     WashingMaterialPage,
     MapsPage,
-    CalendarComponent
+    CalendarComponent,
+    ScanComponent
   ],
   providers: [
     StatusBar,

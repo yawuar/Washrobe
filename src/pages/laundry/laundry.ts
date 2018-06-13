@@ -12,6 +12,7 @@ import { WashingPage } from "../washing/washing";
 export class LaundryPage {
   public categories: any = [];
   public token: string;
+  public hasLaundry: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -20,6 +21,8 @@ export class LaundryPage {
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     this.getWardrobeByGender(localStorage.getItem("currentUser"));
+
+    this.checkIfHasItems();
   }
 
   ionViewDidLoad() {}
@@ -50,6 +53,16 @@ export class LaundryPage {
         } else {
           // show error that there is no items in laundry
           console.log("show modal");
+        }
+      });
+  }
+
+  checkIfHasItems() {
+    this.laundryServiceProvider
+      .getAllLaundryByUser(this.token, "laundry/get")
+      .then(result => {
+        if(result['data'] > 0) {
+          this.hasLaundry = true;
         }
       });
   }
