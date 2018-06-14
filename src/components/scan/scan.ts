@@ -15,12 +15,10 @@ import { ItemPage } from '../../pages/item/item';
 })
 export class ScanComponent {
 
-  text: string;
   public item: any = [];
   public token;
 
   constructor(private navParams: NavParams, private itemServiceProvider: ItemServiceProvider, private navController: NavController) {
-    this.text = 'Hello World';
     this.item = this.navParams.get('data')['data'][0];
 
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
@@ -29,7 +27,6 @@ export class ScanComponent {
   addToWardrobe(id) {
         this.itemServiceProvider.addItemToUser(this.token, "item/", id)
       .then(result => {
-        console.log(result["data"]);
         this.navController.push(ItemPage, {data: this.item.categoryID});
       });
   }

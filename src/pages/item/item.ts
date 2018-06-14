@@ -13,6 +13,7 @@ import { ScanPage } from "../scan/scan";
 
 import { ImgLoader } from "ionic-image-loader";
 import { CalendarComponent } from "../../components/calendar/calendar";
+import { DeleteComponent } from "../../components/delete/delete";
 
 @IonicPage()
 @Component({
@@ -41,19 +42,19 @@ export class ItemPage {
       { image: "trashbagNG", width: 10, alt: "trashbag" }
     ];
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
-    this.getItem(this.navParams.get("data"), this.token);
   }
 
   ionViewDidLoad() {
-    // this.getItem(this.navParams.get("data"), this.token);
+    this.getItem(this.navParams.get("data"), this.token);
   }
 
   getItem(id, token) {
     this.wardrobeServiceProvider
       .getWardrobeById(id, token, "wardrobe")
       .then(result => {
+        // TODO: sometimes symbols not showing
         this.items = result["data"];
-        this.ionViewDidLoad();
+        this.current = 0;
       });
   }
 
@@ -78,13 +79,23 @@ export class ItemPage {
   }
 
   delete(id) {
-    console.log(id);
-    this.wardrobeServiceProvider
-      .deleteItemInWardrobe(id, this.token, "wardrobe")
-      .then(result => {
-        // let index = this.items.indexOf(this.selectedItem);
-        //this.items.splice(index, 1);
-      });
+    this.wardrobeServiceProvider.getItemById(id, this.token, 'wardrobe/get/')
+    .then(result => {
+      let modal = this.modalController.create(
+        DeleteComponent, {data: result['data']},
+        {
+          showBackdrop: true,
+          enableBackdropDismiss: true
+        }
+      );
+      modal.present();
+    }).catch(err => {
+      this.toastController.create({
+        message: 'Could not delete this item',
+        duration: 3000,
+        dismissOnPageChange: true
+      }).present();
+    });    
   }
 
   addToLaundry(id) {

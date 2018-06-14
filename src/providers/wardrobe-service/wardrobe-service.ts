@@ -49,6 +49,25 @@ export class WardrobeServiceProvider {
     });
   }
 
+  getItemById(id, token, type) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      });
+
+      this.http.post(url + type + id, {}, {headers: headers}).subscribe(
+        res => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      )
+    });
+  }
+
   deleteItemInWardrobe(id, token, type) {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders({

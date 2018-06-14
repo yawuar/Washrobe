@@ -54,6 +54,7 @@ import { firebaseConfig } from '../config';
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireModule } from "angularfire2";
 import { ScanComponent } from "../components/scan/scan";
+import { DeleteComponent } from "../components/delete/delete";
 
 AngularFireModule.initializeApp(firebaseConfig);
 
@@ -78,7 +79,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     WashingMaterialPage,
     MapsPage,
     CalendarComponent,
-    ScanComponent
+    ScanComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +111,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     WashingMaterialPage,
     MapsPage,
     CalendarComponent,
-    ScanComponent
+    ScanComponent,
+    DeleteComponent
   ],
   providers: [
     StatusBar,

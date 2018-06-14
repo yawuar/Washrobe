@@ -72,8 +72,6 @@ export class LaundryItemPage {
     this.laundryServiceProvider
       .deleteLaundryById(data.pivot.id, this.token, "laundry")
       .then(result => {
-        // let index = this.items.indexOf(this.selectedItem);
-        // this.items.splice(index, 1);
         this.ionViewDidLoad();
       });
   }

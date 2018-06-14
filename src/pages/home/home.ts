@@ -29,7 +29,6 @@ export class HomePage {
   }
 
   getWardrobeByGender(user) {
-    // alert(localStorage.getItem("currentUser"));
     if (user != null) {
       this.wardrobeServiceProvider
         .getWardrobe(user["token"], "wardrobe", user["gender"])
