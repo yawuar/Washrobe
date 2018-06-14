@@ -28,17 +28,18 @@ export class LaundryItemPage {
     private laundryServiceProvider: LaundryServiceProvider
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
-    this.getLaundryItems(this.navParams.get("data"), this.token);
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    this.getLaundryItems(this.navParams.get("data"), this.token);
+  }
 
   getLaundryItems(id, token) {
     this.laundryServiceProvider
       .getLaundryById(id, token, "laundry/item")
       .then(result => {
-        console.log(id);
         this.items = result["data"];
+        this.current = 0;
       });
   }
 
@@ -71,8 +72,9 @@ export class LaundryItemPage {
     this.laundryServiceProvider
       .deleteLaundryById(data.pivot.id, this.token, "laundry")
       .then(result => {
-        let index = this.items.indexOf(this.selectedItem);
-        this.items.splice(index, 1);
+        // let index = this.items.indexOf(this.selectedItem);
+        // this.items.splice(index, 1);
+        this.ionViewDidLoad();
       });
   }
 }

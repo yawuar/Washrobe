@@ -37,11 +37,14 @@ export class WashingPage {
     this.navCtrl.push(WashingTypePage, { data: this.items[0][color] });
   }
 
+  isObject(value) {
+    return value && typeof value === 'object' && value.constructor === Object;
+  }
+
   chooseLocation() {
     this.navCtrl.push(MapsPage);
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad WashingPage");
   }
 }

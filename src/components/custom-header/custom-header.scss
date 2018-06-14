@@ -37,8 +37,17 @@ custom-header {
         }
       }
     }
+
+    ion-buttons {
+      .image-2 {
+        img {
+          width: 20px;
+        }
+      }
+    }
+
     .login-logo {
-      &.image-0 {
+      &.image-0, &.image-2 {
         img {
           width: 25px;
         }

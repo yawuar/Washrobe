@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 import { HomePage } from "../../pages/home/home";
 import { LaundryPage } from "../../pages/laundry/laundry";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
+import { CalendarPage } from "../../pages/calendar/calendar";
 
 /**
  * Generated class for the CustomHeaderComponent component.
@@ -41,19 +42,52 @@ export class CustomHeaderComponent {
   }
 
   openLaundry(id) {
-    let page: any = LaundryPage;
-    if (id) {
-      page = HomePage;
-    }
+    let page = this.getSubPage(id);
+    console.log('id = ' + id);
     this.navCtrl.setRoot(page, { data: this.token });
   }
 
   openHomePage(id) {
-    let page: any = HomePage;
-    if (id) {
-      page = LaundryPage;
-    }
+    let page = this.getPage(id);
     this.navCtrl.setRoot(page, { data: this.token });
+  }
+
+  getSubPage(id): any {
+    let page: any;
+    switch(id) {
+      case 0:
+        page = LaundryPage;
+        break;
+
+      case 1:
+        page = HomePage;
+        break;
+
+      case 2:
+        page = HomePage;
+        break;
+    }
+
+    return page;
+  }
+
+  getPage(id): any {
+    let page: any;
+    switch(id) {
+      case 0:
+        page = HomePage;
+        break;
+
+      case 1:
+        page = LaundryPage;
+        break;
+
+      case 2:
+        page = CalendarPage;
+        break;
+    }
+
+    return page;
   }
 
   ngOnChanges() {

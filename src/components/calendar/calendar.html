@@ -16,7 +16,7 @@
                 <div class="delete" (click)="remove(type.data)"></div>
                 <img-loader *ngIf="type.data.length > 0" src="{{ type.data[0]['image'] }}"></img-loader>
               </div>
-              <div *ngIf="type.data.length == 0" (click)="addItemToCalendar(type.id )" class="no-item">
+              <div *ngIf="type.data.length == 0" (click)="addItemToCalendar(data.user_itemID)" class="no-item">
                 <div class="icon">
                   <img width="15" src="assets/imgs/plusBl.svg" alt="plus">
                   <p>Add
