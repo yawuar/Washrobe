@@ -1,122 +1,178 @@
-calendar {
-  background-color: rgba( $dark, .3);
-  .container {
-    position: absolute;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    width: 85% !important;
-    height: 85% !important;
-    border-radius: 4px;
-    .no-gradient {
-      border: 4px solid $dark;
-      border-radius: 4px;
-      right: 10px;
-      top: 10px;
+ion-modal.show-page {
+  ion-backdrop {
+    background-color: rgba( $dark, .3);
+  }
+  @media (min-width: 300px) and (min-height: 500px) {
+    ion-backdrop {
+      visibility: visible;
     }
-    .grid {
-      height: 100%;
-      .row {
+  }
+  .modal-wrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 80%;
+    border-radius: 2px;
+    height: 80%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 0;
+    box-shadow: 0 16px 20px rgba(0, 0, 0, .4);
+    background-color: white;
+    calendar {
+      .no-gradient {
+        border: 4px solid $dark;
+        border-radius: 4px;
+        right: 10px;
+        top: 10px;
+      }
+      .grid {
         height: 100%;
-        .col {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding: 35px 5px;
-          &.week {
-            height: 100%;
-          }
-          &.items {
-            display: inline-block;
-            .item {
-              height: 50%;
-              width: 45%;
-              float: left;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 40px 5px 40px 5px;
-              border-radius: 4px;
-
-              .wrapper {
-                height: 100%;
-                width: 100%;
-
-                .image {
-                  position: relative;
+        .row {
+          height: 100%;
+          .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px 5px;
+            &.week {
+              height: 100%;
+            }
+            &.items {
+              display: inline-block;
+              ion-item {
+                padding-left: 5px;
+                &.item-select {
                   width: 100%;
-                  height: 100%;
-
-                  .delete {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 20%;
-                    background-color: rgba(255, 109, 129, 1);
-                    background-image: url(../assets/imgs/trashbag.svg);
-                    background-repeat: no-repeat;
-                    background-size: 15%;
-                    background-position: center;
-                    border-radius: 0 0 4px 4px;
-                  }
                 }
 
-                &.disabled {
-                  opacity: 0.25;
-                }
-              }
+                .item-inner {
+                  border: 0;
+                  .input-wrapper {
 
-              &.empty {
-                .no-item {
-                  height: 100%;
-                  width: 100%;
-                  background-color: $grey;
-                  border: 4px solid $dark;
-                  border-radius: 4px;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  .icon {
-                    text-align: center;
-                    p {
-                      margin: 0;
-                      color: $dark;
-                      font-size: 12px;
-                      span {
-                        text-transform: capitalize;
+                    ion-select {
+                      padding: 0px 8px 0px 0;
+
+                      .select-text {
+                        color: $dark;
+                        overflow: initial;
+                        min-width: auto;
+                      }
+
+                      .select-icon {
+                        left: 10px;
+                        .select-icon-inner {
+                          background-image: url('../assets/imgs/select-arrow.svg');
+                          background-repeat: no-repeat;
+                          background-position: center 10px;
+                          background-size: contain;
+                          border: 0;
+
+                          height: 100%;
+                          width: 100%;
+
+                          left: 0;
+                          top: 0;
+                        }
                       }
                     }
                   }
                 }
               }
-              img-loader {
-                background-size: cover !important;
-                background-position: center center;
+              .cloth {
+                height: 50%;
+                width: 50%;
+                float: left;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 5px 10px 5px;
                 border-radius: 4px;
+
+                .wrapper {
+                  height: 100%;
+                  width: 100%;
+                  .image {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    .delete {
+                      position: absolute;
+                      bottom: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 20%;
+                      background-color: rgba(255, 109, 129, 1);
+                      background-image: url(../assets/imgs/trashbag.svg);
+                      background-repeat: no-repeat;
+                      background-size: 15%;
+                      background-position: center;
+                      border-radius: 0 0 4px 4px;
+                    }
+                  }
+                  &.disabled {
+                    opacity: 0.25;
+                  }
+                }
+                &.empty {
+                  .no-item {
+                    height: 100%;
+                    width: 100%;
+                    background-color: $grey;
+                    border: 4px solid $dark;
+                    border-radius: 4px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon {
+                      text-align: center;
+                      p {
+                        margin: 0;
+                        color: $dark;
+                        font-size: 12px;
+                        span {
+                          text-transform: capitalize;
+                        }
+                      }
+                    }
+                  }
+                }
+                img-loader {
+                  background-size: cover !important;
+                  background-position: center center;
+                  border-radius: 4px;
+                }
               }
             }
-          }
-          .date {
-            text-align: center;
-            &.current {
+            .date {
+              text-align: center;
+              &.current {
+                span {
+                  color: $active;
+                }
+              }
+
+              &.disabled {
+                span {
+                  color: $grey;
+                }
+              }
+
               span {
-                color: $active;
-              }
-            }
-            span {
-              display: block;
-              color: $dark;
-              &.day {
-                font-size: 18px;
-                line-height: 18px;
-                font-weight: bold;
-              }
-              &.month {
-                font-size: 10px;
-                font-family: 'Gotham Rounded Book', Arial, Helvetica, sans-serif !important;
-                text-transform: uppercase;
+                display: block;
+                color: $dark;
+                &.day {
+                  font-size: 18px;
+                  line-height: 18px;
+                  font-weight: bold;
+                }
+                &.month {
+                  font-size: 10px;
+                  font-family: 'Gotham Rounded Book', Arial, Helvetica, sans-serif !important;
+                  text-transform: uppercase;
+                }
               }
             }
           }

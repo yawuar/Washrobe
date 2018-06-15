@@ -21,7 +21,7 @@ ion-modal.show-page {
     margin: auto;
     border: 0;
     box-shadow: 0 16px 20px rgba(0,0,0,.4);
-    background-color: #fafafa;
+    background-color: white;
 
     scan {
       .content {
@@ -100,7 +100,7 @@ ion-modal.show-page {
                 color: $dark;
                 font-family: 'Gotham Rounded';
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 16px;
                 letter-spacing: 0;
               }
             }

@@ -28,6 +28,8 @@ export class CalendarComponent {
     { id: 2, class: 'pants', data: [] }
   ];
 
+  public week = 0;
+
   public months: any = [
     "Jan",
     "Feb",
@@ -50,7 +52,7 @@ export class CalendarComponent {
       true
     );
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
-    this.getCurrentWeek();
+    this.getCurrentWeek(this.week);
     this.getClothesByCurrentDay();
     this.data = {
       user_itemID: this.viewCtrl.data['uiID'],
@@ -58,18 +60,40 @@ export class CalendarComponent {
     };
   }
 
-  getCurrentWeek() {
+  getCurrentWeek(week) {
+    let firstDayOfWeek = this.days[0];
+    this.days = [];
     let amountDays = 7;
-    let current = new Date();
-    let index = current.getDate() - current.getDay();
 
-    for (let i = 0; i < amountDays; i++) {
-      if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
-        this.currentSelected = i;
+    console.log(week);
+
+    if(week == 0) {
+      let current = new Date();
+      let index = current.getDate() - current.getDay();
+
+      for (let i = 0; i < amountDays; i++) {
+        if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
+          this.currentSelected = i;
+        }
+        this.days.push(new Date(current.setDate(index)));
+        index += 1;
       }
-      this.days.push(new Date(current.setDate(index)));
-      index += 1;
     }
+
+    if(week == 1) {
+      let current = new Date(firstDayOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
+      let index = current.getDate() - current.getDay();
+
+      for (let i = 0; i < amountDays; i++) {
+        this.days.push(new Date(current.setDate(index)));
+        index += 1;
+      }
+    }
+  }
+
+  getWeek(week) {
+    this.week = week;
+    this.getCurrentWeek(this.week);
   }
 
   showClothesByDay(id, day) {
