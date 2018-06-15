@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ViewController, NavParams, NavController } from 'ionic-angular';
+import { ViewController, NavParams, NavController, Item } from 'ionic-angular';
 import { WardrobeServiceProvider } from '../../providers/wardrobe-service/wardrobe-service';
-import { ItemPage } from '../../pages/item/item';
 
 /**
  * Generated class for the DeleteComponent component.
@@ -19,7 +18,7 @@ export class DeleteComponent {
   private token;
   public item: any = [];
 
-  constructor(private navParams: NavParams, private wardrobeServiceProvider: WardrobeServiceProvider, private navController: NavController) {
+  constructor(private navParams: NavParams, private wardrobeServiceProvider: WardrobeServiceProvider, private navController: NavController, private viewController: ViewController) {
     this.text = 'Hello World';
 
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
@@ -28,11 +27,11 @@ export class DeleteComponent {
   }
 
   delete(id) {
+    this.viewController.dismiss();
     this.wardrobeServiceProvider
       .deleteItemInWardrobe(id, this.token, "wardrobe")
       .then(result => {
-        // TODO. dismiss controller
-        this.navController.push(ItemPage, { data: id });
+        this.viewController.dismiss();
       });
   }
 

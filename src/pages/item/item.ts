@@ -45,6 +45,7 @@ export class ItemPage {
   }
 
   ionViewDidLoad() {
+    console.log('hello');
     this.getItem(this.navParams.get("data"), this.token);
   }
 
@@ -88,6 +89,9 @@ export class ItemPage {
           enableBackdropDismiss: true
         }
       );
+      modal.onDidDismiss(() => {
+        this.ionViewDidLoad();
+      });
       modal.present();
     }).catch(err => {
       this.toastController.create({
