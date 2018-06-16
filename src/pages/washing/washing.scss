@@ -33,6 +33,20 @@ page-washing {
       }
     }
 
+    .extra-info {
+      width: 50%;
+      text-align: center;
+
+      .price {
+        font-family: 'Gotham Rounded Book';
+        p {
+          font-family: 'Gotham Rounded';
+          font-weight: 500;
+          margin: 0;
+        }
+      }
+    }
+
     a {
       display: block;
       font-family: 'Gotham Rounded';

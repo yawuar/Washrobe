@@ -16,6 +16,7 @@ import { WashingDegreePage } from "../washing-degree/washing-degree";
 })
 export class WashingTypePage {
   public types: any = [];
+  public name: string = 'type';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.types = this.navParams.get("data");
   }

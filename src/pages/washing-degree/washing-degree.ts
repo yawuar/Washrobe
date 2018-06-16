@@ -16,6 +16,7 @@ import { WashingMaterialPage } from "../washing-material/washing-material";
 })
 export class WashingDegreePage {
   public degrees: any = [];
+  public name: string = 'degrees';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.degrees = this.navParams.get("data");
   }

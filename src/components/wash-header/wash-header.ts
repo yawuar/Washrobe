@@ -13,7 +13,6 @@ import { Component, Input } from '@angular/core';
 export class WashHeaderComponent {
 
   @Input('name') name;
-  private title: string = 'colors';
   constructor() {
   }
 

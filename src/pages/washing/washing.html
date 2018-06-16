@@ -18,7 +18,14 @@
       </div>
       <a (click)="chooseLocation()">Change place</a>
     </div>
-    <div class="extra-info"></div>
+    <div class="extra-info">
+      <div class="price">
+        <p>Avg. Price</p>
+        <span *ngIf="washroom[0]?.price == 1">&euro;</span>
+        <span *ngIf="washroom[0]?.price == 2">&euro;&euro;</span>
+        <span *ngIf="washroom[0]?.price == 3">&euro;&euro;&euro;</span>
+      </div>
+    </div>
   </div>
   <div class="container">
     <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
