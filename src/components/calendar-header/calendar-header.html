@@ -1,17 +1,16 @@
 <ion-navbar>
   <ion-title padding text-center>
-    <div class="color">
+    <div class="color" (click)="openHomePage()">
       <div class="ico">
-        <img src="assets/imgs/{{ name }}.svg" class="{{ name }}" width="30" alt="{{ name }}">
+        <img src="assets/imgs/{{ name }}.svg" class="{{ name }}" width="25" alt="{{ name }}">
       </div>
       <h1>{{ name }}</h1>
     </div>
   </ion-title>
 
   <ion-buttons end>
-    <button ion-button icon-only (click)="openLaundry(icon)" class="laundry">
+    <button ion-button icon-only class="laundry">
       <img src="assets/imgs/laundry.svg" width="30" alt="laundry">
     </button>
   </ion-buttons>
-
 </ion-navbar>

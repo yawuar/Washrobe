@@ -59,11 +59,11 @@ export class ScanPage {
                   if (event && event.tag && event.tag.id) {
                     let payload = event.tag.ndefMessage[0].payload;
                     let content = this.nfc.bytesToString(payload).substring(3);
-                    // if (content) {
-                    //   this.addHashCode(content);
-                    // } else {
-                    //   this.error = "unavailable";
-                    // }
+                    if (content) {
+                      this.addHashCode(content);
+                    } else {
+                      this.error = "unavailable";
+                    }
                   }
                 });
         }
@@ -71,29 +71,6 @@ export class ScanPage {
         if(this.diagnostic.NFCState.POWERED_OFF) {
           this.error = 'unavailable'; 
         }
-
-        // When state changes refresh page
-
-        this.diagnostic.registerNFCStateChangeHandler(() => {
-          this.nfc.enabled().then(res => {
-            if(res == 'NFC_OK') {
-              this.error = 'available';
-            }
-          }).catch(err => {
-            alert(err);
-            if(err == 'NFC_DISABLED') {
-              this.error = 'unavailable';
-
-            }
-          });
-          // if(this.diagnostic.NFCState.POWERED_ON) {
-          //   this.error = 'available';
-          // }
-
-          // if(this.diagnostic.NFCState.POWERED_OFF) {
-          //   this.error = 'unavailable'; 
-          // }
-      });
       } else {
         this.error = 'unavailable';
       }

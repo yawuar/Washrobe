@@ -22,10 +22,10 @@ export class CalendarComponent {
   public currentSelected: Number = 0;
   public data: any;
   public typeOfClothes: any = [
-    { id: 8, class: 'jacket', data: [] },
-    { id: 1, class: 'tshirt', data: [] },
-    { id: 6, class: 'sweater', data: [] },
-    { id: 2, class: 'pants', data: [] }
+    { id: 8, class: "jacket", data: [] },
+    { id: 1, class: "tshirt", data: [] },
+    { id: 6, class: "sweater", data: [] },
+    { id: 2, class: "pants", data: [] }
   ];
 
   public week = 0;
@@ -45,7 +45,11 @@ export class CalendarComponent {
     "Dec"
   ];
 
-  constructor(private renderer: Renderer, private viewCtrl: ViewController, private calendarServiceProvider: CalendarServiceProvider) {
+  constructor(
+    private renderer: Renderer,
+    private viewCtrl: ViewController,
+    private calendarServiceProvider: CalendarServiceProvider
+  ) {
     this.renderer.setElementClass(
       viewCtrl.pageRef().nativeElement,
       "calendar",
@@ -55,8 +59,8 @@ export class CalendarComponent {
     this.getCurrentWeek(this.week);
     this.getClothesByCurrentDay();
     this.data = {
-      user_itemID: this.viewCtrl.data['uiID'],
-      categoryID: this.viewCtrl.data['cID']
+      user_itemID: this.viewCtrl.data["uiID"],
+      categoryID: this.viewCtrl.data["cID"]
     };
   }
 
@@ -65,16 +69,18 @@ export class CalendarComponent {
     this.days = [];
     let amountDays = 7;
     let current = new Date();
-    if(week == 1) {
+    if (week == 1) {
       current = new Date(firstDayOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
     }
 
     let index = current.getDate() - current.getDay();
 
     for (let i = 0; i < amountDays; i++) {
-      console.log(new Date(this.currentDay));
-      console.log(new Date(this.currentDay).getTime() === new Date(current.setDate(index)).getTime());
-      if (week == 0 && new Date(this.currentDay).getTime() === new Date(current.setDate(index)).getTime()) {
+      if (
+        week == 0 &&
+        new Date(this.currentDay).getTime() ===
+          new Date(current.setDate(index)).getTime()
+      ) {
         this.currentSelected = i;
       }
       this.days.push(new Date(current.setDate(index)));
@@ -93,19 +99,17 @@ export class CalendarComponent {
     this.calendarServiceProvider
       .getItemsByDay(this.token, "calendar/", this.formatDay(day))
       .then(result => {
-        // if(result["data"].length > 0) {
-          for(let type of this.typeOfClothes) {
-            type.data = [];
-            for(let res of result['data']) {
-              if(type.id === res.categoryID) {
-                type.data.push(res);
-              }
+        for (let type of this.typeOfClothes) {
+          type.data = [];
+          for (let res of result["data"]) {
+            if (type.id === res.categoryID) {
+              type.data.push(res);
             }
           }
-        // }
+        }
       })
       .catch(err => {
-        console.log(JSON.stringify(err));
+        // console.log(JSON.stringify(err));
       });
   }
 
@@ -115,11 +119,14 @@ export class CalendarComponent {
       date: this.formatDay(this.currentDay)
     };
     console.log(body);
-    this.calendarServiceProvider.removeItemOfCalendar(this.token, 'calendar/item/remove', body).then(res => {
-      console.log(JSON.stringify(res));
-    }).catch(err => {
-      console.log(JSON.stringify(err));
-    });
+    this.calendarServiceProvider
+      .removeItemOfCalendar(this.token, "calendar/item/remove", body)
+      .then(res => {
+        console.log(JSON.stringify(res));
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      });
   }
 
   getClothesByCurrentDay() {
@@ -142,17 +149,20 @@ export class CalendarComponent {
   addItemToCalendar(id) {
     let n = this.currentSelected;
     let date = this.formatDay(this.days[n.toFixed()]);
-    this.calendarServiceProvider.addItemInCalendar(this.token, 'calendar', {
-      user_itemID: id,
-      date: date
-    }).then(res => {
-      console.log(JSON.stringify(res));
-    }).catch(err => {
-      console.log(JSON.stringify(err));
-    });
+    this.calendarServiceProvider
+      .addItemInCalendar(this.token, "calendar", {
+        user_itemID: id,
+        date: date
+      })
+      .then(res => {
+        console.log(JSON.stringify(res));
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      });
   }
 
   close() {
-    console.log('boem');
+    console.log("boem");
   }
 }

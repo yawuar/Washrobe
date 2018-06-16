@@ -1,0 +1,50 @@
+calendar-header {
+  ion-navbar {
+    padding: 4px 16px !important;
+    .back-button {
+      display: block;
+      color: $dark;
+      background-image: url('../assets/imgs/arrowBlack.svg');
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 55%;
+      ion-icon {
+        &:before {
+          content: '';
+        }
+      }
+    }
+    .back-button-md,
+    .bar-button-md {
+      margin: 0;
+    }
+    .bar-button,
+    .bar-buttons {
+      min-width: 44px;
+    }
+    .bar-buttons {
+      .laundry {
+        .button-inner {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+  ion-title {
+    .color {
+      .ico {
+        .degrees {
+          width: 20px;
+        }
+      }
+      h1 {
+        color: $dark;
+        margin: 0;
+        text-transform: capitalize;
+        font-size: 14px;
+        font-family: 'Gotham Rounded', Arial, Helvetica, sans-serif;
+        font-weight: bold;
+      }
+    }
+  }
+}

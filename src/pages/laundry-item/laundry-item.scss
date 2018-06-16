@@ -1,133 +1,138 @@
 page-laundry-item {
   .scroll-content {
     padding: 0 !important;
-
+    .no-item {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      p {
+        margin: 0;
+        color: $dark;
+        font-size: 24px;
+      }
+    }
     .container {
       padding: 0 16px;
+    }
+    .insert {
+      &.disabled {
+        background-color: $grey !important;
+      }
     }
     ngx-masonry {
       margin-top: 25px;
     }
-        .masonry-item {
-          position: relative;
-          contain: unset;
-          border-radius: 4px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 200px;
-          width: calc(50% - 25px); 
-          margin:0 12.5px 25px 12.5px;
-  
-          &:nth-child(2) {
-            margin-top: 50px;
-          }
-
-
-          .no-gradient {
-            border: 4px solid $dark;
-            border-radius: 4px;
-            width: calc(100% + 8px);
-            height: calc(100% + 8px);
-          }
-
-          .amount {
-            position: absolute;
-
-            top: 20px;
-            right: 20px;
-
-            font-size: 14px;
-            font-weight: bold;
-
-            color: $dark;
-          }
-
-          .item-images {
-            background-position: center !important;
-            background-size: cover !important;
-
-            z-index: -2;
-          }
-          .gradient {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: calc(100% + 8px);
-            height: calc(100% + 8px);
-            z-index: 9;
-            background-color: white;
-            text-align: center;
-            .close {
-              position: absolute;
-              left: 5px;
-              top: 10px;
-              width: 20px;
-              height: 20px;
-              padding: 5px;
+    .masonry-item {
+      position: relative;
+      contain: unset;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      width: calc(50% - 25px);
+      margin: 0 12.5px 25px 12.5px;
+      &:nth-child(2) {
+        margin-top: 50px;
+      }
+      .no-gradient {
+        border: 4px solid $dark;
+        border-radius: 4px;
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+      }
+      .amount {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        color: $dark;
+      }
+      .item-images {
+        background-position: center !important;
+        background-size: cover !important;
+        z-index: -2;
+      }
+      .gradient {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+        z-index: 9;
+        background-color: white;
+        text-align: center;
+        .close {
+          position: absolute;
+          left: 5px;
+          top: 10px;
+          width: 20px;
+          height: 20px;
+          padding: 5px;
+        }
+        .content {
+          font-family: 'Gotham Rounded';
+          padding: 0 10px;
+          .header {
+            h2 {
+              font-size: 14px;
+              color: $dark;
+              font-weight: bold;
+              text-transform: capitalize;
+              margin: 0;
             }
-            .content {
-              font-family: 'Gotham Rounded';
-              padding: 0 10px;
-              .header {
-                h2 {
-                  font-size: 14px;
-                  color: $dark;
-                  font-weight: bold;
-                  text-transform: capitalize;
-                  margin: 0;
-                }
-                span {
-                  color: white;
-                  .bold {
-                    font-weight: bold;
-                    text-transform: capitalize;
-                  }
-                }
-
-                p {
-                  font-family: 'Gotham Rounded Book';
-                  font-size: 10px;
-                  color: $dark;
-                  margin: 10px 0;
-                }
+            span {
+              color: white;
+              .bold {
+                font-weight: bold;
+                text-transform: capitalize;
               }
-              .main {
-                .symbol {
-                  font-family: "Wash Care Symbols M54";
-                  font-size: 18px;
-                  margin: 0;
-                  padding: 0;
-                  li {
-                    list-style: none;
-                    display: inline-block;
-                    margin: 0 2.5px;
-                  }
-                }
+            }
+            p {
+              font-family: 'Gotham Rounded Book';
+              font-size: 10px;
+              color: $dark;
+              margin: 10px 0;
+            }
+          }
+          .main {
+            .symbol {
+              font-family: "Wash Care Symbols M54";
+              font-size: 18px;
+              margin: 0;
+              padding: 0;
+              li {
+                list-style: none;
+                display: inline-block;
+                margin: 0 2.5px;
               }
-              .footer {
-                height: 30px;
-                ul {
-                  margin: 0;
-                  padding: 0;
-                  height: 100%;
-                  li {
-                    height: 100%;
-                    width: 30px;
-                    float: left;
-                    border: 2px solid $dark;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 5px;
-                    margin: 0;
-                    width: 100%;
-                  }
-                }
+            }
+          }
+          .footer {
+            height: 30px;
+            ul {
+              margin: 0;
+              padding: 0;
+              height: 100%;
+              li {
+                height: 100%;
+                width: 30px;
+                float: left;
+                border: 2px solid $dark;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px;
+                margin: 0;
+                width: 100%;
               }
             }
           }
         }
       }
     }
+  }
+}

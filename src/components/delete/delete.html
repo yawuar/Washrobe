@@ -1,22 +1,26 @@
+<button class="close" (click)="close()">
+  <img src="assets/imgs/cross.svg" alt="cross" width="15">
+</button>
 <div class="content">
-    <div class="image">
-      <div class="no-gradient"></div>
-      <img-loader src="{{ item.image }}"></img-loader>
+  <div class="image">
+    <div class="no-gradient"></div>
+    <img-loader src="{{ item.image }}"></img-loader>
+  </div>
+  <div class="info">
+    <div class="title-brand">
+      <h2>{{ item.name }}</h2>
+      <span>merk:
+        <span class="bold">{{ item.brand }}</span>
+      </span>
     </div>
-    <div class="info">
-      <div class="title-brand">
-          <h2>{{ item.name }}</h2>
-          <span>merk: <span class="bold">{{ item.brand }}</span></span>
-      </div>
-      <div class="extra-info">
-        <p>{{ item.info }}</p>
-      </div>
-      <div class="button" (click)="delete(item.pivot.id)">
-          <button ion-button block>
-            DELETE ITEM
-          </button>
-          <span class="gradient"></span>
-        </div>
+    <div class="extra-info">
+      <p>{{ item.info }}</p>
+    </div>
+    <div class="button" (click)="delete(item.pivot.id)">
+      <button ion-button block>
+        DELETE ITEM
+      </button>
+      <span class="gradient"></span>
     </div>
   </div>
-    
+</div>

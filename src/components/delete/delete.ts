@@ -22,6 +22,10 @@ export class DeleteComponent {
     this.item = this.navParams.get('data')[0];
   }
 
+  close() {
+    this.viewController.dismiss();
+  }
+
   delete(id) {
     this.wardrobeServiceProvider
       .deleteItemInWardrobe(id, this.token, "wardrobe")

@@ -3,12 +3,20 @@
 </ion-header>
 
 <ion-content padding>
-  <div (click)="goToOverview()" class="insert wash">
+  <div *ngIf="hasLaundry" (click)="goToOverview()" class="insert wash">
     <div class="inner">
       <p>Washing Time</p>
       <span></span>
     </div>
   </div>
+
+  <div *ngIf="!hasLaundry" class="insert wash disabled">
+    <div class="inner">
+      <p>No laundry</p>
+      <span></span>
+    </div>
+  </div>
+
   <div class="container">
     <div *ngIf="items?.length > 0">
       <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
@@ -47,6 +55,10 @@
           <img-loader src="{{ item.image }}" class="item-images" spinner="true"></img-loader>
         </ngxMasonryItem>
       </ngx-masonry>
+    </div>
+
+    <div *ngIf="items.length == 0" class="no-item">
+      <p>No Items</p>
     </div>
   </div>
 </ion-content>

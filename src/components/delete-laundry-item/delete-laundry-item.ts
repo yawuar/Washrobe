@@ -10,16 +10,24 @@ export class DeleteLaundryItemComponent {
   private token;
   public item: any = [];
 
-  constructor( private navParams: NavParams, private laundryServiceProvider: LaundryServiceProvider, private viewController: ViewController) {
+  constructor(
+    private navParams: NavParams,
+    private laundryServiceProvider: LaundryServiceProvider,
+    private viewController: ViewController
+  ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     this.item = this.navParams.get("data")[0];
+  }
+
+  close() {
+    this.viewController.dismiss();
   }
 
   delete(id) {
     this.laundryServiceProvider
       .deleteLaundryById(id, this.token, "laundry")
       .then(result => {
-        this.viewController.dismiss(result['data']);
+        this.viewController.dismiss(result["data"]);
       });
   }
 }

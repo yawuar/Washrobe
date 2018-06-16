@@ -22,10 +22,10 @@ export class CalendarPage {
   public itemByDay: any = [];
   public currentSelected: Number = 0;
   public typeOfClothes: any = [
-    { id: 8, class: 'jacket', data: [] },
-    { id: 1, class: 'tshirt', data: [] },
-    { id: 6, class: 'sweater', data: [] },
-    { id: 2, class: 'pants', data: [] }
+    { id: 8, class: "jacket", data: [] },
+    { id: 1, class: "tshirt", data: [] },
+    { id: 6, class: "sweater", data: [] },
+    { id: 2, class: "pants", data: [] }
   ];
 
   public months: any = [
@@ -56,6 +56,11 @@ export class CalendarPage {
     this.getClothesByCurrentDay();
   }
 
+  ionViewWillEnter() {
+    console.log(this.typeOfClothes);
+    this.getClothesByCurrentDay();
+  }
+
   getCurrentWeek() {
     let amountDays = 7;
     let current = new Date();
@@ -63,9 +68,11 @@ export class CalendarPage {
 
     for (let i = 0; i < amountDays; i++) {
       this.days.push(new Date(current.setDate(index)));
-      if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
-            this.currentSelected = i;
-          }
+      if (
+        this.currentDay.getTime() === new Date(current.setDate(index)).getTime()
+      ) {
+        this.currentSelected = i;
+      }
       index += 1;
     }
   }
@@ -81,18 +88,18 @@ export class CalendarPage {
       .getItemsByDay(this.token, "calendar/", this.formatDay(day))
       .then(result => {
         // if(result["data"].length > 0) {
-          for(let type of this.typeOfClothes) {
-            type.data = [];
-            for(let res of result['data']) {
-              if(type.id === res.categoryID) {
-                type.data.push(res);
-              }
+        for (let type of this.typeOfClothes) {
+          type.data = [];
+          for (let res of result["data"]) {
+            if (type.id === res.categoryID) {
+              type.data.push(res);
             }
           }
+        }
         // }
       })
       .catch(err => {
-        alert(JSON.stringify(err));
+        // alert(JSON.stringify(err));
       });
   }
 
@@ -110,7 +117,10 @@ export class CalendarPage {
   }
 
   addItemToCalendar(id) {
-    this.navCtrl.setRoot(ItemPage, { data: id });
+    this.navCtrl.push(ItemPage, {
+      data: id,
+      isCalender: true,
+      date: this.days[this.currentSelected.toFixed()]
+    });
   }
-  
 }

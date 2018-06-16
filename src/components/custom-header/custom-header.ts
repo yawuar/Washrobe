@@ -43,7 +43,6 @@ export class CustomHeaderComponent {
 
   openLaundry(id) {
     let page = this.getSubPage(id);
-    console.log('id = ' + id);
     this.navCtrl.setRoot(page, { data: this.token });
   }
 
@@ -54,7 +53,7 @@ export class CustomHeaderComponent {
 
   getSubPage(id): any {
     let page: any;
-    switch(id) {
+    switch (id) {
       case 0:
         page = LaundryPage;
         break;
@@ -73,7 +72,7 @@ export class CustomHeaderComponent {
 
   getPage(id): any {
     let page: any;
-    switch(id) {
+    switch (id) {
       case 0:
         page = HomePage;
         break;

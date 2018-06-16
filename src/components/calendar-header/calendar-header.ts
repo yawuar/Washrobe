@@ -3,18 +3,20 @@ import { NavController } from "ionic-angular";
 import { HomePage } from "../../pages/home/home";
 
 /**
- * Generated class for the WashHeaderComponent component.
+ * Generated class for the CalendarHeaderComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: "wash-header",
-  templateUrl: "wash-header.html"
+  selector: "calendar-header",
+  templateUrl: "calendar-header.html"
 })
-export class WashHeaderComponent {
+export class CalendarHeaderComponent {
   @Input("name") name;
   constructor(private navController: NavController) {}
 
-  ngAfterViewInit() {}
+  openHomePage() {
+    this.navController.setRoot(HomePage);
+  }
 }

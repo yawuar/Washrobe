@@ -1,8 +1,13 @@
 page-washing-material {
+    .material {
+        h2 {
+            padding-left: 12.5px;
+        }
+    }
     .masonry-item { 
-        width: calc(33.33333% - 25px); 
+        width: calc(50% - 25px); 
 
-        height: 125px;
+        height: 225px;
         border-radius: 4px;
         display: flex;
         justify-content: center;

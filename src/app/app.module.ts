@@ -45,18 +45,19 @@ import { GooglePlus } from "@ionic-native/google-plus";
 
 import { CalendarServiceProvider } from "../providers/calendar-service/calendar-service";
 
-import { NgxMasonryModule } from 'ngx-masonry';
+import { NgxMasonryModule } from "ngx-masonry";
 import { CalendarComponent } from "../components/calendar/calendar";
-import { NetworkServiceProvider } from '../providers/network-service/network-service';
+import { NetworkServiceProvider } from "../providers/network-service/network-service";
 import { Network } from "@ionic-native/network";
 
-import { firebaseConfig } from '../config';
+import { firebaseConfig } from "../config";
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireModule } from "angularfire2";
 import { ScanComponent } from "../components/scan/scan";
 import { DeleteComponent } from "../components/delete/delete";
 import { DeleteLaundryItemComponent } from "../components/delete-laundry-item/delete-laundry-item";
 import { WashHeaderComponent } from "../components/wash-header/wash-header";
+import { CalendarHeaderComponent } from "../components/calendar-header/calendar-header";
 
 AngularFireModule.initializeApp(firebaseConfig);
 
@@ -84,7 +85,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     ScanComponent,
     DeleteComponent,
     DeleteLaundryItemComponent,
-    WashHeaderComponent
+    WashHeaderComponent,
+    CalendarHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +120,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     ScanComponent,
     DeleteComponent,
     DeleteLaundryItemComponent,
-    WashHeaderComponent
+    WashHeaderComponent,
+    CalendarHeaderComponent
   ],
   providers: [
     StatusBar,

@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  LoadingController
+} from "ionic-angular";
 
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { HomePage } from '../home/home';
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { HomePage } from "../home/home";
 
 /**
  * Generated class for the RegistrationPage page.
@@ -14,38 +19,68 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-registration',
-  templateUrl: 'registration.html',
+  selector: "page-registration",
+  templateUrl: "registration.html"
 })
 export class RegistrationPage {
+  private registration: FormGroup;
 
-  private registration : FormGroup;
+  private loading: any;
+  private data: any;
+  public error: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private authServiceProvider: AuthServiceProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private authServiceProvider: AuthServiceProvider,
+    private loadingController: LoadingController
+  ) {
     this.registration = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', Validators.required],
-      gender: ['', Validators.required],
-      password: ['', Validators.required],
-      c_password: ['', Validators.required]
+      firstname: ["", Validators.required],
+      lastname: ["", Validators.required],
+      email: ["", Validators.required],
+      gender: ["", Validators.required],
+      password: ["", Validators.required],
+      c_password: ["", Validators.required]
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistrationPage');
+    console.log("ionViewDidLoad RegistrationPage");
   }
 
   register() {
-    if(this.registration.value == undefined) {
+    if (this.registration.value == undefined) {
       this.registration.value.gender = 1;
     }
 
-    console.log(this.registration.value);
-    this.authServiceProvider.register(this.registration.value, 'register')
-    .then(result => {
-      this.navCtrl.push(HomePage, { data: result['success']['token'] });
+    this.showLoader();
+    this.authServiceProvider
+      .register(this.registration.value, "register")
+      .then(result => {
+        this.loading.dismiss();
+        this.data = result["success"];
+        this.authServiceProvider
+          .getUserInformation(this.data["token"], "user")
+          .then(res => {
+            let items = res["success"];
+            items.token = this.data["token"];
+            localStorage.setItem("currentUser", JSON.stringify(items));
+            this.navCtrl.setRoot(HomePage);
+          })
+          .catch(err => {
+            this.error = err["error"];
+            this.loading.dismiss();
+          });
+      });
+  }
+
+  showLoader() {
+    this.loading = this.loadingController.create({
+      content: "Register..."
     });
+    this.loading.present();
   }
 
   test(event) {

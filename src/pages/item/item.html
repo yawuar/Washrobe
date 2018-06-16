@@ -1,5 +1,6 @@
 <ion-header no-border>
-  <custom-header></custom-header>
+  <custom-header *ngIf="!isCalendar"></custom-header>
+  <calendar-header *ngIf="isCalendar" [name]="name"></calendar-header>
 </ion-header>
 
 
@@ -12,47 +13,53 @@
   </div>
 
   <div class="container">
-      <div *ngIf="items.length > 0">
-          <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
-            <ngxMasonryItem class="masonry-item" *ngFor="let category of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)" (click)="showDetail($event, category)">
-              <div class="no-gradient"></div>
-              <div class="gradient" [ngClass]="{'show': (current == category.id), 'hide':(current != category.id)}">
-                <div class="close" (click)="close($event)">
-                  <img-loader src="assets/imgs/cross.svg"></img-loader>
-                </div>
-                <div class="content">
-                  <div class="header">
-                    <h2>{{ category.name }}</h2>
-                    <span>merk:
-                      <span class="bold">{{ category.brand }}</span>
-                    </span>
-                    <p>{{ category.info }}</p>
-                  </div>
-                  <div class="main">
-                    <ul class="symbol">
-                      <li *ngFor="let symbol of category.symbols">
-                        <span [innerHTML]="symbol.icon"></span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="footer">
-                    <ul>
-                      <li (click)="action($event, category)" *ngFor="let icon of icons" data-id="{{ category.id }}">
-                        <img src="assets/imgs/{{ icon.image }}.svg" width="{{ icon.width }}" alt="{{ icon.alt }}">
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+    <div *ngIf="items.length > 0">
+      <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
+        <ngxMasonryItem class="masonry-item" *ngFor="let category of items; let i = index" [attr.data-index]="i" [ngClass]="'item item-' + (i + 1)"
+          (click)="showDetail($event, category)">
+          <div class="no-gradient"></div>
+          <div class="gradient" [ngClass]="{'show': (current == category.id), 'hide':(current != category.id)}">
+            <div class="close" (click)="close($event)">
+              <img-loader src="assets/imgs/cross.svg"></img-loader>
+            </div>
+            <div class="content">
+              <div class="header">
+                <h2>{{ category.name }}</h2>
+                <span>merk:
+                  <span class="bold">{{ category.brand }}</span>
+                </span>
+                <p>{{ category.info }}</p>
               </div>
-              <span class="amount" *ngIf="category.amountOfItems > 1">{{ category.amountOfItems }}x</span>
-              <img-loader src="{{ category.image }}" (load)="onImageLoad($event)" class="item-images" spinner="true"></img-loader>
-           </ngxMasonryItem>
-        </ngx-masonry>
-      </div>
-      
-      <div *ngIf="items.length == 0" class="no-item">
-        <p>No Items</p>
-      </div>
+              <div class="main">
+                <ul class="symbol">
+                  <li *ngFor="let symbol of category.symbols">
+                    <span [innerHTML]="symbol.icon"></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="footer">
+                <ul *ngIf="!isCalendar">
+                  <li (click)="action($event, category)" *ngFor="let icon of icons" data-id="{{ category.id }}">
+                    <img src="assets/imgs/{{ icon.image }}.svg" width="{{ icon.width }}" alt="{{ icon.alt }}">
+                  </li>
+                </ul>
+                <ul *ngIf="isCalendar" class="is-calendar">
+                  <li (click)="addToCalendarPage(category)">
+                    <img src="assets/imgs/{{ icons[0]?.image }}.svg" width="{{ icons[0]?.width }}" alt="{{ icons[0]?.alt }}">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <span class="amount" *ngIf="category.amountOfItems > 1">{{ category.amountOfItems }}x</span>
+          <img-loader src="{{ category.image }}" (load)="onImageLoad($event)" class="item-images" spinner="true"></img-loader>
+        </ngxMasonryItem>
+      </ngx-masonry>
+    </div>
+
+    <div *ngIf="items.length == 0" class="no-item">
+      <p>No Items</p>
+    </div>
   </div>
 
 </ion-content>

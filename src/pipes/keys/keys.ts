@@ -12,7 +12,6 @@ export class KeysPipe implements PipeTransform {
       dataArr.push(key);
     });
 
-    console.log(dataArr);
     return dataArr;
   }
 }
