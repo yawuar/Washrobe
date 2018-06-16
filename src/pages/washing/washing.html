@@ -1,11 +1,25 @@
 <ion-header no-border>
-    <ion-navbar></ion-navbar>
-  </ion-header>
+    <wash-header [name]="name"></wash-header>
+</ion-header>
 
 
 <ion-content padding>
   <!-- Design the layout and information -->
-  <div (click)="chooseLocation()">Choose location</div>
+  <div class="top">
+    <div class="information">
+      <div class="title">
+        <span class="icon"></span>
+        <span>Map</span>
+      </div>
+      <div class="content">
+        <div class="name"><p>{{ washroom[0]?.name }}</p></div>
+        <div class="address"><p>{{ washroom[0]?.street }} {{ washroom[0]?.number }}</p></div>
+        <div class="city"><p>{{ washroom[0]?.zipcode }} {{ washroom[0]?.city }}</p></div>
+      </div>
+      <a (click)="chooseLocation()">Change place</a>
+    </div>
+    <div class="extra-info"></div>
+  </div>
   <div class="container">
     <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
         <ngxMasonryItem class="masonry-item" *ngFor="let key of keys" class="color {{ key }}" [class.dis]="!isObject(items[0][key])">

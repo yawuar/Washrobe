@@ -64,30 +64,21 @@ export class CalendarComponent {
     let firstDayOfWeek = this.days[0];
     this.days = [];
     let amountDays = 7;
-
-    console.log(week);
-
-    if(week == 0) {
-      let current = new Date();
-      let index = current.getDate() - current.getDay();
-
-      for (let i = 0; i < amountDays; i++) {
-        if (this.currentDay.getTime() === new Date(current.setDate(index)).getTime()) {
-          this.currentSelected = i;
-        }
-        this.days.push(new Date(current.setDate(index)));
-        index += 1;
-      }
+    let current = new Date();
+    if(week == 1) {
+      current = new Date(firstDayOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
     }
 
-    if(week == 1) {
-      let current = new Date(firstDayOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
-      let index = current.getDate() - current.getDay();
+    let index = current.getDate() - current.getDay();
 
-      for (let i = 0; i < amountDays; i++) {
-        this.days.push(new Date(current.setDate(index)));
-        index += 1;
+    for (let i = 0; i < amountDays; i++) {
+      console.log(new Date(this.currentDay));
+      console.log(new Date(this.currentDay).getTime() === new Date(current.setDate(index)).getTime());
+      if (week == 0 && new Date(this.currentDay).getTime() === new Date(current.setDate(index)).getTime()) {
+        this.currentSelected = i;
       }
+      this.days.push(new Date(current.setDate(index)));
+      index += 1;
     }
   }
 

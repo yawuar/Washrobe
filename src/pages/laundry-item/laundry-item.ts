@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController, ModalController } from "ionic-angular";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 import { WashingPage } from "../washing/washing";
+import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
+import { DeleteLaundryItemComponent } from "../../components/delete-laundry-item/delete-laundry-item";
 
 /**
  * Generated class for the LaundryItemPage page.
@@ -25,7 +27,10 @@ export class LaundryItemPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private laundryServiceProvider: LaundryServiceProvider
+    private laundryServiceProvider: LaundryServiceProvider,
+    private wardrobeServiceProvider: WardrobeServiceProvider,
+    private toastController: ToastController,
+    private modalController: ModalController
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
   }
@@ -68,11 +73,27 @@ export class LaundryItemPage {
   }
 
   delete(data) {
-    console.log(data.pivot.id);
-    this.laundryServiceProvider
-      .deleteLaundryById(data.pivot.id, this.token, "laundry")
-      .then(result => {
-        this.ionViewDidLoad();
+    this.wardrobeServiceProvider.getItemById(data.pivot.id, this.token, 'wardrobe/get/')
+    .then(result => {
+      let modal = this.modalController.create(
+        DeleteLaundryItemComponent, {data: result['data']},
+        {
+          showBackdrop: true,
+          enableBackdropDismiss: true
+        }
+      );
+      modal.onDidDismiss(data => {
+        if(data != null || data != undefined) {
+          this.ionViewDidLoad();
+        }
       });
+      modal.present();
+    }).catch(err => {
+      this.toastController.create({
+        message: 'Could not delete this item',
+        duration: 3000,
+        dismissOnPageChange: true
+      }).present();
+    });   
   }
 }

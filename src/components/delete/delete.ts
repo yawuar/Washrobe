@@ -14,24 +14,19 @@ import { WardrobeServiceProvider } from '../../providers/wardrobe-service/wardro
 })
 export class DeleteComponent {
 
-  text: string;
   private token;
   public item: any = [];
 
   constructor(private navParams: NavParams, private wardrobeServiceProvider: WardrobeServiceProvider, private navController: NavController, private viewController: ViewController) {
-    this.text = 'Hello World';
-
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     this.item = this.navParams.get('data')[0];
-    console.log(this.item);
   }
 
   delete(id) {
-    this.viewController.dismiss();
     this.wardrobeServiceProvider
       .deleteItemInWardrobe(id, this.token, "wardrobe")
       .then(result => {
-        this.viewController.dismiss();
+        this.viewController.dismiss(result['data']);
       });
   }
 

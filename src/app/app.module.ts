@@ -55,6 +55,8 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireModule } from "angularfire2";
 import { ScanComponent } from "../components/scan/scan";
 import { DeleteComponent } from "../components/delete/delete";
+import { DeleteLaundryItemComponent } from "../components/delete-laundry-item/delete-laundry-item";
+import { WashHeaderComponent } from "../components/wash-header/wash-header";
 
 AngularFireModule.initializeApp(firebaseConfig);
 
@@ -80,7 +82,9 @@ AngularFireModule.initializeApp(firebaseConfig);
     MapsPage,
     CalendarComponent,
     ScanComponent,
-    DeleteComponent
+    DeleteComponent,
+    DeleteLaundryItemComponent,
+    WashHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +116,9 @@ AngularFireModule.initializeApp(firebaseConfig);
     MapsPage,
     CalendarComponent,
     ScanComponent,
-    DeleteComponent
+    DeleteComponent,
+    DeleteLaundryItemComponent,
+    WashHeaderComponent
   ],
   providers: [
     StatusBar,

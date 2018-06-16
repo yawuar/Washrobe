@@ -11,7 +11,9 @@ import { MapsPage } from "../maps/maps";
 })
 export class WashingPage {
   public items: any = [];
+  public washroom: any = [];
   private token: string;
+  public name: string = 'colors';
   public keys;
 
   public hasGradient: boolean = false;
@@ -27,9 +29,10 @@ export class WashingPage {
       .then(result => {
         this.keys = Object.keys(result["data"]["laundry"]);
         this.items = Array.of(result["data"]["laundry"]);
+        this.washroom = result["data"]["information"];
       })
       .catch(err => {
-        alert(JSON.stringify(err));
+        // alert(JSON.stringify(err));
       });
   }
 

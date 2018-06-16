@@ -45,7 +45,6 @@ export class ItemPage {
   }
 
   ionViewDidLoad() {
-    console.log('hello');
     this.getItem(this.navParams.get("data"), this.token);
   }
 
@@ -89,8 +88,10 @@ export class ItemPage {
           enableBackdropDismiss: true
         }
       );
-      modal.onDidDismiss(() => {
-        this.ionViewDidLoad();
+      modal.onDidDismiss(data => {
+        if(data != null || data != undefined) {
+          this.ionViewDidLoad();
+        }
       });
       modal.present();
     }).catch(err => {

@@ -48,7 +48,7 @@ export class MapsPage {
         this.geolocation
           .getCurrentPosition()
           .then(position => {
-            alert(position);
+            // alert(position);
             if (position.coords != undefined) {
               let mapOptions: GoogleMapOptions = {
                 camera: {
@@ -102,23 +102,19 @@ export class MapsPage {
                   }
                 })
                 .catch(err => {
-                  alert("No data washrooms");
+                  // alert("No data washrooms");
                 });
             } else {
               this.errors.push("no coodinates");
             }
           })
           .catch(err => {
-            alert(JSON.stringify(err));
+            // alert(JSON.stringify(err));
             this.errors.push("Cannot find geolocation");
           });
       })
       .catch(err => {
         this.errors.push("Your location is disabled");
       });
-  }
-
-  selectedMarker() {
-    console.log("clicked");
   }
 }
