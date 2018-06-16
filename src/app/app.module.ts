@@ -90,10 +90,7 @@ AngularFireModule.initializeApp(firebaseConfig);
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {
-      scrollAssist: false,
-      autoFocusAssist: false
-    }),
+    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
     AngularFireModule.initializeApp(firebaseConfig),
     IonicImageLoader.forRoot(),
     HttpClientModule,
