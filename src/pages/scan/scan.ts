@@ -1,5 +1,13 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform, ModalController, ToastController, Events } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  Platform,
+  ModalController,
+  ToastController,
+  Events
+} from "ionic-angular";
 
 import { NFC, Ndef } from "@ionic-native/nfc";
 
@@ -51,81 +59,102 @@ export class ScanPage {
   ionViewDidLoad() {
     this.platform.ready().then(() => {
       if (this.platform.is("cordova")) {
-        if(this.diagnostic.NFCState.POWERED_ON) {
-          this.error = 'available';
-          this.nfc.addNdefListener(() => { this.error = "available"; },
-            err => { this.error = "unavailable"; })
-                .subscribe(event => {
-                  if (event && event.tag && event.tag.id) {
-                    let payload = event.tag.ndefMessage[0].payload;
-                    let content = this.nfc.bytesToString(payload).substring(3);
-                    if (content) {
-                      this.addHashCode(content);
-                    } else {
-                      this.error = "unavailable";
-                    }
-                  }
-                });
+        if (this.diagnostic.NFCState.POWERED_ON) {
+          this.error = "available";
+          this.nfc
+            .addNdefListener(
+              () => {
+                this.error = "available";
+              },
+              err => {
+                this.error = "unavailable";
+              }
+            )
+            .subscribe(event => {
+              if (event && event.tag && event.tag.id) {
+                let payload = event.tag.ndefMessage[0].payload;
+                let content = this.nfc.bytesToString(payload).substring(3);
+                if (content) {
+                  this.addHashCode(content);
+                } else {
+                  this.error = "unavailable";
+                }
+              }
+            });
         }
 
-        if(this.diagnostic.NFCState.POWERED_OFF) {
-          this.error = 'unavailable'; 
+        if (this.diagnostic.NFCState.POWERED_OFF) {
+          this.error = "unavailable";
         }
       } else {
-        this.error = 'unavailable';
+        this.error = "unavailable";
       }
     });
   }
 
   nfcHandler() {
-    this.nfc.addNdefListener(
-          () => {
-            this.error = "available";
-          },
-          err => {
+    this.nfc
+      .addNdefListener(
+        () => {
+          this.error = "available";
+        },
+        err => {
+          this.error = "unavailable";
+        }
+      )
+      .subscribe(event => {
+        if (event && event.tag && event.tag.id) {
+          let payload = event.tag.ndefMessage[0].payload;
+          let content = this.nfc.bytesToString(payload).substring(3);
+          if (content) {
+            this.addHashCode(content);
+          } else {
             this.error = "unavailable";
           }
-        )
-        .subscribe(event => {
-          if (event && event.tag && event.tag.id) {
-            let payload = event.tag.ndefMessage[0].payload;
-            let content = this.nfc.bytesToString(payload).substring(3);
-            if (content) {
-              this.addHashCode(content);
-            } else {
-              this.error = "unavailable";
-            }
-          }
-        });
+        }
+      });
   }
 
   displayNetworkUpdate(state: string) {
-    this.toastController.create({
-      message: 'You are now ' + state,
-      duration: 3000
-    }).present();
+    this.toastController
+      .create({
+        message: "You are now " + state,
+        duration: 3000
+      })
+      .present();
   }
 
   addHashCode(code) {
-    if(!code) {
-      code = this.code['code']; 
+    if (!code) {
+      code = this.code["code"];
     }
-    this.itemServiceProvider.getItemByHash(this.token, 'item/getHash/', code)
+    this.itemServiceProvider
+      .getItemByHash(this.token, "item/getHash/", code)
       .then(res => {
         let modal = this.modalController.create(
-          ScanComponent, { data: res },
+          ScanComponent,
+          { data: res },
           {
             showBackdrop: true,
             enableBackdropDismiss: true
           }
         );
+
+        modal.onDidDismiss(data => {
+          if (data != null || data != undefined) {
+            this.navCtrl.pop();
+          }
+        });
         modal.present();
-      }).catch(err => {
-        this.toastController.create({
-          message: 'We could not get the data',
-          duration: 3000,
-          dismissOnPageChange: true
-        }).present();
+      })
+      .catch(err => {
+        this.toastController
+          .create({
+            message: "We could not get the data",
+            duration: 3000,
+            dismissOnPageChange: true
+          })
+          .present();
       });
   }
 }

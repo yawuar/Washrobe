@@ -48,9 +48,7 @@ export class ItemPage {
       { image: "trashbagNG", width: 10, alt: "trashbag" }
     ];
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
-  }
 
-  ionViewDidLoad() {
     this.getItem(this.navParams.get("data"), this.token);
 
     if (this.navParams.get("isCalender") != undefined) {
@@ -60,6 +58,10 @@ export class ItemPage {
     if (this.navParams.get("date") != undefined) {
       this.currentDay = this.navParams.get("date");
     }
+  }
+
+  ionViewWillEnter() {
+    this.getItem(this.navParams.get("data"), this.token);
   }
 
   getItem(id, token) {
@@ -187,7 +189,7 @@ export class ItemPage {
         this.navCtrl.pop();
       })
       .catch(err => {
-        // console.log(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       });
   }
 }

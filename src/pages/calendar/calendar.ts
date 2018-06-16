@@ -57,7 +57,6 @@ export class CalendarPage {
   }
 
   ionViewWillEnter() {
-    console.log(this.typeOfClothes);
     this.getClothesByCurrentDay();
   }
 
