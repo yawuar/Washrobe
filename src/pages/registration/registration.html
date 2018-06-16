@@ -1,75 +1,77 @@
-<!--
-  Generated template for the RegistrationPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-header no-border>
 
   <ion-navbar>
-    <ion-title>registration</ion-title>
+    <ion-title text-center padding>
+      <div class="login-logo">
+        <img src="assets/imgs/logo.svg" width="50" alt="logo">
+        <h1 text-center>Washrobe</h1>
+      </div>
+    </ion-title>
+
+    <ion-buttons end></ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <div class="login">
+  <div class="login">
 
-        <div class="header">
-          <h2>Registration</h2>
+    <div class="header">
+      <h2>Registration</h2>
+    </div>
+
+    <div class="main">
+
+      <form [formGroup]="registration" (ngSubmit)="register()">
+
+        <ion-item no-padding>
+          <ion-label stacked>FIRSTNAME</ion-label>
+          <ion-input type="text" [(ngModel)]="registration.firstname" formControlName="firstname" placeholder="Firstname" value="Yawuar"></ion-input>
+        </ion-item>
+
+        <ion-item no-padding>
+          <ion-label stacked>LASTNAME</ion-label>
+          <ion-input type="text" [(ngModel)]="registration.lastname" formControlName="lastname" placeholder="Lastname" value="Serna Delgado"></ion-input>
+        </ion-item>
+
+        <ion-item no-padding>
+          <ion-label stacked>EMAIL</ion-label>
+          <ion-input type="email" [(ngModel)]="registration.email" formControlName="email" placeholder="example@example.be" value="yawuarsernadelgado@gmail.com"></ion-input>
+        </ion-item>
+
+        <ion-list radio-group [(ngModel)]="registration.gender" formControlName="gender">
+
+          <ion-item no-padding>
+            <ion-label stacked>Male</ion-label>
+            <ion-radio [value]="1" checked></ion-radio>
+          </ion-item>
+
+          <ion-item no-padding>
+            <ion-label stacked>Female</ion-label>
+            <ion-radio [value]="0"></ion-radio>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-item no-padding>
+          <ion-label stacked>PASSWORD</ion-label>
+          <ion-input type="password" [(ngModel)]="registration.password" formControlName="password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
+        </ion-item>
+
+        <ion-item no-padding>
+          <ion-label stacked>PASSWORD AGAIN</ion-label>
+          <ion-input type="password" [(ngModel)]="registration.c_password" formControlName="c_password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
+        </ion-item>
+
+        <div class="button">
+          <button ion-button type="submit" block>
+            LOGIN
+          </button>
+          <span class="gradient"></span>
         </div>
-
-        <div class="main">
-
-          <form [formGroup]="registration" (ngSubmit)="register()">
-
-            <ion-item no-padding>
-              <ion-label stacked>FIRSTNAME</ion-label>
-              <ion-input type="text" [(ngModel)]="registration.firstname" formControlName="firstname" placeholder="Firstname" value="Yawuar"></ion-input>
-            </ion-item>
-
-            <ion-item no-padding>
-              <ion-label stacked>LASTNAME</ion-label>
-              <ion-input type="text" [(ngModel)]="registration.lastname" formControlName="lastname" placeholder="Lastname" value="Serna Delgado"></ion-input>
-            </ion-item>
-
-            <ion-item no-padding>
-              <ion-label stacked>EMAIL</ion-label>
-              <ion-input type="email" [(ngModel)]="registration.email" formControlName="email" placeholder="example@example.be" value="yawuarsernadelgado@gmail.com"></ion-input>
-            </ion-item>
-
-            <ion-list radio-group [(ngModel)]="registration.gender" formControlName="gender" (ionChange)="test($event)">
-
-              <ion-item no-padding>
-                <ion-label stacked>Male</ion-label>
-                <ion-radio value="1" checked></ion-radio>
-              </ion-item>
-
-              <ion-item no-padding>
-                <ion-label stacked>Female</ion-label>
-                <ion-radio value="0"></ion-radio>
-              </ion-item>
-
-            </ion-list>
-
-            <ion-item no-padding>
-              <ion-label stacked>PASSWORD</ion-label>
-              <ion-input type="password" [(ngModel)]="registration.password" formControlName="password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
-            </ion-item>
-
-            <ion-item no-padding>
-              <ion-label stacked>PASSWORD AGAIN</ion-label>
-              <ion-input type="password" [(ngModel)]="registration.c_password" formControlName="c_password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
-            </ion-item>
-
-            <div class="button">
-                <button ion-button type="submit" block>
-                    LOGIN
-                </button>
-                <span class="gradient"></span>
-            </div>
-          </form>
-        </div>
-      </div>
+      </form>
+    </div>
+  </div>
 </ion-content>

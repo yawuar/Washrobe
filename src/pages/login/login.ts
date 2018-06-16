@@ -1,7 +1,19 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, Platform } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  LoadingController,
+  ToastController,
+  Platform
+} from "ionic-angular";
 
-import { Validators, FormBuilder, FormGroup, AbstractControl } from "@angular/forms";
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  AbstractControl
+} from "@angular/forms";
 
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { HomePage } from "../home/home";
@@ -45,8 +57,8 @@ export class LoginPage {
       password: ["", Validators.required]
     });
 
-    this.email = this.user.controls['email'];
-    this.password = this.user.controls['password'];
+    this.email = this.user.controls["email"];
+    this.password = this.user.controls["password"];
   }
 
   login() {
@@ -65,12 +77,12 @@ export class LoginPage {
             this.navCtrl.setRoot(HomePage);
           })
           .catch(err => {
-            this.error = err['error'];
+            this.error = err["error"];
             this.loading.dismiss();
           });
       })
       .catch(err => {
-        this.error = err['error'];
+        this.error = err["error"];
         this.loading.dismiss();
       });
   }
@@ -98,24 +110,26 @@ export class LoginPage {
   }
 
   showRegistration() {
-    this.navCtrl.setRoot(RegistrationPage);
+    this.navCtrl.push(RegistrationPage);
   }
 
   loginWithGoogle() {
-    if(this.platform.is('cordova')) {
-      this.authServiceProvider.nativeGoogleLogin().then(res => {
-        alert(JSON.stringify(res));
-      }).catch(err => {
-
-      });
+    if (this.platform.is("cordova")) {
+      this.authServiceProvider
+        .nativeGoogleLogin()
+        .then(res => {
+          alert(JSON.stringify(res));
+        })
+        .catch(err => {});
     } else {
-      this.authServiceProvider.webGoogleLogin().then(res => {
-        // this.getUserCheckIfIsInDb(res['additionalUserInfo']['profile']);
-        // alert();
-        console.log(res);
-      }).catch(err => {
-
-      });
+      this.authServiceProvider
+        .webGoogleLogin()
+        .then(res => {
+          // this.getUserCheckIfIsInDb(res['additionalUserInfo']['profile']);
+          // alert();
+          console.log(res);
+        })
+        .catch(err => {});
     }
   }
 

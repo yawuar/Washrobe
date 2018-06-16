@@ -40,18 +40,17 @@ export class RegistrationPage {
       firstname: ["", Validators.required],
       lastname: ["", Validators.required],
       email: ["", Validators.required],
-      gender: ["", Validators.required],
+      gender: [0, Validators.required],
       password: ["", Validators.required],
       c_password: ["", Validators.required]
     });
+    this.registration.value.gender = 1;
   }
 
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad RegistrationPage");
-  }
+  ionViewDidLoad() {}
 
   register() {
-    if (this.registration.value == undefined) {
+    if (this.registration.value.gender == undefined) {
       this.registration.value.gender = 1;
     }
 
@@ -81,13 +80,5 @@ export class RegistrationPage {
       content: "Register..."
     });
     this.loading.present();
-  }
-
-  test(event) {
-    // if(event == undefined) {
-    //   event = 1;
-    // }
-    // this.registration.get('gender').setValue(event);
-    // console.log(event);
   }
 }
