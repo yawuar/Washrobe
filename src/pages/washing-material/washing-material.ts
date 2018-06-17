@@ -1,5 +1,12 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController
+} from "ionic-angular";
+import { WashedComponent } from "../../components/washed/washed";
+import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 
 /**
  * Generated class for the WashingMaterialPage page.
@@ -15,9 +22,48 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 })
 export class WashingMaterialPage {
   public materials: any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  isWashed: boolean;
+  private token: string;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private modalController: ModalController,
+    private laundryServiceProvider: LaundryServiceProvider
+  ) {
+    this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
+  }
+
+  ionViewDidLoad() {
     this.materials = this.navParams.get("data");
   }
 
-  ionViewDidLoad() {}
+  showModal(res) {
+    let modal = this.modalController.create(
+      WashedComponent,
+      { data: this.isWashed },
+      {
+        showBackdrop: true,
+        enableBackdropDismiss: true
+      }
+    );
+    modal.onDidDismiss(data => {
+      if (data != null || data != undefined) {
+        for (let s in res) {
+          this.laundryServiceProvider
+            .updateIsWashedForClothes(
+              this.token,
+              "laundry/update/isWashed/",
+              res[s].pivot.id
+            )
+            .then(res => {
+              // console.log();
+            })
+            .catch(err => {});
+        }
+
+        this.ionViewDidLoad();
+      }
+    });
+    modal.present();
+  }
 }

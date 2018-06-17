@@ -1,31 +1,58 @@
 page-washing-material {
-    .material {
-        h2 {
-            padding-left: 12.5px;
-        }
-    }
-    .masonry-item { 
-        width: calc(50% - 25px); 
-
-        height: 225px;
-        border-radius: 4px;
+  .material {
+    .top {
+      h4,
+      ion-item {
+        float: left;
+      }
+      h4 {
+        padding-left: 12.5px;
+        width: 75%;
+      }
+      &::after {
+        clear: both;
+        display: block;
+        content: '';
+      }
+      ion-item {
+        width: 25%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin:0 12.5px 25px 12.5px;
-    
-        position: relative;
-        contain: unset;
-
-        .no-gradient {
-            border: 4px solid $dark;
-            border-radius: 4px;
-            z-index: 9;
+        justify-content: flex-end;
+        ion-checkbox {
+          margin: 0 !important;
+          margin: 0 10px 0 0 !important;
+          .checkbox-icon {
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            border-color: $dark;
+            .checkbox-inner {}
+          }
         }
-
-        img-loader {
-            background-position: center;
-            background-size: cover !important;
+        .item-inner {
+          display: none !important;
         }
+      }
     }
+  }
+  .masonry-item {
+    width: calc(50% - 25px);
+    height: 225px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 12.5px 25px 12.5px;
+    position: relative;
+    contain: unset;
+    .no-gradient {
+      border: 4px solid $dark;
+      border-radius: 4px;
+      z-index: 9;
+    }
+    img-loader {
+      background-position: center;
+      background-size: cover !important;
+    }
+  }
 }

@@ -59,6 +59,7 @@ import { DeleteLaundryItemComponent } from "../components/delete-laundry-item/de
 import { WashHeaderComponent } from "../components/wash-header/wash-header";
 import { CalendarHeaderComponent } from "../components/calendar-header/calendar-header";
 import { ItemHeaderComponent } from "../components/item-header/item-header";
+import { WashedComponent } from "../components/washed/washed";
 
 AngularFireModule.initializeApp(firebaseConfig);
 
@@ -88,7 +89,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     DeleteLaundryItemComponent,
     WashHeaderComponent,
     CalendarHeaderComponent,
-    ItemHeaderComponent
+    ItemHeaderComponent,
+    WashedComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,8 @@ AngularFireModule.initializeApp(firebaseConfig);
     DeleteLaundryItemComponent,
     WashHeaderComponent,
     CalendarHeaderComponent,
-    ItemHeaderComponent
+    ItemHeaderComponent,
+    WashedComponent
   ],
   providers: [
     StatusBar,

@@ -142,7 +142,7 @@ export class LaundryServiceProvider {
     });
   }
 
-  countMachines(token, type, body) {
+  updateIsWashedForClothes(token, type, id) {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders({
         Authorization: "Bearer " + token,
@@ -150,7 +150,7 @@ export class LaundryServiceProvider {
         Accept: "application/json"
       });
 
-      this.http.post(url + type, body, { headers: headers }).subscribe(
+      this.http.put(url + type + id, {}, { headers: headers }).subscribe(
         res => {
           resolve(res);
         },

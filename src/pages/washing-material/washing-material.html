@@ -4,12 +4,17 @@
 
 <ion-content padding>
   <div *ngFor="let material of materials | keys" class="material">
-    <h4>{{ material }}</h4>
+    <div class="top">
+      <h4>{{ material }}</h4>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="isWashed" (ionChange)="showModal(materials[material])"></ion-checkbox>
+      </ion-item>
+    </div>
     <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
-        <ngxMasonryItem class="masonry-item" *ngFor="let item of materials[material]">
-          <div class="no-gradient"></div>
-          <img-loader src="{{ item['image'] }}"></img-loader>
-       </ngxMasonryItem>
+      <ngxMasonryItem class="masonry-item" *ngFor="let item of materials[material]">
+        <div class="no-gradient"></div>
+        <img-loader src="{{ item['image'] }}"></img-loader>
+      </ngxMasonryItem>
     </ngx-masonry>
   </div>
 </ion-content>
