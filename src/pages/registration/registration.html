@@ -42,14 +42,16 @@
         </ion-item>
 
         <ion-list radio-group [(ngModel)]="registration.gender" formControlName="gender">
-
+          <ion-label stacked>Gender</ion-label>
           <ion-item no-padding>
             <ion-label stacked>Male</ion-label>
+            Male
             <ion-radio [value]="1" checked></ion-radio>
           </ion-item>
 
           <ion-item no-padding>
             <ion-label stacked>Female</ion-label>
+            Female
             <ion-radio [value]="0"></ion-radio>
           </ion-item>
 

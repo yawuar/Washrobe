@@ -28,6 +28,7 @@ export class ItemPage {
   public current: Number = 0;
   public isCalendar: boolean = false;
   public name: string = "wardrobe";
+  public item: string = "wardrobe";
 
   public currentDay: any = new Date();
 
@@ -58,16 +59,22 @@ export class ItemPage {
     if (this.navParams.get("date") != undefined) {
       this.currentDay = this.navParams.get("date");
     }
+
+    if (this.navParams.get("name") != undefined) {
+      this.item = this.navParams.get("name");
+    }
   }
 
-  ionViewWillEnter() {
-    this.getItem(this.navParams.get("data"), this.token);
-  }
+  // refresh page when clothes are added
+  // ionViewWillEnter() {
+  //   this.getItem(this.navParams.get("data"), this.token);
+  // }
 
   getItem(id, token) {
     this.wardrobeServiceProvider
       .getWardrobeById(id, token, "wardrobe")
       .then(result => {
+        console.log(result["data"]);
         // TODO: sometimes symbols not showing
         this.items = result["data"];
         this.current = 0;
@@ -108,7 +115,7 @@ export class ItemPage {
         );
         modal.onDidDismiss(data => {
           if (data != null || data != undefined) {
-            this.ionViewDidLoad();
+            // this.ionViewDidLoad();
           }
         });
         modal.present();
@@ -183,13 +190,26 @@ export class ItemPage {
     this.calendarServiceProvider
       .addItemInCalendar(this.token, "calendar", {
         user_itemID: category.pivot.id,
-        date: this.currentDay
+        date: this.formatDay(this.currentDay)
       })
       .then(res => {
         this.navCtrl.pop();
       })
       .catch(err => {
-        console.log(JSON.stringify(err));
+        // console.log(JSON.stringify(err));
       });
+  }
+
+  formatDay(day) {
+    let year = day.getFullYear();
+    let yy = year < 10 ? "0" + year : year;
+
+    let monthIndex = day.getMonth() + 1;
+    let mm = monthIndex < 10 ? "0" + monthIndex : monthIndex;
+
+    let dayIndex = day.getDate();
+    let dd = dayIndex < 10 ? "0" + dayIndex : dayIndex;
+
+    return yy + "-" + mm + "-" + dd;
   }
 }

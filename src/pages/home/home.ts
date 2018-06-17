@@ -43,7 +43,7 @@ export class HomePage {
     }
   }
 
-  showCategory(id) {
-    this.navCtrl.setRoot(ItemPage, { data: id });
+  showCategory(category) {
+    this.navCtrl.push(ItemPage, { data: category.id, name: category.name });
   }
 }

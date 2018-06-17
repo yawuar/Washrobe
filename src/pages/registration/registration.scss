@@ -1,6 +1,8 @@
 page-registration {
   ion-header {
+    border-bottom: 0;
     ion-navbar {
+      border-bottom: 0;
       padding: 4px 16px !important;
       .back-button {
         display: block;
@@ -30,16 +32,233 @@ page-registration {
           }
         }
       }
-    }
-    ion-title {
+      ion-title {
+        &.title {
+          padding: 16px !important;
+        }
+      }
       .login-logo {
         h1 {
-          color: $dark;
-          margin: 0;
-          text-transform: capitalize;
-          font-size: 14px;
-          font-family: 'Gotham Rounded', Arial, Helvetica, sans-serif;
+          font-family: 'Gotham Rounded';
           font-weight: bold;
+          font-size: 14px;
+          margin-top: 0;
+          margin-bottom: 0;
+          color: $dark;
+        }
+      }
+    }
+  }
+  ion-content {
+    .scroll-content {
+      padding: 0 17.5% !important; // margin-top: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .login {
+        width: 100%;
+      }
+    }
+    .login {
+      margin-top: 75px;
+      .header {
+        h2 {
+          font-family: 'Gotham Rounded';
+          font-weight: bold;
+          font-size: 18px;
+          color: $dark;
+          margin-bottom: 30px;
+        }
+      }
+      .main {
+        padding-bottom: 50px;
+        ion-item {
+          margin-bottom: 25px;
+          .item-inner {
+            border-bottom: 2px solid $dark !important;
+            border-radius: 1px !important;
+            box-shadow: none !important;
+          }
+          ion-label {
+            font-family: 'Gotham Rounded';
+            font-weight: bold;
+            font-size: 10px;
+            color: $dark;
+            margin: 0;
+            &.error {
+              span {
+                font-family: 'Gotham Rounded Book';
+                color: $red;
+              }
+            }
+          }
+          ion-input {
+            input {
+              font-family: 'Gotham Rounded Book';
+              font-size: 18px;
+              margin-top: 0 !important;
+              color: #4FC1E9;
+              &::placeholder {
+                color: #4FC1E9;
+              }
+              border: none;
+              padding: 0;
+            }
+          }
+        }
+        ion-list {
+          ion-item {
+            width: 50%;
+            float: left;
+            .item-inner {
+              .input-wrapper {
+                ion-label {
+                  margin: 13px 8px 13px 0;
+                  font-family: 'Gotham Rounded Book';
+                  font-weight: normal;
+                  font-size: 16px;
+                  color: #4FC1E9;
+                }
+              }
+            }
+          }
+        }
+        .button {
+          width: 100%;
+          contain: layout;
+          button {
+            background-color: transparent;
+            height: 50px;
+            box-shadow: none;
+            border: 2px solid $dark;
+            border-radius: 1px;
+            margin: 0;
+            span {
+              color: $dark;
+              font-family: 'Gotham Rounded';
+              font-weight: bold;
+              font-size: 18px;
+              letter-spacing: 0;
+            }
+          }
+        }
+        .create_btn {
+          text-align: center;
+          margin-top: 25px;
+          font-family: 'Gotham Rounded';
+          font-weight: bold;
+          font-size: 10px;
+          a {
+            color: $dark;
+            border-bottom: 1px solid $dark;
+            padding-bottom: 2px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .footer {
+      margin-top: 20px;
+      height: auto;
+      .or {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &::after {
+          clear: both;
+          display: block;
+          content: "";
+        }
+        .lines {
+          height: 3px;
+          width: 42.5%;
+          float: left;
+          .big,
+          .small,
+          .point {
+            background-color: $dark;
+            float: left;
+            height: 100%;
+            border-radius: 10px;
+          }
+          .big {
+            width: 72.5%;
+          }
+          .small {
+            width: 20%;
+          }
+          .point {
+            width: 2.5%;
+            margin: 0 2.5%;
+          }
+        }
+        p {
+          text-align: center;
+          font-family: 'Gotham Rounded';
+          font-weight: bold;
+          font-size: 12px;
+          color: $dark;
+          float: left;
+          margin: 0;
+          width: 15%;
+        }
+      }
+      .social {
+        height: 40px;
+        margin-top: 40px;
+        .facebook,
+        .google {
+          width: 47.5%;
+          height: 100%;
+          float: left;
+          border: 2px solid $dark;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Gotham Rounded';
+          font-weight: bold;
+          font-size: 12px;
+          color: $dark;
+          letter-spacing: 0;
+          position: relative;
+          .gradient,
+          .no-gradient {
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            right: 2.5px;
+            top: 2.5px;
+          }
+        }
+        .facebook {
+          margin-right: 5%;
+          span {
+            display: flex;
+            align-items: center;
+            &::before {
+              background-image: url('../assets/icon/facebook.svg');
+              background-size: contain;
+              width: 15px;
+              height: 15px;
+              display: inline-block;
+              content: '';
+              margin-right: 10px;
+            }
+          }
+        }
+        .google {
+          span {
+            display: flex;
+            align-items: center;
+            &::before {
+              background-image: url('../assets/icon/google.svg');
+              background-size: contain;
+              width: 15px;
+              height: 15px;
+              display: inline-block;
+              content: '';
+              margin-right: 10px;
+            }
+          }
         }
       }
     }

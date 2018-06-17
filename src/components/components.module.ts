@@ -6,6 +6,7 @@ import { DeleteComponent } from './delete/delete';
 import { DeleteLaundryItemComponent } from './delete-laundry-item/delete-laundry-item';
 import { WashHeaderComponent } from './wash-header/wash-header';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header';
+import { ItemHeaderComponent } from './item-header/item-header';
 @NgModule({
 	declarations: [CustomHeaderComponent,
     CalendarComponent,
@@ -13,7 +14,8 @@ import { CalendarHeaderComponent } from './calendar-header/calendar-header';
     DeleteComponent,
     DeleteLaundryItemComponent,
     WashHeaderComponent,
-    CalendarHeaderComponent],
+    CalendarHeaderComponent,
+    ItemHeaderComponent],
 	imports: [],
 	exports: [CustomHeaderComponent,
     CalendarComponent,
@@ -21,6 +23,7 @@ import { CalendarHeaderComponent } from './calendar-header/calendar-header';
     DeleteComponent,
     DeleteLaundryItemComponent,
     WashHeaderComponent,
-    CalendarHeaderComponent]
+    CalendarHeaderComponent,
+    ItemHeaderComponent]
 })
 export class ComponentsModule {}

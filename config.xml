@@ -111,4 +111,5 @@
     </plugin>
     <allow-navigation href="http://192.168.25.104:8101" />
     <allow-navigation href="http://10.68.240.236:8101" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>
