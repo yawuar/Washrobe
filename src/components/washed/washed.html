@@ -1,8 +1,15 @@
 <button class="close" (click)="close()">
   <img src="assets/imgs/cross.svg" alt="cross" width="15">
 </button>
-<div class="content">
-  <p>Are you sure that your clothes are washed.</p>
-  <p>After the radion button, your wash will dissapear.</p>
-  <a (click)="itsWashed()">It's washed</a>
+<div class="inner">
+  <div class="content">
+    <p>Are you sure that your clothes are washed.
+      <br>After the radion button, your wash will dissapear.</p>
+    <div class="button" (click)="itsWashed()">
+      <button ion-button block>
+        YES
+      </button>
+      <span class="gradient"></span>
+    </div>
+  </div>
 </div>
