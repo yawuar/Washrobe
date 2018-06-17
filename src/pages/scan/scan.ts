@@ -54,9 +54,7 @@ export class ScanPage {
     this.code = this.formBuilder.group({
       code: ["", Validators.required]
     });
-  }
 
-  ionViewDidLoad() {
     this.platform.ready().then(() => {
       if (this.platform.is("cordova")) {
         if (this.diagnostic.NFCState.POWERED_ON) {

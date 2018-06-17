@@ -31,6 +31,7 @@ export class LaundryItemPage {
   public selectedItem: any;
 
   public hasLaundry: boolean = false;
+  public item: string = "wardrobe";
 
   constructor(
     public navCtrl: NavController,
@@ -43,6 +44,10 @@ export class LaundryItemPage {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
 
     this.checkIfHasItems();
+
+    if (this.navParams.get("name") != undefined) {
+      this.item = this.navParams.get("name");
+    }
   }
 
   ionViewDidLoad() {

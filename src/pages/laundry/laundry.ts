@@ -38,9 +38,10 @@ export class LaundryPage {
     }
   }
 
-  showCategory(id) {
-    this.navCtrl.setRoot(LaundryItemPage, {
-      data: id
+  showCategory(category) {
+    this.navCtrl.push(LaundryItemPage, {
+      data: category.id,
+      name: category.name
     });
   }
 
