@@ -1,5 +1,5 @@
 <ion-header no-border>
-    <wash-header [name]="name"></wash-header>
+  <wash-header [name]="name"></wash-header>
 </ion-header>
 
 
@@ -12,15 +12,31 @@
         <span>Map</span>
       </div>
       <div class="content">
-        <div class="name"><p>{{ washroom[0]?.name }}</p></div>
-        <div class="address"><p>{{ washroom[0]?.street }} {{ washroom[0]?.number }}</p></div>
-        <div class="city"><p>{{ washroom[0]?.zipcode }} {{ washroom[0]?.city }}</p></div>
+        <div class="name">
+          <p>{{ washroom[0]?.name }}</p>
+        </div>
+        <div class="address">
+          <p>{{ washroom[0]?.street }} {{ washroom[0]?.number }}</p>
+        </div>
+        <div class="city">
+          <p>{{ washroom[0]?.zipcode }} {{ washroom[0]?.city }}</p>
+        </div>
       </div>
       <a (click)="chooseLocation()">Change place</a>
     </div>
     <div class="extra-info">
+      <div class="am">
+        <p>Amount of Machines</p>
+        <div class="machines">
+          <div class="machine" *ngFor="let machine of amountOfMachines"></div>
+        </div>
+        <span *ngIf="washroom[0]?.price == 1">&euro;</span>
+        <span *ngIf="washroom[0]?.price == 2">&euro;&euro;</span>
+        <span *ngIf="washroom[0]?.price == 3">&euro;&euro;&euro;</span>
+      </div>
       <div class="price">
         <p>Avg. Price</p>
+        <span *ngIf="washroom[0]?.price == undefined">Add a Washroom</span>
         <span *ngIf="washroom[0]?.price == 1">&euro;</span>
         <span *ngIf="washroom[0]?.price == 2">&euro;&euro;</span>
         <span *ngIf="washroom[0]?.price == 3">&euro;&euro;&euro;</span>
@@ -29,20 +45,20 @@
   </div>
   <div class="container">
     <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
-        <ngxMasonryItem class="masonry-item" *ngFor="let key of keys" class="color {{ key }}" [class.dis]="!isObject(items[0][key])">
-          <div *ngIf="isObject(items[0][key])" (click)="getColor(key)">
-              <div *ngIf="key == 'coloured'" class="gradient"></div>
-              <div *ngIf="key == 'black'" class="overlay"></div>
-              <div *ngIf="key == 'white'" class="no-gradient"></div>
-              <h1 [class.white]="key == 'coloured' || key == 'black'">{{ key }}</h1>
-          </div>
-          <div *ngIf="!isObject(items[0][key])">
-              <div *ngIf="key == 'coloured'" class="gradient"></div>
-              <div *ngIf="key == 'black'" class="overlay"></div>
-              <div *ngIf="key == 'white'" class="no-gradient"></div>
-              <h1 [class.white]="key == 'coloured' || key == 'black'">{{ key }}</h1>
-          </div>
-       </ngxMasonryItem>
+      <ngxMasonryItem class="masonry-item" *ngFor="let key of keys" class="color {{ key }}" [class.dis]="!isObject(items[0][key])">
+        <div *ngIf="isObject(items[0][key])" (click)="getColor(key)">
+          <div *ngIf="key == 'coloured'" class="gradient"></div>
+          <div *ngIf="key == 'black'" class="overlay"></div>
+          <div *ngIf="key == 'white'" class="no-gradient"></div>
+          <h1 [class.white]="key == 'coloured' || key == 'black'">{{ key }}</h1>
+        </div>
+        <div *ngIf="!isObject(items[0][key])">
+          <div *ngIf="key == 'coloured'" class="gradient"></div>
+          <div *ngIf="key == 'black'" class="overlay"></div>
+          <div *ngIf="key == 'white'" class="no-gradient"></div>
+          <h1 [class.white]="key == 'coloured' || key == 'black'">{{ key }}</h1>
+        </div>
+      </ngxMasonryItem>
     </ngx-masonry>
   </div>
 </ion-content>

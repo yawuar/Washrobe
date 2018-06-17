@@ -144,7 +144,13 @@ export class ItemPage {
           .present();
       })
       .catch(err => {
-        console.log(err);
+        this.toastController
+          .create({
+            message: err,
+            duration: 3000,
+            dismissOnPageChange: true
+          })
+          .present();
       });
   }
 

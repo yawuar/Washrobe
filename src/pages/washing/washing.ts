@@ -13,8 +13,9 @@ export class WashingPage {
   public items: any = [];
   public washroom: any = [];
   private token: string;
-  public name: string = 'colors';
+  public name: string = "colors";
   public keys;
+  public amountOfMachines: any = [];
 
   public hasGradient: boolean = false;
 
@@ -30,6 +31,8 @@ export class WashingPage {
         this.keys = Object.keys(result["data"]["laundry"]);
         this.items = Array.of(result["data"]["laundry"]);
         this.washroom = result["data"]["information"];
+
+        this.amountOfMachines = this.countMachines(result["data"]["laundry"]);
       })
       .catch(err => {
         // alert(JSON.stringify(err));
@@ -41,13 +44,27 @@ export class WashingPage {
   }
 
   isObject(value) {
-    return value && typeof value === 'object' && value.constructor === Object;
+    return value && typeof value === "object" && value.constructor === Object;
   }
 
   chooseLocation() {
     this.navCtrl.push(MapsPage);
   }
 
-  ionViewDidLoad() {
+  countMachines(items) {
+    let i = [];
+    for (let key in items) {
+      if (items[key].length != 0) {
+        for (let k in items[key]) {
+          for (let degrees in items[key][k]) {
+            for (let index in items[key][k][degrees]) {
+              i.push(index);
+            }
+          }
+        }
+      }
+    }
+
+    return i;
   }
 }

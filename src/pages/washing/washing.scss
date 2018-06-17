@@ -1,28 +1,37 @@
 page-washing {
-
   .top {
     width: 100%;
     border: 4px solid $dark !important;
     border-radius: 4px;
     height: 125px;
     margin-bottom: 25px;
-
     display: flex;
     align-items: center;
-
     .information {
       width: 50%;
       text-align: center;
       .title {
         margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
         .icon {
-
+          display: block;
+          background-image: url(../assets/imgs/marker.svg);
+          background-repeat: no-repeat;
+          height: 17px;
+          width: 12px;
+          margin-right: 10px;
         }
-
         span {
           font-family: 'Gotham Rounded';
           font-weight: 500;
           color: $dark;
+          float: left;
+        }
+        &::after {
+          clear: both;
+          content: '';
+          display: block;
         }
       }
       .content {
@@ -32,12 +41,11 @@ page-washing {
         }
       }
     }
-
     .extra-info {
       width: 50%;
       text-align: center;
-
-      .price {
+      .price,
+      .am {
         font-family: 'Gotham Rounded Book';
         p {
           font-family: 'Gotham Rounded';
@@ -45,8 +53,21 @@ page-washing {
           margin: 0;
         }
       }
+      .am {
+        margin-bottom: 20px;
+        .machines {
+          display: flex;
+          justify-content: center;
+          .machine {
+            background-image: url('../assets/imgs/machine.svg');
+            background-repeat: no-repeat;
+            width: 14px;
+            height: 16px;
+            margin: 0 2.5px;
+          }
+        }
+      }
     }
-
     a {
       display: block;
       font-family: 'Gotham Rounded';
@@ -56,46 +77,37 @@ page-washing {
       margin-top: 5px;
     }
   }
-
   .container {
     .color {
-        width: calc(50% - 25px); 
-
-        height: 150px;
-        border: 4px solid $dark;
-        border-radius: 4px;
-        margin:0 12.5px 25px 12.5px;
-    
-        position: relative;
-        contain: unset;
-
-        &.dis {
-          opacity: 0.25;
-        }
-
-        div {
-          width: 100%;
-          height: 100%;
-
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        &:nth-child(2) {
-          margin-top: 75px;
-        }
-
-        &:nth-child(2), &:nth-child(3) {
-          height: 225px;
-        }
-
+      width: calc(50% - 25px);
+      height: 150px;
+      border: 4px solid $dark;
+      border-radius: 4px;
+      margin: 0 12.5px 25px 12.5px;
+      position: relative;
+      contain: unset;
+      &.dis {
+        opacity: 0.25;
+      }
+      div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &:nth-child(2) {
+        margin-top: 75px;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        height: 225px;
+      }
       &.white {
         h1 {
           color: $dark;
         }
       }
-
       .overlay,
       .gradient,
       .no-gradient {

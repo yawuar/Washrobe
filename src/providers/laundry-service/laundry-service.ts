@@ -141,4 +141,23 @@ export class LaundryServiceProvider {
       );
     });
   }
+
+  countMachines(token, type, body) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders({
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      });
+
+      this.http.post(url + type, body, { headers: headers }).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
 }
