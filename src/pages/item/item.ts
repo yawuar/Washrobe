@@ -191,6 +191,7 @@ export class ItemPage {
   }
 
   addToCalendarPage(category) {
+    console.log(category);
     this.calendarServiceProvider
       .addItemInCalendar(this.token, "calendar", {
         user_itemID: category.pivot.id,
@@ -200,7 +201,7 @@ export class ItemPage {
         this.navCtrl.pop();
       })
       .catch(err => {
-        // console.log(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       });
   }
 

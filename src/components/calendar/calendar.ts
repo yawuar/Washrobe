@@ -48,7 +48,8 @@ export class CalendarComponent {
   constructor(
     private renderer: Renderer,
     private viewCtrl: ViewController,
-    private calendarServiceProvider: CalendarServiceProvider
+    private calendarServiceProvider: CalendarServiceProvider,
+    private viewController: ViewController
   ) {
     this.renderer.setElementClass(
       viewCtrl.pageRef().nativeElement,
@@ -164,9 +165,5 @@ export class CalendarComponent {
       .catch(err => {
         console.log(JSON.stringify(err));
       });
-  }
-
-  close() {
-    console.log("boem");
   }
 }

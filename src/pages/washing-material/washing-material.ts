@@ -24,6 +24,10 @@ export class WashingMaterialPage {
   public materials: any = [];
   isWashed: boolean;
   private token: string;
+
+  public washroom: any = [];
+  public amountOfMachines: any = [];
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,6 +35,16 @@ export class WashingMaterialPage {
     private laundryServiceProvider: LaundryServiceProvider
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
+    this.laundryServiceProvider
+      .getLaundrySorted(this.token, "laundry/items/sort")
+      .then(result => {
+        this.washroom = result["data"]["information"];
+
+        this.amountOfMachines = this.countMachines(result["data"]["laundry"]);
+      })
+      .catch(err => {
+        // alert(JSON.stringify(err));
+      });
   }
 
   ionViewDidLoad() {
@@ -49,6 +63,7 @@ export class WashingMaterialPage {
     modal.onDidDismiss(data => {
       if (data != null || data != undefined) {
         for (let s in res) {
+          console.log(res[s]);
           this.laundryServiceProvider
             .updateIsWashedForClothes(
               this.token,
@@ -56,14 +71,33 @@ export class WashingMaterialPage {
               res[s].pivot.id
             )
             .then(res => {
-              // console.log();
+              console.log(res);
             })
-            .catch(err => {});
+            .catch(err => {
+              console.log(err);
+            });
         }
 
         this.ionViewDidLoad();
       }
     });
     modal.present();
+  }
+
+  countMachines(items) {
+    let i = [];
+    for (let key in items) {
+      if (items[key].length != 0) {
+        for (let k in items[key]) {
+          for (let degrees in items[key][k]) {
+            for (let index in items[key][k][degrees]) {
+              i.push(index);
+            }
+          }
+        }
+      }
+    }
+
+    return i;
   }
 }
