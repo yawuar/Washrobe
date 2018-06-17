@@ -28,6 +28,8 @@ export class CalendarPage {
     { id: 2, class: "pants", data: [] }
   ];
 
+  public week = 0;
+
   public months: any = [
     "Jan",
     "Feb",
@@ -52,7 +54,7 @@ export class CalendarPage {
     if (this.navParams.get("data") != null) {
       this.currentDay = new Date(this.navParams.get("data"));
     }
-    this.getCurrentWeek();
+    this.getCurrentWeek(this.week);
     this.getClothesByCurrentDay();
   }
 
@@ -60,20 +62,33 @@ export class CalendarPage {
     this.getClothesByCurrentDay();
   }
 
-  getCurrentWeek() {
+  getCurrentWeek(week) {
+    let firstDayOfWeek = this.days[0];
+    this.days = [];
     let amountDays = 7;
     let current = new Date();
+    if (week == 1) {
+      current = new Date(firstDayOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
+    }
+
     let index = current.getDate() - current.getDay();
 
     for (let i = 0; i < amountDays; i++) {
-      this.days.push(new Date(current.setDate(index)));
       if (
-        this.currentDay.getTime() === new Date(current.setDate(index)).getTime()
+        week == 0 &&
+        new Date(this.currentDay).getTime() ===
+          new Date(current.setDate(index)).getTime()
       ) {
         this.currentSelected = i;
       }
+      this.days.push(new Date(current.setDate(index)));
       index += 1;
     }
+  }
+
+  getWeek(week) {
+    this.week = week;
+    this.getCurrentWeek(this.week);
   }
 
   getClothesByCurrentDay() {

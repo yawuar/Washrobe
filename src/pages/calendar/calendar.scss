@@ -9,24 +9,55 @@ page-calendar {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            &.week, &.items {
+            &.week,
+            &.items {
               height: 95%;
             }
-
             &.items {
               display: inline-block;
+              ion-item {
+                padding: 0 0 0 5px !important;
+                height: 44px !important;
+                &.item-select {
+                  width: 100%;
+                }
+                .item-inner {
+                  border: 0;
+                  .input-wrapper {
+                    ion-select {
+                      padding: 0px 8px 0px 0;
+                      .select-text {
+                        color: $dark;
+                        overflow: initial;
+                        min-width: auto;
+                      }
+                      .select-icon {
+                        left: 10px;
+                        .select-icon-inner {
+                          background-image: url('../assets/imgs/select-arrow.svg');
+                          background-repeat: no-repeat;
+                          background-position: center 10px;
+                          background-size: contain;
+                          border: 0;
+                          height: 100%;
+                          width: 100%;
+                          left: 0;
+                          top: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
               .item {
                 height: 50%;
                 width: 50%;
                 float: left;
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
                 padding: 30px 5px;
                 border-radius: 4px;
-
                 &.empty {
                   .no-item {
                     height: 100%;
@@ -34,11 +65,9 @@ page-calendar {
                     background-color: $grey;
                     border: 4px solid $dark;
                     border-radius: 4px;
-
                     display: flex;
                     justify-content: center;
                     align-items: center;
-
                     .icon {
                       text-align: center;
                       p {
@@ -52,16 +81,13 @@ page-calendar {
                     }
                   }
                 }
-
                 img-loader {
                   background-size: cover !important;
                   background-position: center center;
-
                   border-radius: 4px;
                 }
               }
             }
-
             .date {
               text-align: center;
               &.current {
