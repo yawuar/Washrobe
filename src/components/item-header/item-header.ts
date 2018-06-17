@@ -14,9 +14,7 @@ import { HomePage } from "../../pages/home/home";
 })
 export class ItemHeaderComponent {
   @Input("item") item;
-  constructor(private navController: NavController) {
-    console.log("Hello ItemHeaderComponent Component");
-  }
+  constructor(private navController: NavController) {}
 
   openHomePage() {
     this.navController.setRoot(HomePage);
