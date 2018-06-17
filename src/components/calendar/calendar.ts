@@ -88,6 +88,10 @@ export class CalendarComponent {
     }
   }
 
+  close() {
+    this.viewController.dismiss();
+  }
+
   getWeek(week) {
     this.week = week;
     this.getCurrentWeek(this.week);

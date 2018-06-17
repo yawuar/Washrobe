@@ -26,11 +26,17 @@
     <div class="main">
       <form [formGroup]="user" (ngSubmit)="login()">
         <ion-item no-padding>
-          <ion-label [class.error]="error['error']  && error['error']['email']" stacked>EMAIL<span *ngIf="error['error'] && error['error']['email']"><br>{{ error['error']['email'] }}</span></ion-label>
+          <ion-label [class.error]="error['error']  && error['error']['email']" stacked>EMAIL
+            <span *ngIf="error['error'] && error['error']['email']">
+              <br>{{ error['error']['email'] }}</span>
+          </ion-label>
           <ion-input type="email" [(ngModel)]="user.email" formControlName="email" placeholder="example@example.be" value="yawuarsernadelgado@hotmail.be"></ion-input>
         </ion-item>
         <ion-item no-padding>
-          <ion-label [class.error]="error['error']  && error['error']['password']" stacked>PASSWORD<span *ngIf="error['error'] && error['error']['password']"><br>{{ error['error']['password'] }}</span></ion-label>
+          <ion-label [class.error]="error['error']  && error['error']['password']" stacked>PASSWORD
+            <span *ngIf="error['error'] && error['error']['password']">
+              <br>{{ error['error']['password'] }}</span>
+          </ion-label>
           <ion-input type="password" [(ngModel)]="user.password" formControlName="password" placeholder="xxxxxxxxxxx" value="test123"></ion-input>
         </ion-item>
         <div class="button">
@@ -44,7 +50,7 @@
         <a (click)="showRegistration()">CREATE ACCOUNT</a>
       </div>
     </div>
-    <div class="footer">
+    <!-- <div class="footer">
       <div class="or">
         <div class="lines">
           <div class="small"></div>
@@ -57,8 +63,8 @@
           <div class="point"></div>
           <div class="small"></div>
         </div>
-      </div>
-      <div class="social">
+      </div> -->
+    <!-- <div class="social">
         <div class="facebook">
           <div class="gradient"></div>
           <span>Facebook</span>
@@ -67,7 +73,7 @@
           <div class="no-gradient"></div>
           <span>Google</span>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   </div>
 </ion-content>

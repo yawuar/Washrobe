@@ -1,7 +1,11 @@
+<button class="close" (click)="close()">
+  <img src="assets/imgs/cross.svg" alt="cross" width="15">
+</button>
 <ion-grid>
   <ion-row>
     <ion-col class="week">
-      <div *ngFor="let day of days; let id = index" [ngClass]="{'current': (id === currentSelected), 'disabled': (currentDay > day) }" class="date" (click)="showClothesByDay(id, day)">
+      <div *ngFor="let day of days; let id = index" [ngClass]="{'current': (id === currentSelected), 'disabled': (currentDay > day) }"
+        class="date" (click)="showClothesByDay(id, day)">
         <span class="day">{{ day.getDate() }}</span>
         <span class="month">{{ months[day.getMonth()] }}</span>
       </div>

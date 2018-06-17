@@ -74,8 +74,6 @@ export class ItemPage {
     this.wardrobeServiceProvider
       .getWardrobeById(id, token, "wardrobe")
       .then(result => {
-        console.log(result["data"]);
-        // TODO: sometimes symbols not showing
         this.items = result["data"];
         this.current = 0;
       });
