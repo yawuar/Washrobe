@@ -129,9 +129,10 @@ export class CalendarPage {
   }
 
   addItemToCalendar(type) {
+    console.log(type);
     this.navCtrl.push(ItemPage, {
       data: type.id,
-      isCalender: false,
+      isCalender: true,
       date: this.days[this.currentSelected.toFixed()],
       name: type.class
     });

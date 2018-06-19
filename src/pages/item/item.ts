@@ -59,7 +59,6 @@ export class ItemPage {
     if (this.navParams.get("date") != undefined) {
       this.currentDay = this.navParams.get("date");
     }
-
     if (this.navParams.get("name") != undefined) {
       this.item = this.navParams.get("name");
     }

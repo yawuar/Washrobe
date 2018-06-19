@@ -35,9 +35,10 @@ export class MapsPage {
     private laundryServiceProvider: LaundryServiceProvider
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
-    this.platform.ready().then(() => {
-      this.loadMap();
-    });
+  }
+
+  ionViewDidLoad() {
+    this.loadMap();
   }
 
   loadMap() {
