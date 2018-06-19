@@ -19,6 +19,7 @@ export class CalendarPage {
   private token;
   public days: any = [];
   public currentDay: any = new Date();
+  public cDay: any = new Date();
   public itemByDay: any = [];
   public currentSelected: Number = 0;
   public typeOfClothes: any = [
@@ -58,10 +59,6 @@ export class CalendarPage {
     this.getClothesByCurrentDay();
   }
 
-  ionViewWillEnter() {
-    this.getClothesByCurrentDay();
-  }
-
   getCurrentWeek(week) {
     let firstDayOfWeek = this.days[0];
     this.days = [];
@@ -72,13 +69,10 @@ export class CalendarPage {
     }
 
     let index = current.getDate() - current.getDay();
+    
 
     for (let i = 0; i < amountDays; i++) {
-      if (
-        week == 0 &&
-        new Date(this.currentDay).getTime() ===
-          new Date(current.setDate(index)).getTime()
-      ) {
+      if ( week == 0 && new Date(this.cDay).getTime() === new Date(current.setDate(index)).getTime()) {
         this.currentSelected = i;
       }
       this.days.push(new Date(current.setDate(index)));
@@ -92,7 +86,7 @@ export class CalendarPage {
   }
 
   getClothesByCurrentDay() {
-    this.showClothesByDay(this.currentSelected, this.currentDay);
+    this.showClothesByDay(this.currentSelected, this.cDay);
   }
 
   showClothesByDay(id, day) {
