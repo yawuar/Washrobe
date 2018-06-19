@@ -128,11 +128,12 @@ export class CalendarPage {
     return yy + "-" + mm + "-" + dd;
   }
 
-  addItemToCalendar(id) {
+  addItemToCalendar(type) {
     this.navCtrl.push(ItemPage, {
-      data: id,
-      isCalender: true,
-      date: this.days[this.currentSelected.toFixed()]
+      data: type.id,
+      isCalender: false,
+      date: this.days[this.currentSelected.toFixed()],
+      name: type.class
     });
   }
 }
