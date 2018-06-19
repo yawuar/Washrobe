@@ -97,9 +97,14 @@ export class MyApp {
   displayNetworkUpdate(state: string) {
     let type = this.network.type;
 
+    let message = 'No internet connection.';
+    if(type != null) {
+      message = 'You are connected.';
+    }
+
     this.toastController
       .create({
-        message: "You are now " + state + " via " + type,
+        message: message,
         duration: 3000
       })
       .present();

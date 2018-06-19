@@ -82,12 +82,6 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyAl2ByxbuKbr6CSvFIyN8EVjYXhPSrGf-U",
-        "API_KEY_FOR_IOS": "AIzaSyAl2ByxbuKbr6CSvFIyN8EVjYXhPSrGf-U",
-        "PLAY_SERVICES_VERSION": "15.0.1",
-        "ANDROID_SUPPORT_V4_VERSION": "26.1.0"
-      },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "I need your location"
       },
@@ -97,6 +91,11 @@
       },
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.648851499943-99dpulge6hcgjjq7mhcjud77ho28ma6f"
+      },
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyC5lfDQ92GLLZnxQ381ojGsJtzEkfTYxvs",
+        "PLAY_SERVICES_VERSION": "15.0.1",
+        "ANDROID_SUPPORT_V4_VERSION": "26.1.0"
       }
     },
     "platforms": [

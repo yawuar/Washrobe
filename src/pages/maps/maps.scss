@@ -1,4 +1,18 @@
 page-maps {
+
+  .error {
+    position: absolute;
+    top: calc(50% - 40px);
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+    color: #575757;
+    font-size: 24px;
+    text-align: center;
+  }
+
   #map_canvas {
     height: 100%;
     border-radius: 4px;

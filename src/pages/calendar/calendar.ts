@@ -86,7 +86,15 @@ export class CalendarPage {
 
   getWeek(week) {
     this.week = week;
+    let day = this.cDay;
+    if(week == 1) {
+      this.currentSelected = 0;
+    }
     this.getCurrentWeek(this.week);
+
+    day = this.days[this.currentSelected.toFixed()];
+
+    this.showClothesByDay(this.currentSelected, day);
   }
 
   getClothesByCurrentDay() {
@@ -99,7 +107,6 @@ export class CalendarPage {
     this.calendarServiceProvider
       .getItemsByDay(this.token, "calendar/", this.formatDay(day))
       .then(result => {
-        // if(result["data"].length > 0) {
         for (let type of this.typeOfClothes) {
           type.data = [];
           for (let res of result["data"]) {
@@ -108,7 +115,6 @@ export class CalendarPage {
             }
           }
         }
-        // }
       })
       .catch(err => {
         // alert(JSON.stringify(err));

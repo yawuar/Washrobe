@@ -6,7 +6,7 @@ import {
   Marker
 } from "@ionic-native/google-maps";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from "ionic-angular";
 
 import { Geolocation } from "@ionic-native/geolocation";
 import { Diagnostic } from "@ionic-native/diagnostic";
@@ -25,6 +25,9 @@ export class MapsPage {
   public keys: any = [];
   public token: string;
   public coinwashrooms: any = [];
+
+  private loading: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,7 +35,8 @@ export class MapsPage {
     private geolocation: Geolocation,
     private diagnostic: Diagnostic,
     private coinwashServiceProvider: CoinwashServiceProvider,
-    private laundryServiceProvider: LaundryServiceProvider
+    private laundryServiceProvider: LaundryServiceProvider,
+    private loadingController: LoadingController,
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
   }
@@ -43,14 +47,15 @@ export class MapsPage {
 
   loadMap() {
     // Check if location is enabled
-    this.diagnostic
-      .isLocationEnabled()
-      .then(result => {
-        this.geolocation
-          .getCurrentPosition()
-          .then(position => {
-            // alert(position);
-            if (position.coords != undefined) {
+    // this.showLoader();
+    // this.diagnostic
+    //   .isLocationEnabled()
+    //   .then(result => {
+    //     this.geolocation
+    //       .getCurrentPosition()
+    //       .then(position => {
+    //         this.loading.dismiss();
+            //if (position.coords != undefined) {
               let mapOptions: GoogleMapOptions = {
                 camera: {
                   target: { lat: "51.2160089", lng: "4.4066663" },
@@ -61,10 +66,15 @@ export class MapsPage {
 
               this.map = GoogleMaps.create("map_canvas", mapOptions);
 
+              this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+                alert('is ready');
+              });
+
               this.coinwashServiceProvider
                 .getCoinWashrooms(this.token, "coinwash")
                 .then(result => {
                   // Add the markers
+                  // this.loading.dismiss();
                   this.coinwashrooms = result["data"];
 
                   for (let i = 0; i < this.coinwashrooms.length; i++) {
@@ -103,19 +113,28 @@ export class MapsPage {
                   }
                 })
                 .catch(err => {
-                  // alert("No data washrooms");
+                  // this.loading.dismiss();
                 });
-            } else {
-              this.errors.push("no coodinates");
-            }
-          })
-          .catch(err => {
-            // alert(JSON.stringify(err));
-            this.errors.push("Cannot find geolocation");
-          });
-      })
-      .catch(err => {
-        this.errors.push("Your location is disabled");
-      });
+            // } else {
+            //   this.errors.push("no coodinates");
+            //   this.loading.dismiss();
+            // }
+          //});
+          // .catch(err => {
+          //   this.errors.push("Cannot find geolocation");
+          //   this.loading.dismiss();
+          // });
+      // })
+      // .catch(err => {
+      //   this.errors.push("Your location is disabled");
+      //   this.loading.dismiss();
+      // });
+  }
+
+  showLoader() {
+    this.loading = this.loadingController.create({
+      content: "Loading Google Maps..."
+    });
+    this.loading.present();
   }
 }

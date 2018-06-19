@@ -13,6 +13,7 @@ page-calendar {
             &.items {
               height: 95%;
             }
+
             &.items {
               display: inline-block;
               ion-item {
@@ -90,6 +91,11 @@ page-calendar {
             }
             .date {
               text-align: center;
+
+              &.disabled {
+                opacity: 0.25;
+              }
+
               &.current {
                 span {
                   color: $active;

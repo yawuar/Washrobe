@@ -41,6 +41,14 @@ export class CustomHeaderComponent {
       });
   }
 
+  ionViewWillEnter() {
+    this.laundryServiceProvider
+      .getAllLaundryByUser(this.token, "laundry/get")
+      .then(result => {
+        this.amountLaundry = result["data"];
+      });
+  }
+
   openLaundry(id) {
     let page = this.getSubPage(id);
     this.navCtrl.setRoot(page, { data: this.token });

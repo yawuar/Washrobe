@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, Platform } from "ionic-angular";
+import { NavController, Platform, ToastController } from "ionic-angular";
 
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
 
@@ -18,7 +18,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private wardrobeServiceProvider: WardrobeServiceProvider,
-    private platform: Platform
+    private platform: Platform,
+    private toastController: ToastController,
   ) {
     if (localStorage.getItem("currentUser")) {
       this.isLoggedIn = true;
@@ -36,7 +37,7 @@ export class HomePage {
           this.categories = result["data"];
         })
         .catch(err => {
-          alert(JSON.stringify(err));
+          this.presentToast(err);
         });
     } else {
       alert("user is NULL");
@@ -45,5 +46,20 @@ export class HomePage {
 
   showCategory(category) {
     this.navCtrl.push(ItemPage, { data: category.id, name: category.name });
+  }
+
+  presentToast(msg) {
+    let toast = this.toastController.create({
+      message: msg,
+      duration: 3000,
+      position: "bottom",
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log("Dismissed toast");
+    });
+
+    toast.present();
   }
 }
