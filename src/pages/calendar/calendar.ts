@@ -55,7 +55,11 @@ export class CalendarPage {
     if (this.navParams.get("data") != null) {
       this.currentDay = new Date(this.navParams.get("data"));
     }
+
     this.getCurrentWeek(this.week);
+  }
+
+  ionViewDidEnter() {
     this.getClothesByCurrentDay();
   }
 
