@@ -8,6 +8,7 @@ import {
 import { WashedComponent } from "../../components/washed/washed";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
 import { LaundryPage } from "../laundry/laundry";
+import { MapsPage } from "../maps/maps";
 
 /**
  * Generated class for the WashingMaterialPage page.
@@ -83,6 +84,10 @@ export class WashingMaterialPage {
       }
     });
     modal.present();
+  }
+
+  chooseLocation() {
+    this.navCtrl.push(MapsPage);
   }
 
   countMachines(items) {

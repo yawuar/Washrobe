@@ -26,6 +26,8 @@ export class MapsPage {
   public token: string;
   public coinwashrooms: any = [];
 
+  public item: string = "maps";
+
   private loading: any;
 
   constructor(
@@ -45,21 +47,17 @@ export class MapsPage {
     });
   }
 
-  // ionViewDidLoad() {
-    
-  // }
-
   loadMap() {
     // Check if location is enabled
-    // this.showLoader();
-    // this.diagnostic
-    //   .isLocationEnabled()
-    //   .then(result => {
-    //     this.geolocation
-    //       .getCurrentPosition()
-    //       .then(position => {
-    //         this.loading.dismiss();
-            //if (position.coords != undefined) {
+    this.showLoader();
+    this.diagnostic
+      .isLocationEnabled()
+      .then(result => {
+        this.geolocation
+          .getCurrentPosition()
+          .then(position => {
+            this.loading.dismiss();
+            if (position.coords != undefined) {
               let mapOptions: GoogleMapOptions = {
                 camera: {
                   target: { lat: "51.2160089", lng: "4.4066663" },
@@ -69,10 +67,6 @@ export class MapsPage {
               };
 
               this.map = GoogleMaps.create("map_canvas", mapOptions);
-
-              this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-                alert('is ready');
-              });
 
               this.coinwashServiceProvider
                 .getCoinWashrooms(this.token, "coinwash")
@@ -94,7 +88,9 @@ export class MapsPage {
                         this.coinwashrooms[i]["zipcode"] +
                         " " +
                         this.coinwashrooms[i]["city"] +
-                        "\n\n" +
+                        "\n" +
+                        this.coinwashrooms[i]['price'] +
+                        '\n\n' +
                         "Choose this Washroom",
                       position: {
                         lat: this.coinwashrooms[i]["latitude"],
@@ -117,22 +113,22 @@ export class MapsPage {
                   }
                 })
                 .catch(err => {
-                  // this.loading.dismiss();
+                  this.loading.dismiss();
                 });
-            // } else {
-            //   this.errors.push("no coodinates");
-            //   this.loading.dismiss();
-            // }
-          //});
-          // .catch(err => {
-          //   this.errors.push("Cannot find geolocation");
-          //   this.loading.dismiss();
-          // });
-      // })
-      // .catch(err => {
-      //   this.errors.push("Your location is disabled");
-      //   this.loading.dismiss();
-      // });
+            } else {
+              this.errors.push("no coodinates");
+              this.loading.dismiss();
+            }
+          })
+          .catch(err => {
+            this.errors.push("Cannot find geolocation");
+            this.loading.dismiss();
+          });
+      })
+      .catch(err => {
+        this.errors.push("Your location is disabled");
+        this.loading.dismiss();
+      });
   }
 
   showLoader() {

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { WashingMaterialPage } from "../washing-material/washing-material";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
+import { MapsPage } from "../maps/maps";
 
 /**
  * Generated class for the WashingDegreePage page.
@@ -42,6 +43,10 @@ export class WashingDegreePage {
 
   getMaterial(degree) {
     this.navCtrl.push(WashingMaterialPage, { data: this.degrees[degree] });
+  }
+
+  chooseLocation() {
+    this.navCtrl.push(MapsPage);
   }
 
   countMachines(items) {
