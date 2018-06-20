@@ -50,8 +50,6 @@ export class ItemPage {
     ];
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
 
-    this.getItem(this.navParams.get("data"), this.token);
-
     if (this.navParams.get("isCalender") != undefined) {
       this.isCalendar = this.navParams.get("isCalender");
     }
@@ -65,9 +63,9 @@ export class ItemPage {
   }
 
   // refresh page when clothes are added
-  // ionViewWillEnter() {
-  //   this.getItem(this.navParams.get("data"), this.token);
-  // }
+  ionViewDidLoad() {
+    this.getItem(this.navParams.get("data"), this.token);
+  }
 
   getItem(id, token) {
     this.wardrobeServiceProvider
@@ -112,7 +110,7 @@ export class ItemPage {
         );
         modal.onDidDismiss(data => {
           if (data != null || data != undefined) {
-            // this.ionViewDidLoad();
+            this.ionViewDidLoad();
           }
         });
         modal.present();
@@ -129,6 +127,7 @@ export class ItemPage {
   }
 
   addToLaundry(id) {
+    console.log(id);
     this.laundryServiceProvider
       .addItemInLaundry(id, this.token, "laundry")
       .then(result => {
@@ -143,7 +142,7 @@ export class ItemPage {
       .catch(err => {
         this.toastController
           .create({
-            message: err,
+            message: 'There went something wrong.',
             duration: 3000,
             dismissOnPageChange: true
           })

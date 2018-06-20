@@ -39,11 +39,15 @@ export class MapsPage {
     private loadingController: LoadingController,
   ) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
+
+    this.platform.ready().then(() => {
+      this.loadMap();
+    });
   }
 
-  ionViewDidLoad() {
-    this.loadMap();
-  }
+  // ionViewDidLoad() {
+    
+  // }
 
   loadMap() {
     // Check if location is enabled

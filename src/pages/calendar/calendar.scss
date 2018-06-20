@@ -1,3 +1,38 @@
+.alert-md [aria-checked=true] .alert-radio-label {
+  color: $active !important;
+}
+
+.alert-radio-label {
+  color: $dark !important;
+}
+
+.alert-button {
+  color: $active !important;
+}
+
+.alert-wrapper {
+  .alert-head {
+    display: none;
+  }
+
+  .alert-button-group {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    color: $active;
+
+  }
+
+  .alert-radio-icon {
+    border-color: $active !important;
+
+    .alert-radio-inner {
+      background-color: $active !important;
+    }
+  }
+}
+
 page-calendar {
   ion-content {
     .scroll-content {

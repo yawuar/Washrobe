@@ -48,9 +48,11 @@ export class LaundryItemPage {
     if (this.navParams.get("name") != undefined) {
       this.item = this.navParams.get("name");
     }
+
+    // this.getLaundryItems(this.navParams.get("data"), this.token);
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.getLaundryItems(this.navParams.get("data"), this.token);
   }
 
@@ -60,6 +62,8 @@ export class LaundryItemPage {
       .then(result => {
         this.items = result["data"];
         this.current = 0;
+      }).catch(err => {
+        console.log(JSON.stringify(err));
       });
   }
 
@@ -101,7 +105,7 @@ export class LaundryItemPage {
         );
         modal.onDidDismiss(data => {
           if (data != null || data != undefined) {
-            this.ionViewDidLoad();
+            this.ionViewWillEnter();
           }
         });
         modal.present();

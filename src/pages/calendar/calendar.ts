@@ -87,12 +87,12 @@ export class CalendarPage {
   getWeek(week) {
     this.week = week;
     let day = this.cDay;
-    if(week == 1) {
-      this.currentSelected = 0;
-    }
     this.getCurrentWeek(this.week);
 
-    day = this.days[this.currentSelected.toFixed()];
+    if(week == 1) {
+      this.currentSelected = 0;
+      day = this.days[this.currentSelected.toFixed()];
+    }
 
     this.showClothesByDay(this.currentSelected, day);
   }
