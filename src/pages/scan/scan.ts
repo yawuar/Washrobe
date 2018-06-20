@@ -140,7 +140,7 @@ export class ScanPage {
 
         modal.onDidDismiss(data => {
           if (data != null || data != undefined) {
-            this.navCtrl.pop();
+            this.navCtrl.push(ItemPage, { data: data.categoryID, isNew: true });
           }
         });
         modal.present();

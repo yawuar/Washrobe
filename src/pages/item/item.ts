@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import {
   IonicPage,
   NavController,
   NavParams,
   ModalController,
-  ToastController
+  ToastController,
+  Navbar
 } from "ionic-angular";
 
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
@@ -15,6 +16,7 @@ import { ImgLoader } from "ionic-image-loader";
 import { CalendarComponent } from "../../components/calendar/calendar";
 import { DeleteComponent } from "../../components/delete/delete";
 import { CalendarServiceProvider } from "../../providers/calendar-service/calendar-service";
+import { HomePage } from "../home/home";
 
 @IonicPage()
 @Component({
@@ -34,6 +36,7 @@ export class ItemPage {
 
   icons: Array<{ image: string; width: Number; alt: string }>;
 
+  @ViewChild(Navbar) navBar;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -60,11 +63,19 @@ export class ItemPage {
     if (this.navParams.get("name") != undefined) {
       this.item = this.navParams.get("name");
     }
+
+    if (this.navParams.get("isNew") != undefined) {
+      this.navBar = Navbar;
+      this.navBar.backButtonClick = () => {
+        console.log('clicked');
+        this.navCtrl.setRoot(HomePage);
+      }
+    }
   }
 
   // refresh page when clothes are added
   ionViewDidLoad() {
-    this.getItem(this.navParams.get("data"), this.token);
+    this.getItem(this.navParams.get("data"), this.token)
   }
 
   getItem(id, token) {
@@ -148,10 +159,6 @@ export class ItemPage {
           })
           .present();
       });
-  }
-
-  scan() {
-    this.navCtrl.push(ScanPage);
   }
 
   onImageLoad(imgLoader: ImgLoader) {

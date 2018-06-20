@@ -7,7 +7,7 @@ page-item {
       }
       .no-item {
         position: absolute;
-        top: 50%;
+        top: calc(50% - 40px);
         left: 50%;
         transform: translate(-50%, -50%);
         p {

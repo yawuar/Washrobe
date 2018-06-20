@@ -7,6 +7,7 @@ import {
 } from "ionic-angular";
 import { WashedComponent } from "../../components/washed/washed";
 import { LaundryServiceProvider } from "../../providers/laundry-service/laundry-service";
+import { LaundryPage } from "../laundry/laundry";
 
 /**
  * Generated class for the WashingMaterialPage page.
@@ -63,7 +64,6 @@ export class WashingMaterialPage {
     modal.onDidDismiss(data => {
       if (data != null || data != undefined) {
         for (let s in res) {
-          console.log(res[s]);
           this.laundryServiceProvider
             .updateIsWashedForClothes(
               this.token,
@@ -72,6 +72,7 @@ export class WashingMaterialPage {
             )
             .then(res => {
               console.log(res);
+              this.navCtrl.setRoot(LaundryPage);
             })
             .catch(err => {
               console.log(err);

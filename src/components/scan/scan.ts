@@ -31,7 +31,7 @@ export class ScanComponent {
     this.itemServiceProvider
       .addItemToUser(this.token, "item/", id)
       .then(result => {
-        this.viewController.dismiss(this.item.categoryID);
+        this.viewController.dismiss(this.item);
       });
   }
 }

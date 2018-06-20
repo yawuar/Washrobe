@@ -3,16 +3,23 @@
 </ion-header>
 
 <ion-content padding>
-
-  <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
-    <ngxMasonryItem class="masonry-item" *ngFor="let category of categories; let i = index" [attr.data-index]="(i + 1)" [ngClass]="'item item-' + (i + 1)"
-      (click)="showCategory(category);">
-      <div class="gradient"></div>
-      <div class="inner">
-        <span>{{ category.amount }} x</span>
-        <p>{{ category.name }}</p>
+    <div (click)="scan()" class="insert">
+        <div class="inner">
+          <p>Add new Item</p>
+          <span></span>
+        </div>
       </div>
-    </ngxMasonryItem>
-  </ngx-masonry>
+      <div class="container">
+          <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">
+              <ngxMasonryItem class="masonry-item" *ngFor="let category of categories; let i = index" [attr.data-index]="(i + 1)" [ngClass]="'item item-' + (i + 1)"
+                (click)="showCategory(category);">
+                <div class="gradient"></div>
+                <div class="inner">
+                  <span>{{ category.amount }} x</span>
+                  <p>{{ category.name }}</p>
+                </div>
+              </ngxMasonryItem>
+            </ngx-masonry>
+      </div>
 
 </ion-content>

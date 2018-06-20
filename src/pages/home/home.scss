@@ -1,4 +1,11 @@
 page-home {
+    .scroll-content {
+        padding: 0 !important;
+        .container {
+          padding: 0 16px;
+          margin-top: 25px;
+        }
+    }
     .masonry-item { 
         width: calc(50% - 25px); 
 

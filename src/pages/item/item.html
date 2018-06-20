@@ -4,13 +4,6 @@
 
 
 <ion-content padding>
-  <div (click)="scan()" class="insert">
-    <div class="inner">
-      <p>Add new Item</p>
-      <span></span>
-    </div>
-  </div>
-
   <div class="container">
     <div *ngIf="items.length > 0">
       <ngx-masonry [useImagesLoaded]="true" [updateLayout]="updateMasonryLayout">

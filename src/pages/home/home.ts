@@ -4,6 +4,7 @@ import { NavController, Platform, ToastController } from "ionic-angular";
 import { WardrobeServiceProvider } from "../../providers/wardrobe-service/wardrobe-service";
 
 import { ItemPage } from "../item/item";
+import { ScanPage } from "../scan/scan";
 
 @Component({
   selector: "page-home",
@@ -61,5 +62,9 @@ export class HomePage {
     });
 
     toast.present();
+  }
+
+  scan() {
+    this.navCtrl.push(ScanPage);
   }
 }
