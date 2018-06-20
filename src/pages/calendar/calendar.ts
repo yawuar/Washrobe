@@ -46,11 +46,7 @@ export class CalendarPage {
     "Dec"
   ];
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private calendarServiceProvider: CalendarServiceProvider
-  ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private calendarServiceProvider: CalendarServiceProvider) {
     this.token = JSON.parse(localStorage.getItem("currentUser"))["token"];
     if (this.navParams.get("data") != null) {
       this.currentDay = new Date(this.navParams.get("data"));
@@ -74,7 +70,6 @@ export class CalendarPage {
 
     let index = current.getDate() - current.getDay();
     
-
     for (let i = 0; i < amountDays; i++) {
       if ( week == 0 && new Date(this.cDay).getTime() === new Date(current.setDate(index)).getTime()) {
         this.currentSelected = i;
@@ -105,8 +100,9 @@ export class CalendarPage {
     this.currentSelected = id;
     this.itemByDay = [];
     this.calendarServiceProvider
-      .getItemsByDay(this.token, "calendar/", this.formatDay(day))
+      .getItemsByDay(this.token, "calendar/", this.formatDay(this.days[this.currentSelected.toFixed()]))
       .then(result => {
+        console.log(result);
         for (let type of this.typeOfClothes) {
           type.data = [];
           for (let res of result["data"]) {
@@ -135,7 +131,7 @@ export class CalendarPage {
   }
 
   addItemToCalendar(type) {
-    console.log(type);
+    console.log(this.days[this.currentSelected.toFixed()]);
     this.navCtrl.push(ItemPage, {
       data: type.id,
       isCalender: true,

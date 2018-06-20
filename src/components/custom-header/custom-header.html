@@ -5,7 +5,7 @@
   </button>
 
   <ion-title padding text-center>
-    <div class="login-logo image-{{ icon }}">
+    <div class="login-logo image-{{ icon }}" (click)="openHomePage(icon)">
       <div class="ico">
         <div *ngIf="amountLaundry > 0" class="amount">
           <span>{{ amountLaundry }}</span>

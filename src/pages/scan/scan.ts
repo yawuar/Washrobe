@@ -54,7 +54,9 @@ export class ScanPage {
     this.code = this.formBuilder.group({
       code: ["", Validators.required]
     });
+  }
 
+  ionViewWillEnter() {
     this.platform.ready().then(() => {
       if (this.platform.is("cordova")) {
         if (this.diagnostic.NFCState.POWERED_ON) {
@@ -88,29 +90,6 @@ export class ScanPage {
         this.error = "unavailable";
       }
     });
-  }
-
-  nfcHandler() {
-    this.nfc
-      .addNdefListener(
-        () => {
-          this.error = "available";
-        },
-        err => {
-          this.error = "unavailable";
-        }
-      )
-      .subscribe(event => {
-        if (event && event.tag && event.tag.id) {
-          let payload = event.tag.ndefMessage[0].payload;
-          let content = this.nfc.bytesToString(payload).substring(3);
-          if (content) {
-            this.addHashCode(content);
-          } else {
-            this.error = "unavailable";
-          }
-        }
-      });
   }
 
   displayNetworkUpdate(state: string) {

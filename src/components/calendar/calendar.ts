@@ -121,7 +121,7 @@ export class CalendarComponent {
   remove(data) {
     let body = {
       user_itemID: data[0].pivot.id,
-      date: this.formatDay(this.currentDay)
+      date: this.formatDay(this.days[this.currentSelected.toFixed()])
     };
     console.log(body);
     this.calendarServiceProvider
